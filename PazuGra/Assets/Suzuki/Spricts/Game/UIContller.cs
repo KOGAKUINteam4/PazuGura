@@ -35,9 +35,9 @@ public class UIContller : MonoBehaviour {
     }
 
     //レイヤーペアレントのサーチ
-    private GameObject SearchParent(int index)
+    public GameObject SearchParent(Layers index)
     {
-        return mLayerSet[index];
+        return mLayerSet[(int)index];
     }
 
     //生成するオブジェクト
@@ -46,7 +46,7 @@ public class UIContller : MonoBehaviour {
     public GameObject CreateUI(GameObject instance, Vector2 position, Layers parentIndex = Layers.Layer_Front)
     {
         GameObject instanceUI = Instantiate(instance,position,Quaternion.identity) as GameObject;
-        instanceUI.transform.parent = SearchParent((int)parentIndex).transform;
+        instanceUI.transform.parent = SearchParent(parentIndex).transform;
         return instance;
     }
 

@@ -11,6 +11,12 @@ public class BlockInfo : Block {
     {
         m_ID = 0;
         m_Col2d = new PolygonCollider2D();
+        m_Color = Color.white;
+        m_position = Vector2.zero;
+
+
+        //m_Col2d.SetPath
+        //m_Col2d.points
     }
 
 }

@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Nishi\nishitest.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\ActiveStateToggler.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\ApplicationManager.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\ChangeColor.cs" />
@@ -57,19 +58,28 @@
      <Compile Include="Assets\SampleAsset\Scripts\ScrollDetailTexture.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\ShowSliderValue.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\TiltWindow.cs" />
-     <Compile Include="Assets\Suzuki\Spricts\Actor.cs" />
-     <Compile Include="Assets\Suzuki\Spricts\BlockFactory.cs" />
-     <Compile Include="Assets\Suzuki\Spricts\BlockInfo.cs" />
-     <Compile Include="Assets\Suzuki\Spricts\BlockManager.cs" />
-     <Compile Include="Assets\Suzuki\Spricts\DebugObject.cs" />
-     <Compile Include="Assets\Suzuki\Spricts\Def.cs" />
-     <Compile Include="Assets\Suzuki\Spricts\GameManager.cs" />
-     <Compile Include="Assets\Suzuki\Spricts\Layers.cs" />
-     <Compile Include="Assets\Suzuki\Spricts\UIContller.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Block\ChainBlock.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Debug\ClickPointCreatePolygon.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Debug\CreateMesh.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Debug\DebugBlock.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Debug\DebugInput.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Debug\DebugMath.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Debug\DebugObject.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Debug\DebugPrintSprict.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Debug\ScreenCapture.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Define\ColorState.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Define\Def.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Define\Layers.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Game\Actor.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Game\BlockFactory.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Game\BlockInfo.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Game\BlockManager.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Game\GameManager.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Game\Triangulator.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Game\UIContller.cs" />
      <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
      <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />
      <None Include="Assets\SampleAsset\Materials\UI-Default-No-Alpha.shader" />
-     <None Include="Assets\GUI4500Pack\readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
