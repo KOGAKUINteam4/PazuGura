@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class Ready : MonoBehaviour
 {
-    public GameObject nextImaget;
+    public GameObject nextImaget = null;
 
     [SerializeField, Tooltip("アルファのスピード")]
     private float m_speed = 1.0f;
@@ -18,8 +18,7 @@ public class Ready : MonoBehaviour
     public void Awake()
     {
         m_image = GetComponent<Image>();
-        m_alpha = Color.white;
-        m_alpha.a = 0;
+        m_alpha = m_image.color;
     }
 
 
@@ -35,7 +34,11 @@ public class Ready : MonoBehaviour
             temp = (GameObject)Instantiate(nextImaget);
             //GOオブジェクトの位置の補正
             temp.transform.parent = gameObject.transform.parent;
-            temp.GetComponent<Image>().rectTransform.position = GetComponent<Image>().rectTransform.position;
+
+            temp.transform.GetComponent<RectTransform>().position = Vector3.zero;
+            temp.transform.GetComponent<RectTransform>().localScale = Vector3.one;
+
+            //temp.transform.GetComponent<RectTransform>().position = GetComponent<Image>().rectTransform.position;
 
             Destroy(gameObject);
         }

@@ -74,6 +74,7 @@
     <Compile Include="Assets\Nishi\Script\Pointer\TouchPoint.cs" />
     <Compile Include="Assets\Nishi\Script\Ready＆Go\Ready.cs" />
     <Compile Include="Assets\Nishi\Script\Ready＆Go\ScaleControl.cs" />
+    <Compile Include="Assets\Nishi\Script\Ready＆Go\Slide.cs" />
     <Compile Include="Assets\Nishi\Script\nishitest.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ApplicationManager.cs" />
