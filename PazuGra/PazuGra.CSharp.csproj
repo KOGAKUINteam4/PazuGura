@@ -68,6 +68,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Nishi\Script\DebugPrint.cs" />
+    <Compile Include="Assets\Nishi\Script\LimitTime.cs" />
+    <Compile Include="Assets\Nishi\Script\TouchPoint.cs" />
     <Compile Include="Assets\Nishi\nishitest.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ApplicationManager.cs" />
