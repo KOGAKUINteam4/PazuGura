@@ -51,17 +51,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
@@ -74,6 +68,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Nishi\Script\ChainDelete.cs" />
+    <Compile Include="Assets\Nishi\Script\DeadManager.cs" />
     <Compile Include="Assets\Nishi\Script\DebugPrint.cs" />
     <Compile Include="Assets\Nishi\Script\DeleteTypeTsumTsum.cs" />
     <Compile Include="Assets\Nishi\Script\GameTimer.cs" />
@@ -97,15 +93,25 @@
     <Compile Include="Assets\SampleAsset\Scripts\ScrollDetailTexture.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ShowSliderValue.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\TiltWindow.cs" />
-    <Compile Include="Assets\Suzuki\Spricts\Actor.cs" />
-    <Compile Include="Assets\Suzuki\Spricts\BlockFactory.cs" />
-    <Compile Include="Assets\Suzuki\Spricts\BlockInfo.cs" />
-    <Compile Include="Assets\Suzuki\Spricts\BlockManager.cs" />
-    <Compile Include="Assets\Suzuki\Spricts\DebugObject.cs" />
-    <Compile Include="Assets\Suzuki\Spricts\Def.cs" />
-    <Compile Include="Assets\Suzuki\Spricts\GameManager.cs" />
-    <Compile Include="Assets\Suzuki\Spricts\Layers.cs" />
-    <Compile Include="Assets\Suzuki\Spricts\UIContller.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Block\ChainBlock.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Debug\ClickPointCreatePolygon.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Debug\CreateMesh.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Debug\DebugBlock.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Debug\DebugInput.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Debug\DebugMath.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Debug\DebugObject.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Debug\DebugPrintSprict.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Debug\ScreenCapture.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Define\ColorState.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Define\Def.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Define\Layers.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Game\Actor.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Game\BlockFactory.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Game\BlockInfo.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Game\BlockManager.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Game\GameManager.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Game\Triangulator.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Game\UIContller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
