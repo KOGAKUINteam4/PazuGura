@@ -177,7 +177,7 @@ public class BlockFactory : MonoBehaviour {
         //メッシュ内の全ての三角形を含む配列
         Triangulator tr = new Triangulator(verticesXY, Camera.main.transform.position);
         int[] indices = tr.Triangulate();
-        Debug.Log(indices.Length);
+        //Debug.Log(indices.Length);
         mesh.triangles = indices;
 
         //頂点の数で初期化

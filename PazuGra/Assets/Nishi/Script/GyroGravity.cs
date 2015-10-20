@@ -65,9 +65,12 @@ public class GyroGravity : MonoBehaviour {
         Physics2D.gravity = V;
     }
 
-    //傾きをリセットする
+    //傾きと重力をリセットする
     public void Reset()
     {
         m_InitialRotation = Input.gyro.attitude.eulerAngles;
+        m_gravityVelocity = new Vector3(0f, -1f, 0f);
+
+
     }
 }

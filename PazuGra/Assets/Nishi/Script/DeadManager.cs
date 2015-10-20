@@ -26,14 +26,20 @@ public class DeadManager : MonoBehaviour {
     private void OnDragStart()
     {
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-        if (hit.collider != null)
+        if (hit.collider == null)
+        {
+            return;
+        }
+
+        Debug.Log(hit.collider.name);
+
+        if (hit.collider.tag == "Block")
         {
             GameObject hitObj = hit.collider.gameObject;
-            string blockName = hitObj.name;
-            Debug.Log("abc"+blockName); //blockの名前を取得してみる
+            string blockName = hitObj.tag;
             
             //ブロックの名前の最初に"Block"がついていて　前にクリックものと同じではない
-            if (blockName.StartsWith("Block") && fast == null)
+            if (fast == null)
             {
                 removableBlockList = new List<GameObject>();
                 hitObj.GetComponent<ChainDelete>().DeadFlagOn();
@@ -46,15 +52,26 @@ public class DeadManager : MonoBehaviour {
     {
         int remove_cnt = removableBlockList.Count;
         //リムーブするリストに３つ以上入っていれば
+        Debug.Log("List is "+remove_cnt);
         if (remove_cnt >= 3)
         {
             for (int i = 0; i < remove_cnt; i++)
             {
                 Destroy(removableBlockList[i]);
+                Debug.Log(removableBlockList[i]);
             }
 
         }
+        else
+        {
+            for (int i = 0; i < remove_cnt; i++)
+            {
+                //消えないブロックのフラグ修正
+                removableBlockList[i].GetComponent<ChainDelete>().ClearFlagoff();
+            }
+        }
         fast = null;
+        
     }
 
     public void PushToList(GameObject obj)
