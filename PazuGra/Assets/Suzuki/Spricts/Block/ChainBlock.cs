@@ -33,9 +33,9 @@ public class ChainBlock : MonoBehaviour {
         if (col.transform.CompareTag("Block")){
 
             if (col.transform.GetComponent<PolygonCollider2D>().gameObject.name != this.gameObject.name){
-                Debug.Log("Remove");
-                Debug.Log(col.gameObject.name);
-                Debug.Log(col.transform.GetComponent<PolygonCollider2D>().gameObject);
+                //Debug.Log("Remove");
+                //Debug.Log(col.gameObject.name);
+                //Debug.Log(col.transform.GetComponent<PolygonCollider2D>().gameObject);
             }
         }
     }
@@ -46,9 +46,9 @@ public class ChainBlock : MonoBehaviour {
         {
             if (col.transform.GetComponent<PolygonCollider2D>().gameObject.name != this.gameObject.name)
             {
-                Debug.Log("Remove");
-                Debug.Log(col.gameObject.name);
-                Debug.Log(col.transform.GetComponent<PolygonCollider2D>().gameObject);
+               // Debug.Log("Remove");
+               // Debug.Log(col.gameObject.name);
+               // Debug.Log(col.transform.GetComponent<PolygonCollider2D>().gameObject);
             }
         }
     }

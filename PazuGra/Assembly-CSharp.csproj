@@ -46,6 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Nishi\Script\ChainDelete.cs" />
+     <Compile Include="Assets\Nishi\Script\CreateCollider.cs" />
+     <Compile Include="Assets\Nishi\Script\DeadManager.cs" />
      <Compile Include="Assets\Nishi\Script\DebugPrint.cs" />
      <Compile Include="Assets\Nishi\Script\DeleteTypeTsumTsum.cs" />
      <Compile Include="Assets\Nishi\Script\GameTimer.cs" />

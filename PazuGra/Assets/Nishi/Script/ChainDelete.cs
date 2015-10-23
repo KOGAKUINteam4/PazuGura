@@ -3,59 +3,80 @@ using System.Collections;
 
 public class ChainDelete : MonoBehaviour
 {
-    private bool m_isDead = false; //自身の消えるフラグ
-    private bool m_isClear = false;//すでに消える予定であるか？
+    public bool m_isDead = false; //自身の消えるフラグ
+    public bool m_listIn = false;//リストに入ったか
     private BlockInfo m_MyInfo;
 
     public void Start()
     {
-        m_MyInfo = GetComponent<BlockInfo>();
+        m_MyInfo = gameObject.transform.parent.GetComponent<BlockInfo>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //消えるフラグがたったら
-        if (m_isDead)
+        gameObject.transform.position = gameObject.transform.parent.position;
+        if (m_listIn)
         {
-
-            //タグがブロックのオブジェクトを探す
-            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Block"))
+            if (!m_isDead)
             {
-                //消されるされたブロックから距離が1,0f以下なら
-                float dit = Vector2.Distance(gameObject.transform.position, obj.gameObject.transform.position);
-                if (dit < 1.0f && ColorChack(obj.GetComponent<BlockInfo>().m_ColorState))
-                {
-                    if (!obj.gameObject.GetComponent<ChainDelete>().IsClear())
-                    {
-                        obj.GetComponent<ChainDelete>().DeadFlagOn();//相手の消えるフラグon
-                        //GameObject.Find("GamaManager").GetComponent<DeadManager>().PushToList(obj); //相手を消すリストへ
-                        GameObject.Find("GamaManager").GetComponent<DeadManager>().PushToList(gameObject); //自分をを消すリストへ
-                        m_isClear = true;
-                    }
-                }
+                Debug.Log("list in " + gameObject.transform.parent.gameObject.name);
+                GameObject.Find("GamaManager").GetComponent<DeadManager>().PushToList(gameObject.transform.parent.gameObject); //自分をを消すリストへ
+                m_isDead = true;
+                gameObject.transform.parent.GetComponent<Rigidbody2D>().WakeUp();
             }
-            m_isDead = false;
+            
 
         }
     }
 
-    //自身が死亡する
-    public void DeadFlagOn()
+    void OnTriggerStay2D(Collider2D other)
     {
-        m_isDead = true;
+        Debug.Log("name " + other.name);
+        Debug.Log("tags " + other.tag);
+
+        //自分がリストに入っている
+        if (m_isDead)
+        {
+
+            //ブロックでなければリターン
+            if (other.tag != "Block" && other.name == gameObject.gameObject.transform.parent.name) 
+            {
+                return;
+            }
+
+            Debug.Log("name " + other.name);
+            Debug.Log("tags " + other.tag);
+
+            //ブロックタグでありなおかつ同じ色
+            if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
+            {
+                Debug.Log("log " + other.tag);
+                other.gameObject.transform.FindChild("Collider").gameObject.GetComponent<ChainDelete>().ListInFlagOn();
+                
+            }
+        }
+    }
+
+
+    //自身が死亡する
+    public void ListInFlagOn()
+    {
+        Debug.Log("on");
+        m_listIn = true;
     }
 
     //消える予定か？
     public bool IsClear()
     {
-        return m_isClear;
+        return m_listIn;
     }
 
     //消えないとわかったら使う
-    public bool ClearFlagoff()
+    public void ClearFlag()
     {
-        return m_isClear = false;
+        m_isDead = false;
+        m_listIn = false;
     }
 
     //接触したオブジェクトの色を判定

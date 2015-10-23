@@ -25,24 +25,25 @@ public class DeadManager : MonoBehaviour {
 
     private void OnDragStart()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        var layerMask = 1 << LayerMask.NameToLayer("Block");
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero,1.0f,layerMask);
         if (hit.collider == null)
         {
             return;
         }
 
-        Debug.Log(hit.collider.name);
+        //Debug.Log("names " + hit.collider.name);
+        //Debug.Log("tags "+hit.collider.tag);
 
         if (hit.collider.tag == "Block")
         {
-            GameObject hitObj = hit.collider.gameObject;
-            string blockName = hitObj.tag;
+            GameObject hitObj = hit.collider.gameObject.transform.FindChild("Collider").gameObject;
             
             //ブロックの名前の最初に"Block"がついていて　前にクリックものと同じではない
             if (fast == null)
             {
                 removableBlockList = new List<GameObject>();
-                hitObj.GetComponent<ChainDelete>().DeadFlagOn();
+                hitObj.GetComponent<ChainDelete>().ListInFlagOn();
                 fast = hitObj;
             }
         }
@@ -58,7 +59,7 @@ public class DeadManager : MonoBehaviour {
             for (int i = 0; i < remove_cnt; i++)
             {
                 Destroy(removableBlockList[i]);
-                Debug.Log(removableBlockList[i]);
+                //Debug.Log(removableBlockList[i]);
             }
 
         }
@@ -67,7 +68,7 @@ public class DeadManager : MonoBehaviour {
             for (int i = 0; i < remove_cnt; i++)
             {
                 //消えないブロックのフラグ修正
-                removableBlockList[i].GetComponent<ChainDelete>().ClearFlagoff();
+                removableBlockList[i].gameObject.transform.FindChild("Collider").GetComponent<ChainDelete>().ClearFlag();
             }
         }
         fast = null;
