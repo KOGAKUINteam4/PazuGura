@@ -18,7 +18,7 @@ public class CreateCollider : MonoBehaviour {
     void Update()
     {
         //親のポリゴンから当たり判定用コリジョンを作り出す
-        Vector2[] temp = new Vector2[50];
+        Vector2[] temp = new Vector2[m_ParentCollider.points.Length];
         for (int i = 0; i <= (m_ParentCollider.points.Length - 1); i++)
         {
             temp[i] = m_ParentCollider.points[i] * scale;
