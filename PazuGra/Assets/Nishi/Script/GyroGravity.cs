@@ -3,11 +3,14 @@ using System.Collections;
 
 public class GyroGravity : MonoBehaviour {
 
+    //# ifdefにする。
+
     public float acceleration = 1;
 
 	// Use this for initialization
 	void Start () {
         Input.gyro.enabled = true;
+
 	
 	}
 	

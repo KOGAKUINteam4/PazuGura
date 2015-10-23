@@ -12,7 +12,6 @@ GameObject:
   - 114: {fileID: 11441242}
   - 50: {fileID: 5080220}
   - 114: {fileID: 11446190}
-  - 114: {fileID: 11442086}
   m_Layer: 5
   m_Name: BlockUI
   m_TagString: Block
@@ -47,8 +46,8 @@ Rigidbody2D:
   m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
-  m_GravityScale: 5
-  m_IsKinematic: 0
+  m_GravityScale: 20
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -74,17 +73,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11442086
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2181934d80fba6d46b3f11b4ce72e6fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11446190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Sprite: {fileID: 21300000, guid: 6fbb822e0ef8afa4fa763e0eac5273c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -183,11 +171,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_GravityScale
-      value: 5
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Block
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_IsKinematic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

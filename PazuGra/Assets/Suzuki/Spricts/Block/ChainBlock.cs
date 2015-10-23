@@ -6,18 +6,22 @@ using System.Collections;
 public class ChainBlock : MonoBehaviour {
 
     private BlockInfo mMyInfo;
-    private BlockManager mBlockMgr;
+    //private BlockManager mBlockMgr;
+
+    [SerializeField]
+    private int mChainCounter = 0;
+    public bool mChainChack { set; get; }
 
 	// Use this for initialization
 	void Start () {
         mMyInfo = transform.GetComponent<BlockInfo>();
-        mBlockMgr = GameManager.GetInstanc.GetBlockManager();
+        //mBlockMgr = GameManager.GetInstanc.GetBlockManager();
 	}
 
     //接触したオブジェクトの色を判定
-    private bool ColorChack(ColorState state)
+    private bool ColorChack(ColorState otherState)
     {
-        if (state == mMyInfo.m_ColorState) return true;
+        if (otherState == mMyInfo.m_ColorState) return true;
         return false;
     }
 
@@ -26,54 +30,57 @@ public class ChainBlock : MonoBehaviour {
         return col.transform.GetComponent<BlockInfo>().m_ColorState;
     }
 
-    //理想は再起処理をする
-    //接触したブロックから先を調べていく。
-    private void OnCollisionEnter2D(Collision2D col)
+    private ColorState GetState(Collider2D col)
     {
-        if (col.transform.CompareTag("Block")){
+        return col.transform.GetComponent<BlockInfo>().m_ColorState;
+    }
 
-            if (col.transform.GetComponent<PolygonCollider2D>().gameObject.name != this.gameObject.name){
-                Debug.Log("Remove");
-                Debug.Log(col.gameObject.name);
-                Debug.Log(col.transform.GetComponent<PolygonCollider2D>().gameObject);
+    //自分と相手を調べた状態にする。
+    private void OtherChain(Collision2D col)
+    {
+        if (IsChainChack(col)){
+            Debug.Log("Call");
+            //あたったものから先を見る
+            if (!col.collider.gameObject.GetComponent<ChainBlock>().IsChainChack(col)){
+                Debug.Log("Chain");
             }
         }
     }
 
-    private void OnCollisionStay2D(Collision2D col)
+    private void IsChacked(Collision2D col,bool state)
+    {
+        col.transform.GetComponent<ChainBlock>().mChainChack = state;
+    }
+
+    private bool IsChainChack(Collision2D col)
+    {
+        if (col.transform.GetComponent<ChainBlock>().mChainChack) return true;
+        return false;
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.transform.CompareTag("Block"))
         {
-            if (col.transform.GetComponent<PolygonCollider2D>().gameObject.name != this.gameObject.name)
-            {
-                Debug.Log("Remove");
-                Debug.Log(col.gameObject.name);
-                Debug.Log(col.transform.GetComponent<PolygonCollider2D>().gameObject);
+            if (GetState(col) == mMyInfo.m_ColorState){
+                mChainCounter++;
+                Debug.Log("Hit Count");
+                if (mChainCounter >= 2) { Debug.Log("Chain"); mChainCounter = 0; }
             }
         }
     }
 
-    //private void OnCollisionEnter2D(Collision2D col)
-    //{
-    //    if (col.transform.CompareTag("Block")){
-    //        if (GetState(col) == mMyInfo.m_ColorState){
-    //            mBlockMgr.AddChainList(GetState(col),col.gameObject);
-    //        }
 
-    //        if (mBlockMgr.GetColorCount(GetState(col)) >= 3){
-    //            Debug.Log("Remove");
-    //            mBlockMgr.RemoveChainList(GetState(col));
-    //        }
-    //    }
-    //}
-
-    //private void OnCollisionExit2D(Collision2D col)
-    //{
-    //    if (col.transform.CompareTag("Block")){
-    //        if (GetState(col) == mMyInfo.m_ColorState){
-    //            mBlockMgr.RemoveChainList(GetState(col), col.gameObject);
-    //        }
-    //    }
-    //}
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.transform.CompareTag("Block"))
+        {
+            if (GetState(col) == mMyInfo.m_ColorState)
+            {
+                mChainCounter--;
+            }
+        }
+    }
 
 }
