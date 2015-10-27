@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class DeadManager : MonoBehaviour {
 
     List<GameObject> removableBlockList = new List<GameObject>();
     GameObject fast = null;
+    [SerializeField]
+    GameObject comboGauge;
 
     // Update is called once per frame
     void Update()
@@ -61,7 +64,7 @@ public class DeadManager : MonoBehaviour {
                 Destroy(removableBlockList[i]);
                 //Debug.Log(removableBlockList[i]);
             }
-
+            ComboGaugeMax();
         }
         else
         {
@@ -72,11 +75,25 @@ public class DeadManager : MonoBehaviour {
             }
         }
         fast = null;
-        
+        removableBlockList.Clear();
+
     }
 
     public void PushToList(GameObject obj)
     {
         removableBlockList.Add(obj);
+    }
+
+    public int OnRecieve()
+    {
+        return 0;
+    }
+
+    void ComboGaugeMax()
+    {
+        ExecuteEvents.Execute<ComboGauge>(
+             comboGauge, // 呼び出す対象のオブジェクト
+             null,  // イベントデータ（モジュール等の情報）
+            (recieveTarget, y) => { recieveTarget.AddTime(); }); // 操作
     }
 }
