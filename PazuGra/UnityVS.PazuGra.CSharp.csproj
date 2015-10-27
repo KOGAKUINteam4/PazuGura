@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Nishi\Script\ChainDelete.cs" />
+    <Compile Include="Assets\Nishi\Script\ComboCounter.cs" />
     <Compile Include="Assets\Nishi\Script\ComboGauge.cs" />
     <Compile Include="Assets\Nishi\Script\ComboManager.cs" />
     <Compile Include="Assets\Nishi\Script\CreateCollider.cs" />

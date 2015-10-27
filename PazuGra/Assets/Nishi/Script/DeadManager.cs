@@ -18,7 +18,7 @@ public class DeadManager : MonoBehaviour {
             //クリックはじめ
             OnDragStart();
         }
-        else if (Input.GetMouseButtonUp(0))
+        //else if (Input.GetMouseButtonUp(0))
         {
             //クリック終わり（消す）
             OnDragEnd();
@@ -64,7 +64,8 @@ public class DeadManager : MonoBehaviour {
                 Destroy(removableBlockList[i]);
                 //Debug.Log(removableBlockList[i]);
             }
-            ComboGaugeMax();
+            ComboSend();
+            removableBlockList.Clear();
         }
         else
         {
@@ -75,7 +76,6 @@ public class DeadManager : MonoBehaviour {
             }
         }
         fast = null;
-        removableBlockList.Clear();
 
     }
 
@@ -84,16 +84,11 @@ public class DeadManager : MonoBehaviour {
         removableBlockList.Add(obj);
     }
 
-    public int OnRecieve()
+    void ComboSend()
     {
-        return 0;
-    }
-
-    void ComboGaugeMax()
-    {
-        ExecuteEvents.Execute<ComboGauge>(
+        ExecuteEvents.Execute<ComboManager>(
              comboGauge, // 呼び出す対象のオブジェクト
              null,  // イベントデータ（モジュール等の情報）
-            (recieveTarget, y) => { recieveTarget.AddTime(); }); // 操作
+            (recieveTarget, y) => { recieveTarget.ComboStart(); }); // 操作
     }
 }
