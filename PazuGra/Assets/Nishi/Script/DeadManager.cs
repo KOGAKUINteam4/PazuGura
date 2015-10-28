@@ -46,7 +46,7 @@ public class DeadManager : MonoBehaviour {
             if (fast == null)
             {
                 removableBlockList = new List<GameObject>();
-                hitObj.GetComponent<ChainDelete>().ListInFlagOn();
+                hitObj.GetComponent<ChainDelete>().DeadFlagOn();
                 fast = hitObj;
             }
         }
@@ -72,7 +72,7 @@ public class DeadManager : MonoBehaviour {
             for (int i = 0; i < remove_cnt; i++)
             {
                 //消えないブロックのフラグ修正
-                removableBlockList[i].gameObject.transform.FindChild("Collider").GetComponent<ChainDelete>().ClearFlag();
+                removableBlockList[i].gameObject.transform.FindChild("Collider").GetComponent<ChainDelete>().FlagClear();
             }
         }
         fast = null;

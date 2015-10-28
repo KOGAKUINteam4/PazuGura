@@ -48,6 +48,7 @@ GameObject:
   - 60: {fileID: 6036342}
   - 114: {fileID: 11445002}
   - 114: {fileID: 11426468}
+  - 114: {fileID: 11450402}
   m_Layer: 8
   m_Name: Collider
   m_TagString: Collider
@@ -95,13 +96,11 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157964}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 481bc2839ac14e84e949b1abbf7fb4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_isDead: 0
-  m_listIn: 0
 --- !u!114 &11441242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,6 +157,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &11450402
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 239f5c1170a37d841aaf83571f61c4b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_isCheck: 0
 --- !u!114 &11484056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -279,6 +290,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
