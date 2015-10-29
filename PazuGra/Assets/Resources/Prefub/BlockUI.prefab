@@ -47,7 +47,6 @@ GameObject:
   - 224: {fileID: 22442624}
   - 60: {fileID: 6036342}
   - 114: {fileID: 11445002}
-  - 114: {fileID: 11426468}
   - 114: {fileID: 11450402}
   m_Layer: 8
   m_Name: Collider
@@ -90,17 +89,6 @@ PolygonCollider2D:
       - {x: .587785184, y: -.809017062}
       - {x: -.587785363, y: -.809016943}
       - {x: -.95105648, y: .309017122}
---- !u!114 &11426468
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157964}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481bc2839ac14e84e949b1abbf7fb4a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11441242
 MonoBehaviour:
   m_ObjectHideFlags: 1
