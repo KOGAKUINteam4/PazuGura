@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class GameTimer : MonoBehaviour
+public class GameTimer : MonoBehaviour, IRecieveMessage
 {
 
     [SerializeField, Tooltip("タイムの初期値")]
-    private float m_timer = 60.0f;
+    private float m_timer = 10.0f;
 
     public Sprite[] m_nums;
 
-    public Image m_1Digit,m_10Digit;
+    public Image m_1Digit,m_10Digit, m_100Digit;
 
     public void Awake()
     {
-        m_10Digit.sprite = m_nums[((int)m_timer / 1) % 10];
-        m_1Digit.sprite = m_nums[((int)m_timer / 10) % 10];
+        m_1Digit.sprite = m_nums[((int)m_timer / 1) % 10];
+        m_10Digit.sprite = m_nums[((int)m_timer / 10) % 10];
+        m_100Digit.sprite = m_nums[((int)m_timer / 100) % 10];
     }
 
 
@@ -23,13 +25,18 @@ public class GameTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_timer = Clamp(m_timer, 0, 100);
+        
+
+        
 
         m_timer -= Time.deltaTime;
+        float display = m_timer;
+        display = Clamp(display, 0, 999);
         if (!isTimerOver())
         {
-            m_10Digit.sprite = m_nums[((int)m_timer / 1) % 10];
-            m_1Digit.sprite = m_nums[((int)m_timer / 10) % 10];
+            m_1Digit.sprite = m_nums[((int)display / 1) % 10];
+            m_10Digit.sprite = m_nums[((int)display / 10) % 10];
+            m_100Digit.sprite = m_nums[((int)display / 100) % 10];
         }
         else
         {
@@ -66,6 +73,11 @@ public class GameTimer : MonoBehaviour
         }
 
         return value;
+    }
+
+    public void ComboStart()
+    {
+        AddSecond(3);
     }
 
 }
