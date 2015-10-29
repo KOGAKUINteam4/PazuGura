@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ChainDelete : MonoBehaviour
 {
-    public bool m_isDead = false; //自身の消えるフラグ
-    public bool m_listIn = false;//リストに入ったか
+    private bool m_listIn = false; //リストに入ったか 
+    private bool m_isDead = false; //自身の消えるフラグ
+
+    private List<GameObject> otherBlocks;
+
     private BlockInfo m_MyInfo;
 
     public void Start()
@@ -16,27 +20,22 @@ public class ChainDelete : MonoBehaviour
     void Update()
     {
         gameObject.transform.position = gameObject.transform.parent.position;
-        if (m_listIn)
+        if (m_isDead)
         {
-            if (!m_isDead)
+            if (!m_listIn)
             {
-                Debug.Log("list in " + gameObject.transform.parent.gameObject.name);
                 GameObject.Find("GamaManager").GetComponent<DeadManager>().PushToList(gameObject.transform.parent.gameObject); //自分をを消すリストへ
-                m_isDead = true;
+                m_listIn = true;
                 gameObject.transform.parent.GetComponent<Rigidbody2D>().WakeUp();
-            }
-            
 
+            }
         }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("name " + other.name);
-        Debug.Log("tags " + other.tag);
-
         //自分がリストに入っている
-        if (m_isDead)
+        if (m_listIn)
         {
 
             //ブロックでなければリターン
@@ -45,14 +44,10 @@ public class ChainDelete : MonoBehaviour
                 return;
             }
 
-            Debug.Log("name " + other.name);
-            Debug.Log("tags " + other.tag);
-
             //ブロックタグでありなおかつ同じ色
             if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
             {
-                Debug.Log("log " + other.tag);
-                other.gameObject.transform.FindChild("Collider").gameObject.GetComponent<ChainDelete>().ListInFlagOn();
+                other.gameObject.transform.FindChild("Collider").gameObject.GetComponent<ChainDelete>().DeadFlagOn();
                 
             }
         }
@@ -60,23 +55,22 @@ public class ChainDelete : MonoBehaviour
 
 
     //自身が死亡する
-    public void ListInFlagOn()
+    public void DeadFlagOn()
     {
-        Debug.Log("on");
-        m_listIn = true;
+        m_isDead = true;
     }
 
     //消える予定か？
     public bool IsClear()
     {
-        return m_listIn;
+        return m_isDead;
     }
 
     //消えないとわかったら使う
-    public void ClearFlag()
+    public void FlagClear()
     {
-        m_isDead = false;
         m_listIn = false;
+        m_isDead = false;
     }
 
     //接触したオブジェクトの色を判定

@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class DeadManager : MonoBehaviour {
 
     List<GameObject> removableBlockList = new List<GameObject>();
     GameObject fast = null;
+    [SerializeField]
+    GameObject comboGauge;
 
     // Update is called once per frame
     void Update()
@@ -15,7 +18,7 @@ public class DeadManager : MonoBehaviour {
             //クリックはじめ
             OnDragStart();
         }
-        else if (Input.GetMouseButtonUp(0))
+        //else if (Input.GetMouseButtonUp(0))
         {
             //クリック終わり（消す）
             OnDragEnd();
@@ -43,7 +46,7 @@ public class DeadManager : MonoBehaviour {
             if (fast == null)
             {
                 removableBlockList = new List<GameObject>();
-                hitObj.GetComponent<ChainDelete>().ListInFlagOn();
+                hitObj.GetComponent<ChainDelete>().DeadFlagOn();
                 fast = hitObj;
             }
         }
@@ -61,22 +64,31 @@ public class DeadManager : MonoBehaviour {
                 Destroy(removableBlockList[i]);
                 //Debug.Log(removableBlockList[i]);
             }
-
+            ComboSend();
+            removableBlockList.Clear();
         }
         else
         {
             for (int i = 0; i < remove_cnt; i++)
             {
                 //消えないブロックのフラグ修正
-                removableBlockList[i].gameObject.transform.FindChild("Collider").GetComponent<ChainDelete>().ClearFlag();
+                removableBlockList[i].gameObject.transform.FindChild("Collider").GetComponent<ChainDelete>().FlagClear();
             }
         }
         fast = null;
-        
+
     }
 
     public void PushToList(GameObject obj)
     {
         removableBlockList.Add(obj);
+    }
+
+    void ComboSend()
+    {
+        ExecuteEvents.Execute<ComboManager>(
+             comboGauge, // 呼び出す対象のオブジェクト
+             null,  // イベントデータ（モジュール等の情報）
+            (recieveTarget, y) => { recieveTarget.ComboStart(); }); // 操作
     }
 }

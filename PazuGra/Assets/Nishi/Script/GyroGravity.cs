@@ -22,7 +22,7 @@ public class GyroGravity : MonoBehaviour {
 
         m_ZAngle = AngleCheck();
 
-        AngleClamp(m_ZAngle, -45, 45);
+        //AngleClamp(m_ZAngle, -45, 45);
 
         CalcGravity();
 

@@ -46,13 +46,19 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Nishi\Script\Chain.cs" />
      <Compile Include="Assets\Nishi\Script\ChainDelete.cs" />
+     <Compile Include="Assets\Nishi\Script\ChainManager.cs" />
+     <Compile Include="Assets\Nishi\Script\ComboCounter.cs" />
+     <Compile Include="Assets\Nishi\Script\ComboGauge.cs" />
+     <Compile Include="Assets\Nishi\Script\ComboManager.cs" />
      <Compile Include="Assets\Nishi\Script\CreateCollider.cs" />
      <Compile Include="Assets\Nishi\Script\DeadManager.cs" />
      <Compile Include="Assets\Nishi\Script\DebugPrint.cs" />
      <Compile Include="Assets\Nishi\Script\DeleteTypeTsumTsum.cs" />
      <Compile Include="Assets\Nishi\Script\GameTimer.cs" />
      <Compile Include="Assets\Nishi\Script\GyroGravity.cs" />
+     <Compile Include="Assets\Nishi\Script\IRecieveMessage.cs" />
      <Compile Include="Assets\Nishi\Script\Pointer\LimitTime.cs" />
      <Compile Include="Assets\Nishi\Script\Pointer\TouchPoint.cs" />
      <Compile Include="Assets\Nishi\Script\Ready＆Go\AlphaController.cs" />
