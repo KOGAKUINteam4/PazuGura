@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class ChainManager : MonoBehaviour {
 
     private List<GameObject> m_removeList = new List<GameObject>();
+    [SerializeField]
+    GameObject comboGauge;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -18,6 +21,10 @@ public class ChainManager : MonoBehaviour {
         {
             var layerMask = 1 << LayerMask.NameToLayer("Block");
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1.0f, layerMask);
+            if(hit.collider == null)
+            {
+                return;
+            }
             if (hit.collider.tag == "Block")
             {
                 GameObject hitObj = hit.collider.gameObject.transform.FindChild("Collider").gameObject;
@@ -55,6 +62,7 @@ public class ChainManager : MonoBehaviour {
             {
                 Destroy(obj);
             }
+            ComboSend();
             m_removeList.Clear();
         }
         else
@@ -64,5 +72,13 @@ public class ChainManager : MonoBehaviour {
                 obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
             }
         }
+    }
+
+    void ComboSend()
+    {
+        ExecuteEvents.Execute<ComboManager>(
+             comboGauge, // 呼び出す対象のオブジェクト
+             null,  // イベントデータ（モジュール等の情報）
+            (recieveTarget, y) => { recieveTarget.ComboStart(); }); // 操作
     }
 }

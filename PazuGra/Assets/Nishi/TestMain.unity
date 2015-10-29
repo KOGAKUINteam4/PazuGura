@@ -97,7 +97,6 @@ GameObject:
   - 4: {fileID: 33219982}
   - 114: {fileID: 33219981}
   - 114: {fileID: 33219980}
-  - 114: {fileID: 33219983}
   - 114: {fileID: 33219984}
   - 114: {fileID: 33219985}
   m_Layer: 0
@@ -141,18 +140,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &33219983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 33219979}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39129a1e742c684438bcf024c63e15af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  comboGauge: {fileID: 33219979}
 --- !u!114 &33219984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bffa39b674192de4597256891646656e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  comboGauge: {fileID: 33219979}
 --- !u!1 &97237743
 GameObject:
   m_ObjectHideFlags: 0
