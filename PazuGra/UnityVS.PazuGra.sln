@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.PazuGra.CSharp", "UnityVS.PazuGra.CSharp.csproj", "{DE35EF36-2C99-E8C9-E058-62F1DA04469A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.PazuGra.CSharp.Editor", "UnityVS.PazuGra.CSharp.Editor.csproj", "{FB51386F-146D-797E-3AE6-80B8E90FD0CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DE35EF36-2C99-E8C9-E058-62F1DA04469A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE35EF36-2C99-E8C9-E058-62F1DA04469A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE35EF36-2C99-E8C9-E058-62F1DA04469A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE35EF36-2C99-E8C9-E058-62F1DA04469A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB51386F-146D-797E-3AE6-80B8E90FD0CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB51386F-146D-797E-3AE6-80B8E90FD0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB51386F-146D-797E-3AE6-80B8E90FD0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB51386F-146D-797E-3AE6-80B8E90FD0CE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
