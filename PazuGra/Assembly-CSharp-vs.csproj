@@ -46,13 +46,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Nishi\Script\ChainDelete.cs" />
+     <Compile Include="Assets\Nishi\Script\ChaiSystem\Chain.cs" />
+     <Compile Include="Assets\Nishi\Script\ChaiSystem\ChainManager.cs" />
+     <Compile Include="Assets\Nishi\Script\ComboCounter\ComboCounter.cs" />
+     <Compile Include="Assets\Nishi\Script\ComboCounter\ComboGauge.cs" />
+     <Compile Include="Assets\Nishi\Script\ComboCounter\ComboManager.cs" />
      <Compile Include="Assets\Nishi\Script\CreateCollider.cs" />
-     <Compile Include="Assets\Nishi\Script\DeadManager.cs" />
      <Compile Include="Assets\Nishi\Script\DebugPrint.cs" />
      <Compile Include="Assets\Nishi\Script\DeleteTypeTsumTsum.cs" />
      <Compile Include="Assets\Nishi\Script\GameTimer.cs" />
      <Compile Include="Assets\Nishi\Script\GyroGravity.cs" />
+     <Compile Include="Assets\Nishi\Script\IRecieveMessage.cs" />
      <Compile Include="Assets\Nishi\Script\Pointer\LimitTime.cs" />
      <Compile Include="Assets\Nishi\Script\Pointer\TouchPoint.cs" />
      <Compile Include="Assets\Nishi\Script\Ready＆Go\AlphaController.cs" />
@@ -60,7 +64,6 @@
      <Compile Include="Assets\Nishi\Script\Ready＆Go\Ready.cs" />
      <Compile Include="Assets\Nishi\Script\Ready＆Go\ScaleControl.cs" />
      <Compile Include="Assets\Nishi\Script\Ready＆Go\Slide.cs" />
-     <Compile Include="Assets\Nishi\Script\nishitest.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\ActiveStateToggler.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\ApplicationManager.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\ChangeColor.cs" />
