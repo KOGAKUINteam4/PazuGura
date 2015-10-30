@@ -184,12 +184,15 @@ public class BlockFactory : MonoBehaviour {
         tex2d.Apply();
     }
 
+    private int colorstate = 0;
+
     //Colorの設定
     private Color RandomColor()
     {
         Color[] colors = new Color[4] {Color.red,Color.blue,Color.yellow,Color.green};
-        //return colors[Random.Range(0,4)];
-        return colors[Random.Range(0, 1)];
+
+        return colors[colorstate];
+        //return colors[Random.Range(0, 1)];
     }
 
     //テクスチャーの設定
@@ -238,6 +241,9 @@ public class BlockFactory : MonoBehaviour {
         //infomationのパラメーターの決定
         info.m_BlockPoint = MathTextureArea(texture2D);
         info.m_ID = ui.GetHashCode();
+        colorstate = Random.Range(0, 4);
+        info.m_ColorState = (ColorState)colorstate;
+        Debug.Log(colorstate);
 
         ui.GetComponent<Rigidbody2D>().gravityScale = info.m_BlockPoint;
         //Debug.Log("面積 : "+info.m_BlockPoint);
