@@ -105,6 +105,18 @@
     <Reference Include="UnityEditor.OSXStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -119,6 +131,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="UnityVS.PazuGra.CSharp.Plugins.csproj">
+      <Project>{868A531B-3ADC-A4D7-B3BF-956203887B01}</Project>
+      <Name>UnityVS.PazuGra.CSharp.Plugins</Name>
+    </ProjectReference>
     <ProjectReference Include="UnityVS.PazuGra.CSharp.csproj">
       <Project>{DE35EF36-2C99-E8C9-E058-62F1DA04469A}</Project>
       <Name>UnityVS.PazuGra.CSharp</Name>
@@ -129,6 +145,7 @@
     <Compile Include="Assets\SampleAsset\Scripts\Editor\GUIHierarchy.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
     <None Include="Assets\SampleAsset\Materials\UI-Default-No-Alpha.shader" />
     <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />

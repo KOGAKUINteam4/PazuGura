@@ -1277,7 +1277,8 @@ MonoBehaviour:
   target: {fileID: 8400000, guid: 9a1a9531b84135a418f4f96c4d322787, type: 2}
   mBaseUI: {fileID: 138794, guid: 90e4369d79a53c2448d33b5e53891767, type: 2}
   mDotDistance: 0
-  mEffect: {fileID: 0}
+  mEffect: {fileID: 177062, guid: d89be9813af53de4b9bf5841ee1615bc, type: 2}
+  mLine: {fileID: 177062, guid: d89be9813af53de4b9bf5841ee1615bc, type: 2}
 --- !u!4 &1314459124
 Transform:
   m_ObjectHideFlags: 0
