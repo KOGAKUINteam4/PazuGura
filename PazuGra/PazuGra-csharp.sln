@@ -1,6 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{FF681970-74A7-3F1D-E7F6-DDB37A4C3136}") = "PazuGra", "Assembly-CSharp-firstpass-vs.csproj", "{CAD0A26B-64FB-25B0-31D8-6F032A94323C}"
+EndProject
 Project("{FF681970-74A7-3F1D-E7F6-DDB37A4C3136}") = "PazuGra", "Assembly-CSharp-vs.csproj", "{1FB3A582-03CD-BD80-1A15-3EDE6D5F53C5}"
 EndProject
 Project("{FF681970-74A7-3F1D-E7F6-DDB37A4C3136}") = "PazuGra", "Assembly-CSharp-Editor-vs.csproj", "{9AEAF6DD-2134-D4AA-89F5-CCDDDB9AC5B8}"
@@ -11,6 +13,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CAD0A26B-64FB-25B0-31D8-6F032A94323C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAD0A26B-64FB-25B0-31D8-6F032A94323C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAD0A26B-64FB-25B0-31D8-6F032A94323C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAD0A26B-64FB-25B0-31D8-6F032A94323C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1FB3A582-03CD-BD80-1A15-3EDE6D5F53C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1FB3A582-03CD-BD80-1A15-3EDE6D5F53C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FB3A582-03CD-BD80-1A15-3EDE6D5F53C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -23,7 +29,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																										GlobalSection(MonoDevelopProperties) = preSolution
+																																												GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

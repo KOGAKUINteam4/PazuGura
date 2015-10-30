@@ -38,6 +38,11 @@ public class BlockFactory : MonoBehaviour {
 
     private bool mIsShoot = false;
 
+    //Line引く用
+    [SerializeField]
+    private GameObject mLine;
+    private GameObject mLineObject;
+
 	// Use this for initialization
 	void Start () {
         mGamaManager = GameManager.GetInstanc;
@@ -102,6 +107,8 @@ public class BlockFactory : MonoBehaviour {
         mRoot.Add((Vector2)mouseWorldPos);
         mPoint.Add((Vector2)mouseWorldPos);
         mTouchPosition = mouseWorldPos;
+
+        mLineObject = Instantiate(mLine) as GameObject;
     }
 
     //画面を押されている。
@@ -116,11 +123,15 @@ public class BlockFactory : MonoBehaviour {
         }
         //頂点をまたいだ場合
         OnCross();
+        mLineObject.transform.position = new Vector3(MathPos().x/50.0f, MathPos().y/50.0f, 0);
     }
 
     //画面を押され、リリースされたとき
     public void CreateBlockOnRelease()
     {
+
+        Destroy(mLineObject);
+        if (mRoot.Count < 3) return;
         AddCenter();
         //画面上に生成
         MakePolygon();
