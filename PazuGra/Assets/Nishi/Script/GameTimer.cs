@@ -9,9 +9,14 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
     [SerializeField, Tooltip("タイムの初期値")]
     private float m_timer = 10.0f;
 
-    public Sprite[] m_nums;
+    [SerializeField]
+    private Sprite[] m_nums;
 
-    public Image m_1Digit,m_10Digit, m_100Digit;
+    [SerializeField]
+    private Image m_1Digit,m_10Digit, m_100Digit;
+
+    [SerializeField]
+    private GameObject m_ImagePrefab;
 
     public void Awake()
     {
@@ -77,6 +82,9 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
 
     public void ComboStart()
     {
+        GameObject temp = Instantiate(m_ImagePrefab);
+        temp.transform.SetParent(gameObject.transform,false);
+        Destroy(temp,1.2f);
         AddSecond(3);
     }
 
