@@ -1,17 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GyroGravity : MonoBehaviour {
+public class GyroGravity : MonoBehaviour
+{
 
     private Vector3 m_InitialRotation = Vector3.zero;             //基準の傾き
     private Vector3 m_currentRotation = Vector3.zero;             //現在の傾き
     private Vector3 m_gravityVelocity = new Vector3(0f, -1f, 0f);   //重力の向き
     private float m_ZAngle;                                        //角度
 
+    public void Awake()
+    {
+        Input.gyro.enabled = true;
+    }
+
     // Use this for initialization
     void Start()
     {
-        Input.gyro.enabled = true;
+        
+        Reset();
 
     }
 
@@ -70,7 +77,5 @@ public class GyroGravity : MonoBehaviour {
     {
         m_InitialRotation = Input.gyro.attitude.eulerAngles;
         m_gravityVelocity = new Vector3(0f, -1f, 0f);
-
-
     }
 }
