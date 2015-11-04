@@ -46,6 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\JSON\JSONObject.cs" />
+     <Compile Include="Assets\JSON\JSONTemplates.cs" />
+     <Compile Include="Assets\JSON\VectorTemplates.cs" />
      <Compile Include="Assets\Nishi\Script\ChaiSystem\Chain.cs" />
      <Compile Include="Assets\Nishi\Script\ChaiSystem\ChainManager.cs" />
      <Compile Include="Assets\Nishi\Script\ComboCounter\ComboCounter.cs" />
@@ -76,6 +79,12 @@
      <Compile Include="Assets\SampleAsset\Scripts\ShowSliderValue.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\TiltWindow.cs" />
      <Compile Include="Assets\Suzuki\Spricts\Block\ChainBlock.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\DL\DefTyson.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\DL\DelegateTyson.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\DL\MiniJSON.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\DL\TysonMat.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\DL\UIPixRange.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\DL\URLDL.cs" />
      <Compile Include="Assets\Suzuki\Spricts\Debug\ClickPointCreatePolygon.cs" />
      <Compile Include="Assets\Suzuki\Spricts\Debug\CreateMesh.cs" />
      <Compile Include="Assets\Suzuki\Spricts\Debug\DebugBlock.cs" />
@@ -98,10 +107,13 @@
      <Compile Include="Assets\Suzuki\Spricts\Game\UIContller.cs" />
      <Compile Include="Assets\Suzuki\Spricts\LogFunctions.cs" />
      <Compile Include="Assets\Suzuki\Spricts\ScoreUI\ScoreUI.cs" />
+     <None Include="Assets\JSON\readme.txt" />
+     <None Include="Assets\Suzuki\Spricts\Shaders\UI-Mask.shader" />
      <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
      <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />
      <None Include="Assets\SampleAsset\Materials\UI-Default-No-Alpha.shader" />
      <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\Suzuki\Spricts\Shaders\UI-Nega.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

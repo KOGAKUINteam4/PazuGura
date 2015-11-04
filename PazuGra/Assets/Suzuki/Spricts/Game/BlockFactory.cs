@@ -243,7 +243,7 @@ public class BlockFactory : MonoBehaviour {
         info.m_ID = ui.GetHashCode();
         colorstate = Random.Range(0, 4);
         info.m_ColorState = (ColorState)colorstate;
-        Debug.Log(colorstate);
+        //Debug.Log(colorstate);
 
         ui.GetComponent<Rigidbody2D>().gravityScale = info.m_BlockPoint;
         //Debug.Log("面積 : "+info.m_BlockPoint);
