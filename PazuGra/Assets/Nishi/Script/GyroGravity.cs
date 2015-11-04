@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GyroGravity : MonoBehaviour
 {
-
-    private Vector3 m_InitialRotation = Vector3.zero;             //基準の傾き
-    private Vector3 m_currentRotation = Vector3.zero;             //現在の傾き
+    private Vector3 m_InitialValue = Vector3.zero;             //基準の傾き
+    private Vector3 m_currentValue = Vector3.zero;             //現在の傾き
     private Vector3 m_gravityVelocity = new Vector3(0f, -1f, 0f);   //重力の向き
     private float m_ZAngle;                                        //角度
 
@@ -17,19 +17,30 @@ public class GyroGravity : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        
         Reset();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_currentRotation = Input.gyro.attitude.eulerAngles;
+        m_currentValue = Input.gyro.gravity;
+        m_currentValue.Normalize();
 
-        m_ZAngle = AngleCheck();
 
-        //AngleClamp(m_ZAngle, -45, 45);
+        m_ZAngle = Vector2.Angle(m_InitialValue, m_currentValue);
+
+        if (Vector2Cross(m_InitialValue, m_currentValue) < 0)
+        {
+            m_ZAngle *= -1;
+        }
+
+        //m_ZAngle = AngleCheck(m_InitialRotation.z, m_currentRotation.z);
+
+        //AngleClamp(m_ZAngle,-45,45);
+
+#if UNITY_EDITOR
+        m_ZAngle = 0;
+#endif
 
         CalcGravity();
 
@@ -39,9 +50,9 @@ public class GyroGravity : MonoBehaviour
     /// 現在ZのAngleが基準からどれくらい傾いているか計算
     /// </summary>
     /// <returns></returns>
-    float AngleCheck()
+    float AngleCheck(float initial, float current)
     {
-        float Angle = m_InitialRotation.z - m_currentRotation.z;
+        float Angle = initial - current;
         if (Angle >= 180)
         {
             Angle = Angle - 360.0f;
@@ -72,10 +83,19 @@ public class GyroGravity : MonoBehaviour
         Physics2D.gravity = V;
     }
 
-    //傾きと重力をリセットする
+    //傾きをリセットする
     public void Reset()
     {
-        m_InitialRotation = Input.gyro.attitude.eulerAngles;
-        m_gravityVelocity = new Vector3(0f, -1f, 0f);
+        m_InitialValue = Input.gyro.gravity;
+        m_InitialValue.Normalize();
+        Physics2D.gravity = new Vector3(0, -1, 0);
+
+        m_currentValue = Input.gyro.attitude.eulerAngles;
     }
+
+    public float Vector2Cross(Vector2 lhs, Vector2 rhs)
+    {
+        return lhs.x * rhs.y - rhs.x * lhs.y;
+    }
+
 }
