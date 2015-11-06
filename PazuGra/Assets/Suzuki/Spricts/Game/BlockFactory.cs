@@ -2,9 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 //ブロック生成用のクラス
 
-public class BlockFactory : MonoBehaviour {
+public class BlockFactory : MonoBehaviour , IRecieveMessage {
 
     [SerializeField]
     private RenderTexture target;
@@ -37,14 +38,21 @@ public class BlockFactory : MonoBehaviour {
     private Vector2 mTouchPosition;
 
     private bool mIsShoot = false;
+    
 
     //Line引く用
     [SerializeField]
     private GameObject mLine;
     private GameObject mLineObject;
 
-	// Use this for initialization
-	void Start () {
+    //Add 虹のブロックの生成条件
+    public bool isRainbow = false;
+    //Add 虹ブロック用のスプライト
+    [SerializeField]
+    private Sprite m_RainbowSprit;
+
+    // Use this for initialization
+    void Start () {
         mGamaManager = GameManager.GetInstanc;
         mUICtr = GameManager.GetInstanc.GetUIContller();
         mBlockMgr = mGamaManager.GetBlockManager();
@@ -67,7 +75,7 @@ public class BlockFactory : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0)) CreateBlockOnTouch();
             if (Input.GetMouseButton(0)) CreateBlockOnStay();
-            if (Input.GetMouseButtonUp(0)) CreateBlockOnRelease();
+            if (Input.GetMouseButtonUp(0))CreateBlockOnRelease();
         }
 
         UpdateInstanceUI();
@@ -165,7 +173,16 @@ public class BlockFactory : MonoBehaviour {
             Rigidbody2D gravity = mInstanceUI.GetComponent<Rigidbody2D>();
             gravity.isKinematic = false;
             gravity.AddForce(vec.normalized * 50.0f,ForceMode2D.Impulse);// = vec.normalized * 10.0f;
+            //Add fix--------------------------------------------------------------------------
+            if (isRainbow)
+            {
+                mInstanceUI.transform.GetChild(0).GetComponent<Image>().sprite = m_RainbowSprit;
+                //Add
+                isRainbow = false;
+            }
             mInstanceUI.transform.GetChild(0).GetComponent<Image>().color = RandomColor();
+            
+            //end-------------------------------------------------------------------------------
             mInstanceUI = null;
             mIsShoot = false;
         }
@@ -189,7 +206,8 @@ public class BlockFactory : MonoBehaviour {
     //Colorの設定
     private Color RandomColor()
     {
-        Color[] colors = new Color[4] {Color.red,Color.blue,Color.yellow,Color.green};
+        //Add Color White
+        Color[] colors = new Color[5] {Color.red,Color.blue,Color.yellow,Color.green,Color.white};
 
         return colors[colorstate];
         //return colors[Random.Range(0, 1)];
@@ -241,7 +259,18 @@ public class BlockFactory : MonoBehaviour {
         //infomationのパラメーターの決定
         info.m_BlockPoint = MathTextureArea(texture2D);
         info.m_ID = ui.GetHashCode();
-        colorstate = Random.Range(0, 4);
+        //Add fix----------------------------------------------
+        if (isRainbow)
+        {
+            colorstate = 4;
+            ui.transform.GetChild(0).GetComponent<Image>().color = RandomColor();
+            ui.transform.GetChild(0).GetComponent<Image>().sprite = m_RainbowSprit;
+        }
+        else
+        {
+            colorstate = Random.Range(0, 4);
+        }
+        //end---------------------------------------------------
         info.m_ColorState = (ColorState)colorstate;
         Debug.Log(colorstate);
 
@@ -480,4 +509,11 @@ public class BlockFactory : MonoBehaviour {
 
         Debug.Log(white / black * 100 + "%");
     }
+
+    //イベント駆動で虹を発生させる
+    public void ComboStart()
+    {
+        isRainbow = true;
+    }
+
 }

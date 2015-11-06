@@ -176,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComboGauge: {fileID: 33219979}
+  m_BlockFactory: {fileID: 1314459122}
 --- !u!1 &97237743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1365,6 +1366,8 @@ MonoBehaviour:
   mDotDistance: 0
   mEffect: {fileID: 177062, guid: d89be9813af53de4b9bf5841ee1615bc, type: 2}
   mLine: {fileID: 177062, guid: d89be9813af53de4b9bf5841ee1615bc, type: 2}
+  isRainbow: 0
+  m_RainbowSprit: {fileID: 21300000, guid: ee809976ddedc214493ba37c72d729b1, type: 3}
 --- !u!4 &1314459124
 Transform:
   m_ObjectHideFlags: 0
