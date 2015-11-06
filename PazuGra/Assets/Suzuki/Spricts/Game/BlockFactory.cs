@@ -50,6 +50,9 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     //Add 虹ブロック用のスプライト
     [SerializeField]
     private Sprite m_RainbowSprit;
+    //add 枠のオブジェクトの色変更用
+    [SerializeField]
+    private Image m_SquareColor;
 
     // Use this for initialization
     void Start () {
@@ -69,8 +72,17 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
 
     private void Update()
     {
+        //add----------------------------
+        if (isRainbow)
+        {
+            m_SquareColor.sprite = m_RainbowSprit;
+        }
+        else
+        {
+            m_SquareColor.sprite = null;
+        }
 
-
+        //end----------------------------
         if (!mIsShoot)
         {
             if (Input.GetMouseButtonDown(0)) CreateBlockOnTouch();
@@ -268,6 +280,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         }
         else
         {
+            
             colorstate = Random.Range(0, 4);
         }
         //end---------------------------------------------------
