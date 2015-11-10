@@ -3,7 +3,8 @@ using System.Collections;
 
 public class TouchPoint : MonoBehaviour {
 
-    public GameObject obj;
+    [SerializeField]
+    private GameObject touchParticle;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,7 @@ public class TouchPoint : MonoBehaviour {
         {
             Vector3 screenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             screenPos.z = 0;
-            Instantiate(obj, screenPos,Quaternion.Euler(-90,0,0));
+            Instantiate(touchParticle, screenPos,Quaternion.Euler(-90,0,0));
         }
 	}
 }

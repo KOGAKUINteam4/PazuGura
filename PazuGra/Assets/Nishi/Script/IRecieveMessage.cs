@@ -4,6 +4,6 @@ using UnityEngine.EventSystems;
 
 public interface IRecieveMessage : IEventSystemHandler
 {
-    void ComboStart();
+    void ComboSend();
 }
 

@@ -13,7 +13,7 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
     private Sprite[] m_nums;
 
     [SerializeField]
-    private Image m_1Digit,m_10Digit, m_100Digit;
+    private Image m_1Digit = null,m_10Digit = null, m_100Digit = null;
 
     [SerializeField]
     private GameObject m_ImagePrefab;
@@ -30,13 +30,9 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
     // Update is called once per frame
     void Update()
     {
-        
-
-        
-
         m_timer -= Time.deltaTime;
         float display = m_timer;
-        display = Clamp(display, 0, 999);
+        display = Mathf.Clamp(display, 0, 999);
         if (!isTimerOver())
         {
             m_1Digit.sprite = m_nums[((int)display / 1) % 10];
@@ -47,13 +43,6 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         {
             Debug.Log("End");
         }
-
-        //デバック用
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            AddSecond(1);
-        }
-        //-----------------------------------
     }
 
     public bool isTimerOver()
@@ -66,21 +55,7 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         m_timer += add;
     }
 
-    float Clamp(float value, float min, float max)
-    {
-        if(value > max)
-        {
-            value = max;
-        }
-        else if(value < min)
-        {
-            value = min;
-        }
-
-        return value;
-    }
-
-    public void ComboStart()
+    public void ComboSend()
     {
         GameObject temp = Instantiate(m_ImagePrefab);
         temp.transform.SetParent(gameObject.transform,false);

@@ -12,6 +12,8 @@ public class GyroGravity : MonoBehaviour
     public void Awake()
     {
         Input.gyro.enabled = true;
+        Reset();
+        
     }
 
     // Use this for initialization
@@ -26,7 +28,6 @@ public class GyroGravity : MonoBehaviour
         m_currentValue = Input.gyro.gravity;
         m_currentValue.Normalize();
 
-
         m_ZAngle = Vector2.Angle(m_InitialValue, m_currentValue);
 
         if (Vector2Cross(m_InitialValue, m_currentValue) < 0)
@@ -38,9 +39,7 @@ public class GyroGravity : MonoBehaviour
 
         //AngleClamp(m_ZAngle,-45,45);
 
-#if UNITY_EDITOR
-        m_ZAngle = 0;
-#endif
+        if(!Input.gyro.enabled)m_ZAngle = 0;
 
         CalcGravity();
 
@@ -89,8 +88,6 @@ public class GyroGravity : MonoBehaviour
         m_InitialValue = Input.gyro.gravity;
         m_InitialValue.Normalize();
         Physics2D.gravity = new Vector3(0, -1, 0);
-
-        m_currentValue = Input.gyro.attitude.eulerAngles;
     }
 
     public float Vector2Cross(Vector2 lhs, Vector2 rhs)

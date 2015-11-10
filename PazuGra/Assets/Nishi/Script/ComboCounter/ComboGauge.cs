@@ -34,8 +34,7 @@ public class ComboGauge : MonoBehaviour, IRecieveMessage
 
 	}
 
-    //TODO:エグゼキュートイベントで設置
-    public void ComboStart()
+    public void ComboSend()
     {
         m_maxtimer = m_maxValue;
     }
