@@ -55,6 +55,7 @@
      <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />
      <None Include="Assets\SampleAsset\Materials\UI-Default-No-Alpha.shader" />
      <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\AssetStore\CarbonConcept\Sci-Fi Loaders\Sprites\LightSpeed\Font\XoloniumFont48px.txt" />
      <None Include="Assets\Suzuki\Spricts\Shaders\UI-Nega.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

@@ -11,6 +11,9 @@ public class ScoreUI : MonoBehaviour {
     [SerializeField]
     private float mSocre = 0;
 
+    [SerializeField]
+    private GameObject mTarget;
+
     private GameObject mScoreParent;
 
 	// Use this for initialization
@@ -36,7 +39,8 @@ public class ScoreUI : MonoBehaviour {
             counter++;
         }
         counter = 0;
-        foreach (Transform i in GameObject.Find("Score").transform){
+        if (transform.name == "RankScore") return;
+        foreach (Transform i in mTarget.transform){
             mScoreCounter[counter] = i.gameObject;
             counter++;
         }
@@ -47,6 +51,7 @@ public class ScoreUI : MonoBehaviour {
     public void AddScore(float score)
     {
         mSocre += score;
+        //Debug.Log(score);
     }
 
     public int GetScore()
@@ -60,6 +65,14 @@ public class ScoreUI : MonoBehaviour {
             mScoreCounter[i - 1].GetComponent<Image>().sprite = GetScoreSprite(i+3,score);
         }
         for (int i = 1; i < 6; i++){
+            SetNumber(i);
+        }
+    }
+
+    public void UpdateScore()
+    {
+        for (int i = 1; i < 6; i++)
+        {
             SetNumber(i);
         }
     }
