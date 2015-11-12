@@ -142,6 +142,10 @@ Prefab:
       propertyPath: mesh2
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 11486350, guid: b70c15e57fd385e4abde01edd84eaac5, type: 2}
+      propertyPath: m_CgaugePrefab
+      value: 
+      objectReference: {fileID: 148410, guid: 54f0625f05ddf2143a6036528ab788ee, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b70c15e57fd385e4abde01edd84eaac5, type: 2}
   m_IsPrefabParent: 0
@@ -199,6 +203,14 @@ Prefab:
     - target: {fileID: 22469620, guid: 0e0c5c7f74c6ff64f94a6420db91cf0c, type: 2}
       propertyPath: m_AnchoredPosition.y
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 22465804, guid: 0e0c5c7f74c6ff64f94a6420db91cf0c, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 22410794, guid: 0e0c5c7f74c6ff64f94a6420db91cf0c, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e0c5c7f74c6ff64f94a6420db91cf0c, type: 2}

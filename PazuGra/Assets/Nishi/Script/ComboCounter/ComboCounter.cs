@@ -22,7 +22,8 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
         m_GameTimer = GameObject.Find("GameTimer");
         m_1Digit.enabled = true;
         m_10Digit.enabled = false;
-        fixPosition = m_1Digit.rectTransform.position + new Vector3(0.2f,0f,0f);
+        //　　　　　　　　　　　　　　　　　　　　　　　　　　　A案はXが0.2f
+        fixPosition = m_1Digit.rectTransform.position + new Vector3(0.3f,0f,0f);
 	
 	}
 	
