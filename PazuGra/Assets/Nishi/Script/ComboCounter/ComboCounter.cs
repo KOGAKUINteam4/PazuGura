@@ -14,6 +14,7 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
 
     private int m_OrdCount = 0;
     private Vector3  fixPosition;
+    //コンボカウンター
     private int m_counter = 1;
 
     // Use this for initialization
@@ -66,6 +67,11 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
     public void ComboSend()
     {
         m_counter++;
+    }
+
+    public int GetCombo()
+    {
+        return m_counter;
     }
 
 }

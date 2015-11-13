@@ -18,22 +18,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &122172
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 441950}
-  - 114: {fileID: 11424414}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &124660
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,18 +243,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &441950
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122172}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.61959839, y: -3.68261456, z: -90}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 442476}
-  m_RootOrder: 2
 --- !u!4 &442476
 Transform:
   m_ObjectHideFlags: 1
@@ -283,7 +255,6 @@ Transform:
   m_Children:
   - {fileID: 447532}
   - {fileID: 476444}
-  - {fileID: 441950}
   - {fileID: 485324}
   - {fileID: 455894}
   m_Father: {fileID: 0}
@@ -311,7 +282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 442476}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!4 &476444
 Transform:
   m_ObjectHideFlags: 1
@@ -338,7 +309,7 @@ Transform:
   - {fileID: 22421876}
   - {fileID: 22479732}
   m_Father: {fileID: 442476}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!20 &2068444
 Camera:
   m_ObjectHideFlags: 1
@@ -544,18 +515,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11424414
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 632498604cd010c4a98489904f9ca8db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  touchParticle: {fileID: 176104, guid: 5def95d42c93e2f4e94b958eb9f1fddd, type: 2}
 --- !u!114 &11441488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -724,6 +683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d1b3667ab1c4c542b3be03294272503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_PauseUI: {fileID: 0}
 --- !u!114 &11481444
 MonoBehaviour:
   m_ObjectHideFlags: 1

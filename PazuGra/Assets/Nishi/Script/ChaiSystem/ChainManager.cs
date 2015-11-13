@@ -21,6 +21,7 @@ public class ChainManager : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
+            //ColliderSwitch(true);
             PushList();
             Remove();
         }
@@ -35,8 +36,8 @@ public class ChainManager : MonoBehaviour
         {
             if (hit.collider.tag == "Block")
             {
-                ColliderSwitch(true);
 
+                ColliderSwitch(true);
                 GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
 
                 m_removeList = new List<GameObject>();
@@ -47,6 +48,7 @@ public class ChainManager : MonoBehaviour
 
     void PushList()
     {
+        
         var objs = GameObject.FindGameObjectsWithTag("Collider");
         foreach (GameObject obj in objs)
         {

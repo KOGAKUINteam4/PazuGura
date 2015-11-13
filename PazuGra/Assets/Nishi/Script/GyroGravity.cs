@@ -19,12 +19,17 @@ public class GyroGravity : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Input.gyro.enabled = true;
         Reset();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(m_InitialValue == Vector3.zero)
+        {
+            Reset();
+        }
         m_currentValue = Input.gyro.gravity;
         m_currentValue.Normalize();
 
