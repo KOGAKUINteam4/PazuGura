@@ -47,10 +47,13 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\JSON\Editor\JSONChecker.cs" />
+     <Compile Include="Assets\LeanTween\Editor\LeanTweenDocumentationEditor.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\Editor\AlphaNumericSort.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\Editor\GUIHierarchy.cs" />
      <None Include="Assets\JSON\readme.txt" />
+     <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
      <None Include="Assets\Suzuki\Spricts\Shaders\UI-Mask.shader" />
+     <None Include="Assets\LeanTween\ReadMe.txt" />
      <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
      <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />
      <None Include="Assets\SampleAsset\Materials\UI-Default-No-Alpha.shader" />
@@ -117,6 +120,8 @@
       <Project>{CAD0A26B-64FB-25B0-31D8-6F032A94323C}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{1FB3A582-03CD-BD80-1A15-3EDE6D5F53C5}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript.unityproj">
+      <Project>{86FB03B6-96B8-B09C-F64E-6208063214CF}</Project>      <Name>Assembly-UnityScript</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
