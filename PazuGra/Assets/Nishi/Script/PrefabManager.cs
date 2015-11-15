@@ -23,10 +23,10 @@ public class PrefabManager : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject[] m_Prefabs;
+    private GameObject[] m_Prefabs = null;
 
     private int m_PrefabIndex = 0;
-    private GameObject m_CurrentPrefab;
+    private GameObject m_CurrentPrefab = null;
     private bool m_isEnd = false;
 
     public void Start()

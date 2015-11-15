@@ -11,7 +11,6 @@ GameObject:
   - 222: {fileID: 22245330}
   - 114: {fileID: 11400876}
   - 114: {fileID: 11418856}
-  - 114: {fileID: 11405890}
   m_Layer: 5
   m_Name: GameEnd
   m_TagString: Untagged
@@ -30,7 +29,6 @@ GameObject:
   - 222: {fileID: 22240848}
   - 114: {fileID: 11438680}
   - 114: {fileID: 11429710}
-  - 114: {fileID: 11413672}
   m_Layer: 5
   m_Name: Reset
   m_TagString: Untagged
@@ -63,6 +61,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22418830}
+  - 114: {fileID: 11451920}
   m_Layer: 5
   m_Name: PausaImage
   m_TagString: Untagged
@@ -115,7 +114,6 @@ GameObject:
   - 222: {fileID: 22282416}
   - 114: {fileID: 11456162}
   - 114: {fileID: 11420980}
-  - 114: {fileID: 11453536}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -178,18 +176,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11405890
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 110800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1b3667ab1c4c542b3be03294272503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PauseUI: {fileID: 0}
 --- !u!114 &11407454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,18 +197,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11413672
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1b3667ab1c4c542b3be03294272503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PauseUI: {fileID: 0}
 --- !u!114 &11418856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,7 +236,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11405890}
+      - m_Target: {fileID: 11451920}
         m_MethodName: OnGameEND
         m_Mode: 1
         m_Arguments:
@@ -314,7 +288,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11453536}
+      - m_Target: {fileID: 11451920}
         m_MethodName: OnCancel
         m_Mode: 1
         m_Arguments:
@@ -366,7 +340,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11413672}
+      - m_Target: {fileID: 11451920}
         m_MethodName: OnReStart
         m_Mode: 1
         m_Arguments:
@@ -442,18 +416,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &11453536
+--- !u!114 &11451920
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 197790}
+  m_GameObject: {fileID: 128924}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d1b3667ab1c4c542b3be03294272503, type: 3}
+  m_Script: {fileID: 11500000, guid: 37069a3632dddd743807a51c87475669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PauseUI: {fileID: 0}
+  m_RestartMenu: {fileID: 136722, guid: 7fbea975bd20a8b4f95aa51c26206bd1, type: 2}
+  m_GameEndMenu: {fileID: 150100, guid: 8aa861522a304df4a80338a580d7bbae, type: 2}
 --- !u!114 &11456162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -576,10 +551,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 22466108}
+  - {fileID: 22474530}
   - {fileID: 22482382}
   - {fileID: 22435328}
   - {fileID: 22475538}
-  - {fileID: 22474530}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
@@ -599,7 +574,7 @@ RectTransform:
   m_Children:
   - {fileID: 22453054}
   m_Father: {fileID: 22418830}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 11.9992867, y: -203}
@@ -684,7 +659,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22418830}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 11.9999924, y: 572}
@@ -702,7 +677,7 @@ RectTransform:
   m_Children:
   - {fileID: 22444108}
   m_Father: {fileID: 22418830}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 11.9992867, y: -612}
@@ -720,7 +695,7 @@ RectTransform:
   m_Children:
   - {fileID: 22439842}
   m_Father: {fileID: 22418830}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 12, y: 182}

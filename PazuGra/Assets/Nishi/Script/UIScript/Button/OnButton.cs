@@ -14,14 +14,17 @@ public class OnButton : MonoBehaviour {
 
     public void OnGameEND()
     {
-        Destroy(GameObject.Find("PuauseUI").transform.GetChild(0).gameObject);
-        PrefabManager.Instance.Next(PrefabName.Title);
+        //Destroy(GameObject.Find("UIs").transform.GetChild(0).gameObject);
+        //PrefabManager.Instance.Next(PrefabName.Title);
+        GameObject temp = Instantiate(m_PauseUI);
+        temp.transform.SetParent(GameObject.Find("UIs").transform, false);
     }
 
     public void OnReStart()
     {
-        Destroy(GameObject.Find("PuauseUI").transform.GetChild(0).gameObject);
-        PrefabManager.Instance.Next(PrefabName.GameMain);
+        //Destroy(GameObject.Find("UIs").transform.GetChild(0).gameObject);
+        GameObject temp =Instantiate(m_PauseUI);
+        temp.transform.SetParent(GameObject.Find("UIs").transform, false);
     }
 
     public void OnPauseON()
@@ -36,7 +39,7 @@ public class OnButton : MonoBehaviour {
 
     public void OnCancel()
     {
-        Destroy(GameObject.Find("PuauseUI").transform.GetChild(0).gameObject);
+        Destroy(GameObject.Find("UIs").transform.GetChild(0).gameObject);
         ExecuteEvents.Execute<IPauseSend>(
                 GameObject.Find("Pausable"),
                 null,
