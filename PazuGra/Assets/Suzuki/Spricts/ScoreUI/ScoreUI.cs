@@ -54,12 +54,19 @@ public class ScoreUI : MonoBehaviour {
         //Debug.Log(score);
     }
 
+    //一括の処理
+    public void ScoreEvent(float score)
+    {
+        AddScore(score);
+        UpdateScore(score);
+    }
+
     public int GetScore()
     {
         return (int)mSocre;
     }
 
-    private void UpdateScore(float score)
+    public void UpdateScore(float score)
     {
         for (int i = 1; i < 3; i++){
             mScoreCounter[i - 1].GetComponent<Image>().sprite = GetScoreSprite(i+3,score);
@@ -77,12 +84,12 @@ public class ScoreUI : MonoBehaviour {
         }
     }
 
-    private void CreateEffect()
+    public void CreateEffect()
     {
         mScoreParent.SetActive(true);
         // 現在位置からx:-20までランダムに揺れる
         iTween.ShakePosition(mScoreParent, 
-            iTween.Hash("y", -0.1, "islocal", false, "time", 0.4f, "oncomplete", "NotActive","oncompletetarget", this.gameObject));
+            iTween.Hash("y", -0.1, "islocal", false, "time", 1.0f, "oncomplete", "NotActive","oncompletetarget", this.gameObject));
     }
 
     private void NotActive()

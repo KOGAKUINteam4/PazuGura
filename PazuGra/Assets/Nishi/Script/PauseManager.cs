@@ -3,13 +3,13 @@ using System.Collections;
 
 public class PauseManager : MonoBehaviour {
 
-    Pausable m_Pausable;
+    //Pausable m_Pausable;
     [SerializeField]
     GameObject m_PauseUI;
 
 	// Use this for initialization
 	void Start () {
-        m_Pausable = gameObject.GetComponent<Pausable>();
+        //m_Pausable = gameObject.GetComponent<Pausable>();
 	
 	}
 	

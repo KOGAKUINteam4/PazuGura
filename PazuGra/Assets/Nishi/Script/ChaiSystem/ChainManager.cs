@@ -63,10 +63,16 @@ public class ChainManager : MonoBehaviour
     {
         if (m_removeList.Count >= 3)
         {
+            float score = 0;
+            GameManager gameManager = GameManager.GetInstanc;
             foreach (GameObject obj in m_removeList)
             {
+                score += obj.GetComponent<BlockInfo>().m_BlockPoint;
+                gameManager.GetScoreUI().AddScore(obj.GetComponent<BlockInfo>().m_BlockPoint);
                 Destroy(obj);
             }
+            gameManager.GetScoreUI().UpdateScore(score);
+            gameManager.GetScoreUI().CreateEffect();
             ComboGaugeStart();
             if(m_removeList.Count >= 5)
             {
