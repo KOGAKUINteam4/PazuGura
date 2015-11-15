@@ -55,7 +55,8 @@ public class Chain : MonoBehaviour {
     //接触したオブジェクトの色を判定
     private bool ColorChack(ColorState state)
     {
-        if (state == m_MyInfo.m_ColorState) return true;
+        if (m_MyInfo.m_ColorState == ColorState.Color_ALL) return true;
+        if (state == m_MyInfo.m_ColorState || state == ColorState.Color_ALL) return true;
         return false;
     }
 }

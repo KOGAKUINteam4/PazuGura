@@ -9,6 +9,8 @@ public class ChainManager : MonoBehaviour
     private List<GameObject> m_removeList = new List<GameObject>();
     [SerializeField]
     private GameObject m_ComboGauge;
+    [SerializeField]
+    private GameObject m_BlockFactory;
 
     // Use this for initialization
     void Start()
@@ -29,7 +31,15 @@ public class ChainManager : MonoBehaviour
             }
             if (hit.collider.tag == "Block")
             {
-                GameObject hitObj = hit.collider.gameObject.transform.FindChild("Collider").gameObject;
+                
+
+                var objs = GameObject.FindGameObjectsWithTag("Collider");
+                foreach (GameObject obj in objs)
+                {
+                    obj.GetComponent<PolygonCollider2D>().enabled = true;
+                }
+
+                GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
 
                 m_removeList = new List<GameObject>();
                 hitObj.GetComponent<Chain>().SetCheck(true);
@@ -65,6 +75,13 @@ public class ChainManager : MonoBehaviour
                 Destroy(obj);
             }
             ComboSend();
+            if(m_removeList.Count >= 5)
+            {
+                ExecuteEvents.Execute<BlockFactory>(
+                    m_BlockFactory, // 呼び出す対象のオブジェクト
+                    null,  // イベントデータ（モジュール等の情報）
+                    (recieveTarget, y) => { recieveTarget.ComboStart(); }); // 操作
+            }
             m_removeList.Clear();
         }
         else
@@ -74,13 +91,21 @@ public class ChainManager : MonoBehaviour
                 obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
             }
         }
+        var objs = GameObject.FindGameObjectsWithTag("Collider");
+        foreach (GameObject obj in objs)
+        {
+            obj.GetComponent<PolygonCollider2D>().enabled = false;
+        }
     }
 
+    [ContextMenu("Chain")]
     void ComboSend()
     {
         ExecuteEvents.Execute<ComboManager>(
              m_ComboGauge, // 呼び出す対象のオブジェクト
              null,  // イベントデータ（モジュール等の情報）
             (recieveTarget, y) => { recieveTarget.ComboStart(); }); // 操作
+
+        //m_BlockFactory.GetComponent<BlockFactory>().ComboStart();
     }
 }

@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
         mBlockManager = gameObject.AddComponent<BlockManager>();
         mUIContller = gameObject.AddComponent<UIContller>();
         mPhp = gameObject.AddComponent<PhpContact>();
+        mScore = GameObject.Find("ScoreParent").GetComponent<ScoreUI>();
     }
 
     public static GameManager GetInstanc
