@@ -162,7 +162,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     }
 
     //イベント駆動で虹を発生させる
-    public void ComboStart()
+    public void ComboSend()
     {
         isRainbow = true;
     }

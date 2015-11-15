@@ -8,17 +8,7 @@ public class ComboManager : MonoBehaviour , IRecieveMessage
     GameObject m_CgaugePrefab;
     GameObject m_Cgauge;
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public void ComboStart()
+    public void ComboSend()
     {
         if (m_Cgauge == null)
         {
@@ -27,15 +17,15 @@ public class ComboManager : MonoBehaviour , IRecieveMessage
         }
         else
         {
-            ExecuteEvents.Execute<ComboGauge>(
+            ExecuteEvents.Execute<IRecieveMessage>(
              m_Cgauge, // 呼び出す対象のオブジェクト
              null,  // イベントデータ（モジュール等の情報）
-            (recieveTarget, y) => { recieveTarget.ComboStart(); }); // 操作
+            (recieveTarget, y) => { recieveTarget.ComboSend(); }); // 操作
 
-            ExecuteEvents.Execute<ComboCounter>(
+            ExecuteEvents.Execute<IRecieveMessage>(
              m_Cgauge.transform.FindChild("numbers").gameObject, // 呼び出す対象のオブジェクト
              null,  // イベントデータ（モジュール等の情報）
-            (recieveTarget, y) => { recieveTarget.ComboStart(); }); // 操作
+            (recieveTarget, y) => { recieveTarget.ComboSend(); }); // 操作
         }
     }
 

@@ -8,20 +8,23 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
     [SerializeField]
     private Sprite[] m_nums;
     [SerializeField]
-    private Image m_1Digit, m_10Digit;
+    private Image m_1Digit = null, m_10Digit = null;
     [SerializeField]
     private GameObject m_GameTimer;
 
     private int m_OrdCount = 0;
     private Vector3  fixPosition;
+    //コンボカウンター
     private int m_counter = 1;
 
     // Use this for initialization
     void Start () {
+        m_OrdCount = 0;
         m_GameTimer = GameObject.Find("GameTimer");
         m_1Digit.enabled = true;
         m_10Digit.enabled = false;
-        fixPosition = m_1Digit.rectTransform.position + new Vector3(0.5f,0f,0f);
+        //　　　　　　　　　　　　　　　　　　　　　　　　　　　A案はXが0.2f
+        fixPosition = m_1Digit.rectTransform.position + new Vector3(0.3f,0f,0f);
 	
 	}
 	
@@ -39,10 +42,10 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
 
         if(CheckMultiple())
         {
-            ExecuteEvents.Execute<GameTimer>(
+            ExecuteEvents.Execute<IRecieveMessage>(
                 m_GameTimer,
                 null,
-                (events, y) => { events.ComboStart(); });
+                (events, y) => { events.ComboSend(); });
         }
 
     }
@@ -54,7 +57,6 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
         {
             if (m_OrdCount != m_counter)
             {
-                Debug.Log("ok");
                 m_OrdCount = m_counter;
                 return true;
             }
@@ -62,9 +64,14 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
         return false;
     }
 
-    public void ComboStart()
+    public void ComboSend()
     {
         m_counter++;
+    }
+
+    public int GetCombo()
+    {
+        return m_counter;
     }
 
 }

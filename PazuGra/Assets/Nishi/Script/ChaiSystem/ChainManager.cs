@@ -12,49 +12,43 @@ public class ChainManager : MonoBehaviour
     [SerializeField]
     private GameObject m_BlockFactory;
 
-    // Use this for initialization
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            var layerMask = 1 << LayerMask.NameToLayer("Block");
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1.0f, layerMask);
-            if (hit.collider == null)
-            {
-                return;
-            }
-            if (hit.collider.tag == "Block")
-            {
-                
-
-                var objs = GameObject.FindGameObjectsWithTag("Collider");
-                foreach (GameObject obj in objs)
-                {
-                    obj.GetComponent<PolygonCollider2D>().enabled = true;
-                }
-
-                GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
-
-                m_removeList = new List<GameObject>();
-                hitObj.GetComponent<Chain>().SetCheck(true);
-            }
+            CrickStart();
         }
         if (Input.GetMouseButtonUp(0))
         {
+            //ColliderSwitch(true);
             PushList();
             Remove();
         }
 
     }
 
+    void CrickStart()
+    {
+        var layerMask = 1 << LayerMask.NameToLayer("Block");
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1.0f, layerMask);
+        if (hit.collider != null)
+        {
+            if (hit.collider.tag == "Block")
+            {
+
+                ColliderSwitch(true);
+                GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
+
+                m_removeList = new List<GameObject>();
+                hitObj.GetComponent<Chain>().SetCheck(true);
+            }
+        }
+    }
+
     void PushList()
     {
+        
         var objs = GameObject.FindGameObjectsWithTag("Collider");
         foreach (GameObject obj in objs)
         {
@@ -67,20 +61,19 @@ public class ChainManager : MonoBehaviour
 
     void Remove()
     {
-        Debug.Log(m_removeList.Count);
         if (m_removeList.Count >= 3)
         {
             foreach (GameObject obj in m_removeList)
             {
                 Destroy(obj);
             }
-            ComboSend();
+            ComboGaugeStart();
             if(m_removeList.Count >= 5)
             {
-                ExecuteEvents.Execute<BlockFactory>(
+                ExecuteEvents.Execute<IRecieveMessage>(
                     m_BlockFactory, // 呼び出す対象のオブジェクト
                     null,  // イベントデータ（モジュール等の情報）
-                    (recieveTarget, y) => { recieveTarget.ComboStart(); }); // 操作
+                    (recieveTarget, y) => { recieveTarget.ComboSend(); }); // 操作
             }
             m_removeList.Clear();
         }
@@ -91,21 +84,28 @@ public class ChainManager : MonoBehaviour
                 obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
             }
         }
-        var objs = GameObject.FindGameObjectsWithTag("Collider");
-        foreach (GameObject obj in objs)
+
+        ColliderSwitch(false);
+    }
+
+    /// <summary>
+    /// true:ON false:OFF
+    /// </summary>
+    /// <param name="isbool"></param>
+    void ColliderSwitch(bool isbool)
+    {
+        var cols = GameObject.FindGameObjectsWithTag("Collider");
+        foreach (GameObject col in cols)
         {
-            obj.GetComponent<PolygonCollider2D>().enabled = false;
+            col.GetComponent<PolygonCollider2D>().enabled = isbool;
         }
     }
 
-    [ContextMenu("Chain")]
-    void ComboSend()
+    void ComboGaugeStart()
     {
-        ExecuteEvents.Execute<ComboManager>(
+        ExecuteEvents.Execute<IRecieveMessage>(
              m_ComboGauge, // 呼び出す対象のオブジェクト
              null,  // イベントデータ（モジュール等の情報）
-            (recieveTarget, y) => { recieveTarget.ComboStart(); }); // 操作
-
-        //m_BlockFactory.GetComponent<BlockFactory>().ComboStart();
+            (recieveTarget, y) => { recieveTarget.ComboSend(); }); // 操作
     }
 }
