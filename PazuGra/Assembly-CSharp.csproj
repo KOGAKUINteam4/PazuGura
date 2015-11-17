@@ -72,6 +72,8 @@
      <Compile Include="Assets\Nishi\Script\ComboCounter\ComboGauge.cs" />
      <Compile Include="Assets\Nishi\Script\ComboCounter\ComboManager.cs" />
      <Compile Include="Assets\Nishi\Script\CreateCollider.cs" />
+     <Compile Include="Assets\Nishi\Script\Effects\EffectManager.cs" />
+     <Compile Include="Assets\Nishi\Script\Effects\MainCallEffect.cs" />
      <Compile Include="Assets\Nishi\Script\GyroGravity.cs" />
      <Compile Include="Assets\Nishi\Script\IPauseSend.cs" />
      <Compile Include="Assets\Nishi\Script\IRecieveMessage.cs" />
