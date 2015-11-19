@@ -57,6 +57,6 @@ public class PrefabManager : MonoBehaviour
     public void Next(PrefabName name)
     {
         m_PrefabIndex = (int)name;
-        m_isEnd = true;
+        SetIsEnd(true);
     }
 }

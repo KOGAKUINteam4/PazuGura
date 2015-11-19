@@ -9,36 +9,27 @@ public class MainCallEffect : MonoBehaviour {
     [SerializeField]
     Image m_Shadow;
 
-    RectTransform m_Rectpos;
-
     // Use this for initialization
     void Start () {
-        m_Rectpos = gameObject.GetComponent<RectTransform>();
+        LeanTween.alpha(m_Hole.rectTransform, 1, 3);
+        LeanTween.alpha(m_Shadow.rectTransform, 1, 3).setOnComplete(()=> { Move(); });
 
+    }
 
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Move()
+    {
+        //gameメインを登場させる
+        //PrefabManager.Instance.Next(PrefabName.GameMain);
+        LeanTween.moveY(gameObject, -100, 3).setOnComplete(() => { Scale(); });
+    }
 
-        Color color = new Color(0.0f, 0.0f,0.0f,0.01f);
+    void Scale()
+    {
+        LeanTween.scale(m_Hole.rectTransform, new Vector3(7.0f, 7.0f, 0.0f), 5).setOnComplete(()=> { End(); });
+    }
 
-        m_Hole.color += color;
-        m_Shadow.color += color;
-
-        if (m_Hole.color.a >= 1)
-        {
-            if (gameObject.transform.position.y <= -100)
-            {
-                m_Hole.rectTransform.localScale += new Vector3(0.1f, 0.1f, 0.0f);
-            }
-            else
-            {
-                Vector3 pos = new Vector3(0.0f, -1.0f, 0.0f);
-                gameObject.transform.position += pos;
-            }
-        }
-	
-	}
+    void End()
+    {
+        Destroy(gameObject);
+    }
 }
