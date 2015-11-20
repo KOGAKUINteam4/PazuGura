@@ -81,6 +81,7 @@ public class ResultUIEffect : MonoBehaviour {
 	void Start () {
         InitSearchTarget();
         InitLeader();
+        Debug.Log("Rankingstart");
         //MoveTarget(mLeader,mStartPoint,-mStartPoint,5.0f,1.0f);
 
         StartCoroutine(DrowUI());

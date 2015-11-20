@@ -19,8 +19,8 @@ public class MainCallEffect : MonoBehaviour {
     void Move()
     {
         //gameメインを登場させる
-        //PrefabManager.Instance.Next(PrefabName.GameMain);
-        LeanTween.moveY(gameObject, -100, 3).setOnComplete(() => { Scale(); });
+        PrefabManager.Instance.Next(PrefabName.GameMain);
+        LeanTween.moveY(gameObject, -9, 3).setOnComplete(() => { Scale(); });
     }
 
     void Scale()
@@ -30,6 +30,7 @@ public class MainCallEffect : MonoBehaviour {
 
     void End()
     {
+        GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
         Destroy(gameObject);
     }
 }

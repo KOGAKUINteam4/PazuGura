@@ -7,7 +7,7 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
 {
 
     [SerializeField, Tooltip("タイムの初期値")]
-    private float m_timer = 10.0f;
+    private float m_timer = 180.0f;
 
     [SerializeField]
     private Sprite[] m_nums;
@@ -53,6 +53,11 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
     public void AddSecond(float add)
     {
         m_timer += add;
+    }
+
+    public void TimeReset()
+    {
+        m_timer = 180;
     }
 
     public void ComboSend()

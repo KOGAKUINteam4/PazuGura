@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class UIPixRange : MonoBehaviour {
+public class NishiUIPixRange : MonoBehaviour {
 
     [Range(0, 1)]
     public float range;
@@ -15,7 +15,5 @@ public class UIPixRange : MonoBehaviour {
 	void Update () {
         mat.SetFloat("_Range", range);
         transform.parent.transform.GetComponent<Image>().color = new Color(1,1,1,1-range);
-        Color color = transform.GetComponent<Image>().color;
-        transform.GetComponent<Image>().color = new Color(color.r,color.g,color.b,1 - range);
-    }
+	}
 }

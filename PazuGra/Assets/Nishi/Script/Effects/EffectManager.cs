@@ -18,6 +18,11 @@ public class EffectManager : MonoBehaviour {
     {
         Instantiate(prefab);
     }
+    public void Create(GameObject prefab,Transform parent)
+    {
+        GameObject Temp = Instantiate(prefab);
+        Temp.transform.SetParent(parent, false);
+    }
 
     public void Create(Vector3 position, GameObject prefab)
     {

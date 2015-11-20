@@ -77,6 +77,7 @@
      <Compile Include="Assets\Nishi\Script\GyroGravity.cs" />
      <Compile Include="Assets\Nishi\Script\IPauseSend.cs" />
      <Compile Include="Assets\Nishi\Script\IRecieveMessage.cs" />
+     <Compile Include="Assets\Nishi\Script\NishiUIPixRange.cs" />
      <Compile Include="Assets\Nishi\Script\Pausable.cs" />
      <Compile Include="Assets\Nishi\Script\PauseManager.cs" />
      <Compile Include="Assets\Nishi\Script\Pointer\LimitTime.cs" />

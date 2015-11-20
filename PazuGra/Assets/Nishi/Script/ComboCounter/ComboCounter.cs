@@ -16,6 +16,7 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
     private Vector3  fixPosition;
     //コンボカウンター
     private int m_counter = 1;
+    private int m_MaxCounter = 0;
 
     // Use this for initialization
     void Start () {
@@ -31,7 +32,7 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
 	// Update is called once per frame
 	void Update ()
     {
-        if(m_counter >= 10)
+        if (m_counter >= 10)
         {
             m_10Digit.enabled = true;
             m_1Digit.rectTransform.position = fixPosition;
