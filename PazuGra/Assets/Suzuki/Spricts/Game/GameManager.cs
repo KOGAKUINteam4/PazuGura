@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     private PhpContact mPhp;
 
     private ScoreUI mScore;
+    private RankingParam mRanking;
 
     private void Awake()
     {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour {
         mUIContller = gameObject.AddComponent<UIContller>();
         mPhp = gameObject.AddComponent<PhpContact>();
         mScore = GameObject.Find("ScoreParent").GetComponent<ScoreUI>();
+        mRanking = gameObject.AddComponent<RankingParam>();
     }
 
     public static GameManager GetInstanc
@@ -44,5 +46,10 @@ public class GameManager : MonoBehaviour {
     public UIContller GetUIContller()
     {
         return mUIContller;
+    }
+
+    public RankingParam GetRanking()
+    {
+        return mRanking;
     }
 }

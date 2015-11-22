@@ -110,6 +110,7 @@ public class PolygonMaker : MonoBehaviour {
             CreatePolygon(mCrossPoint);
             mRoot.Clear();
             mRoot.Add(mPoint[mPoint.Count - 1]);
+            Debug.Log("Cross");
         }
     }
 
@@ -379,15 +380,20 @@ public class PolygonMaker : MonoBehaviour {
         Mesh mesh = new Mesh();
         mesh.Clear();
 
+
+
         //頂点の数で初期化
         Vector3[] vertices = new Vector3[crossPoint + 1];
         for (int i = 0; i < crossPoint; i++)
         {
             vertices[i] = mRoot[i];
         }
+
         vertices[crossPoint] = mRoot[0];
         //Cubeの位置を頂点としている
         mesh.vertices = vertices;
+
+        //Debug.Log("CrossPoint : "+crossPoint);
 
         //頂点の数で初期化
         Vector2[] verticesXY = new Vector2[crossPoint + 1];
@@ -395,15 +401,21 @@ public class PolygonMaker : MonoBehaviour {
         {
             Vector3 pos = mRoot[i];
             verticesXY[i] = new Vector2(pos.x, pos.y);
+            //なぜか頂点が5個
+            //Debug.Log(i);
         }
 
         verticesXY[crossPoint] = mRoot[0];
 
+
         //メッシュ内の全ての三角形を含む配列
         Triangulator tr = new Triangulator(verticesXY, Camera.main.transform.position);
-        int[] indices = tr.Triangulate();
+        //Debug.Log("Cross");
+        //Debug.Log(tr.Triangulate().Length);
+        //Debug.Log("Crossaa");
+        int[] indices = tr.Triangulate();//ここで配列外
+        //Debug.Log("Cross1");
         mesh.triangles = indices;
-
         //頂点の数で初期化
         mesh.uv = new Vector2[crossPoint + 1];
 

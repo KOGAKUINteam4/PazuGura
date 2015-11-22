@@ -21,6 +21,8 @@ public class ResultUIEffect : MonoBehaviour {
     private void InitSearchTarget()
     {
         mLeader = GameObject.Find("Loader_3");
+        mTargtList = new List<GameObject>();
+        mValues = new List<GameObject>();
         foreach (Transform i in GameObject.Find("Contents").transform) mTargtList.Add(i.gameObject);
         foreach (Transform i in GameObject.Find("Values").transform) mValues.Add(i.gameObject);
     }
@@ -75,14 +77,52 @@ public class ResultUIEffect : MonoBehaviour {
             yield return new WaitForSeconds(delay);
         }
         MoveTarget(mLeader, mStartPoint, delay);
+
+        GameObject.Find("Button_Title").GetComponent<Button>().interactable = true;
+        GameObject.Find("Button_Retry").GetComponent<Button>().interactable = true;
+    }
+
+    //Effectが終了した項目からスコアを反映させていく。
+    private void TargetTextUpdate(GameObject target,string text)
+    {
+        target.GetComponent<Text>().text = text;
+    }
+
+    //score
+    //chain
+    //combo
+    //Drow回数
+    private void InitScore()
+    {
+        //値の反映
+        TargetTextUpdate(mValues[0], GameManager.GetInstanc.GetScoreUI().GetScore().ToString());
+        TargetTextUpdate(mValues[1], "5");
+        TargetTextUpdate(mValues[2], "3");
+        TargetTextUpdate(mValues[3], GameManager.GetInstanc.GetRanking().mDrowCount.ToString());
+    }
+
+    //Rankingを表示した際に使う
+    public void StartEffect()
+    {
+        GameObject.Find("Button_Title").GetComponent<Button>().interactable = false;
+        GameObject.Find("Button_Retry").GetComponent<Button>().interactable = false;
+        InitSearchTarget();
+        InitLeader();
+        InitScore();
+        StartCoroutine(DrowUI());
     }
 
 	// Use this for initialization
 	void Start () {
-        InitSearchTarget();
-        InitLeader();
-        //MoveTarget(mLeader,mStartPoint,-mStartPoint,5.0f,1.0f);
+        //InitSearchTarget();
+        //InitLeader();
 
-        StartCoroutine(DrowUI());
+        //StartCoroutine(DrowUI());
 	}
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0)) Time.timeScale = 3.0f;
+        if (Input.GetMouseButtonUp(0)) Time.timeScale = 1.0f;
+    }
 }

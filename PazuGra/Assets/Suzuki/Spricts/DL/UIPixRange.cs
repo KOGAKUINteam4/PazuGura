@@ -14,6 +14,6 @@ public class UIPixRange : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         mat.SetFloat("_Range", range);
-        transform.parent.transform.GetComponent<Image>().color = new Color(1,1,1,1-range);
+        transform.GetComponent<Image>().color = new Color(1,1,1,1-range);
 	}
 }

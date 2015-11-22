@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TemplateStampPoint;
+using System.IO;
 //ブロック生成用のクラス
 
 public class BlockFactory : MonoBehaviour , IRecieveMessage {
@@ -53,6 +55,8 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         UpdateInstanceUI();
     }
 
+    public bool GetShoot() { return mIsShoot; }
+
     //頂点の追加
     private void AddPoint(Vector3 mouseWorldPos)
     {
@@ -94,6 +98,22 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         //Textureの作成
         //StartCoroutine(RenderTextureOutPut());
         mIsShoot = true;
+        GameManager.GetInstanc.GetRanking().mDrowCount += 1;
+    }
+
+    //画面を押された瞬間
+    public void CreateBlockOnTouch(Vector3 point)
+    {
+        mPolygonMaker.Init();
+        AddPoint(point);
+        mTouchPosition = point;
+    }
+
+    //画面を押されている。
+    public void CreateBlockOnStay(Vector3 point)
+    {
+        AddPoint(point);
+        mPolygonMaker.OnCross();
     }
 
     private void CreateTexture()
@@ -156,6 +176,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     {
         //Screen cast World
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Debug.Log(mouseWorldPos);
         //panelのローカル座標に
         return mouseWorldPos * mCameraView;
         //return mouseWorldPos * 50;
@@ -165,5 +186,44 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     public void ComboSend()
     {
         isRainbow = true;
+    }
+
+
+    TextReader txtReader;
+    string description;
+    [ContextMenu("Stamp")]
+    public void DebugStart(string name)
+    {
+        if (GetShoot()) return;
+        StartCoroutine(LoadText(name));
+    }
+
+    IEnumerator LoadText(string name)
+    {
+        string txtBuffer = "";
+        string textFileName = name +".txt";
+        //string textFileName = "star" + "Stamp" + ".txt";
+        string path = "";// Application.dataPath + "/" + "Resources/" + "Stamp/";
+        List<Vector2> list = new List<Vector2>();
+#if UNITY_EDITOR
+        path = Application.streamingAssetsPath + "\\" + textFileName;
+        FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read);
+        txtReader = new StreamReader(file);
+        yield return new WaitForSeconds(0f);
+#elif UNITY_ANDROID
+		path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+		WWW www = new WWW(path);
+		yield return www;
+		txtReader = new StringReader(www.text);
+#endif
+        int count = 0;
+        while ((txtBuffer = txtReader.ReadLine()) != null)
+        {
+            list.Add(new Vector2(float.Parse(txtBuffer), float.Parse(txtReader.ReadLine())));
+            count++;
+        }
+        CreateBlockOnTouch(list[0]);
+        for (int i = 1; i < list.Count; i++) { CreateBlockOnStay(list[i]); } 
+        CreateBlockOnRelease();
     }
 }

@@ -50,15 +50,27 @@
      <Compile Include="Assets\LeanTween\Editor\LeanTweenDocumentationEditor.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\Editor\AlphaNumericSort.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\Editor\GUIHierarchy.cs" />
+     <None Include="Assets\StreamingAssets\Art202.txt" />
      <None Include="Assets\JSON\readme.txt" />
+     <None Include="Assets\StreamingAssets\Six.txt" />
      <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
+     <None Include="Assets\StreamingAssets\Attack.txt" />
+     <None Include="Assets\StreamingAssets\DebugStar.txt" />
      <None Include="Assets\Suzuki\Spricts\Shaders\UI-Mask.shader" />
      <None Include="Assets\LeanTween\ReadMe.txt" />
+     <None Include="Assets\StreamingAssets\Circle16.txt" />
      <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
+     <None Include="Assets\StreamingAssets\Star.txt" />
      <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />
+     <None Include="Assets\StreamingAssets\Debug.txt" />
      <None Include="Assets\SampleAsset\Materials\UI-Default-No-Alpha.shader" />
      <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\StreamingAssets\Circle.txt" />
      <None Include="Assets\AssetStore\CarbonConcept\Sci-Fi Loaders\Sprites\LightSpeed\Font\XoloniumFont48px.txt" />
+     <None Include="Assets\StreamingAssets\BigStar.txt" />
+     <None Include="Assets\Resources\Stamp\starStamp.txt" />
+     <None Include="Assets\StreamingAssets\starStamp.txt" />
+     <None Include="Assets\StreamingAssets\Art.txt" />
      <None Include="Assets\Suzuki\Spricts\Shaders\UI-Nega.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

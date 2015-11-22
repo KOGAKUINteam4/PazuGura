@@ -7,22 +7,33 @@ public class RankingSeq : MonoBehaviour {
     private GameManager mGameManager;
     private PhpContact mPhp;
     private List<int> mResult = new List<int>();
+
+    [SerializeField]
+    private GameObject mScoreParent;
+
 	// Use this for initialization
 	void Start () {
         mGameManager = GameManager.GetInstanc;
         mPhp = mGameManager.GetPhpContact();
-        mPhp.UpdateRankingDate(ResultDate);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+        mPhp.DateBaseUpdate(GameManager.GetInstanc.GetScoreUI().GetScore());
+        mPhp.UpdateRankingDate(ResultDate, UpdateViewValue);
 	}
 
-    //自分のスコアと一致したら赤くする
-    private bool RankerColor(int score)
+    //Rankingが呼ばれた際に使う。
+    public void Init()
     {
-        GameObject target = GameObject.Find("ScoreParent");
+        mGameManager = GameManager.GetInstanc;
+        mPhp = mGameManager.GetPhpContact();
+        mPhp.DateBaseUpdate(GameManager.GetInstanc.GetScoreUI().GetScore());
+        mPhp.UpdateRankingDate(ResultDate, UpdateViewValue);
+    }
+	
+    //まだ使っていない
+    //自分のスコアと一致したら赤くする
+    public bool RankerColor(int score)
+    {
+        GameObject target = mScoreParent;
+        if (target == null) target = GameObject.Find("mScoreParent");
         if (target == null) return false;
         if (target.GetComponent<ScoreUI>().GetScore() == score) return true;
         return false;

@@ -8,6 +8,7 @@ public class ScoreUI : MonoBehaviour {
     private Sprite[] mSprite = new Sprite[10];
     private GameObject[] mCounter = new GameObject[6];
     private GameObject[] mScoreCounter = new GameObject[3];
+    //スコア
     [SerializeField]
     private float mSocre = 0;
 
@@ -21,6 +22,12 @@ public class ScoreUI : MonoBehaviour {
         Init();
 	}
 
+    //GameMainをはじめた際に使う。
+    public void InitScore()
+    {
+        mSocre = 0;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -28,6 +35,13 @@ public class ScoreUI : MonoBehaviour {
             AddScore(700);
             UpdateScore(700);
             CreateEffect();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            GameObject rank = Instantiate(Resources.Load("Prefub/RankingSet")) as GameObject;
+            rank.transform.SetParent(GameManager.GetInstanc.GetUIContller().SearchParent(Layers.Layer_Front).transform,false);
+            rank.transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
         }
     }
 
@@ -66,19 +80,20 @@ public class ScoreUI : MonoBehaviour {
         return (int)mSocre;
     }
 
+    //1から?
     public void UpdateScore(float score)
     {
         for (int i = 1; i < 3; i++){
             mScoreCounter[i - 1].GetComponent<Image>().sprite = GetScoreSprite(i+3,score);
         }
-        for (int i = 1; i < 6; i++){
+        for (int i = 0; i < 6; i++){
             SetNumber(i);
         }
     }
 
     public void UpdateScore()
     {
-        for (int i = 1; i < 6; i++)
+        for (int i = 0; i < 6; i++)
         {
             SetNumber(i);
         }
@@ -103,11 +118,15 @@ public class ScoreUI : MonoBehaviour {
         int scoreValue = (int)value;
         string length = scoreValue.ToString();
         for (int i = length.Length; i < 6; i++) { length = "0" + length;}
-        return mSprite[int.Parse(length.Substring(score-1, 1))];
+        return mSprite[int.Parse(length.Substring(score, 1))];
+        //return mSprite[int.Parse(length.Substring(score-1, 1))];
     }
 
     public void SetNumber(int num)
     {
-        mCounter[num - 1].GetComponent<Image>().sprite = GetScoreSprite(num,mSocre);
+        //Debug.Log("更新している桁 : "+num);
+        //最後の桁が取りきれていない説
+        mCounter[num].GetComponent<Image>().sprite = GetScoreSprite(num, mSocre);
+        //mCounter[num - 1].GetComponent<Image>().sprite = GetScoreSprite(num,mSocre);
     }
 }

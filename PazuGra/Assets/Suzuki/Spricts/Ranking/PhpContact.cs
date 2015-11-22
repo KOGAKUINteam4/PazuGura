@@ -13,9 +13,9 @@ public class PhpContact : MonoBehaviour {
         StartCoroutine(Add(score));
     }
 
-    public void UpdateRankingDate(IsFunction mFunction)
+    public void UpdateRankingDate(IsFunction mFunction,IsFunction mFunc)
     {
-        StartCoroutine(GetResult(mFunction));
+        StartCoroutine(GetResult(mFunction,mFunc));
     }
 
     public List<int> GetRankingDate()
@@ -34,14 +34,15 @@ public class PhpContact : MonoBehaviour {
 
         WWW gettext = new WWW(url1, wwwForm);
 
+        Debug.Log("Add"+score);
+
         // レスポンスを待つ
         yield return gettext;
-
-        Debug.Log(gettext.text);
     }
 
-    private IEnumerator GetResult(IsFunction mFunction)
+    private IEnumerator GetResult(IsFunction mFunction, IsFunction mFunction2)
     {
+        yield return new WaitForSeconds(0.5f);
         WWWForm wwwForm = new WWWForm();
         wwwForm.AddField("keyword", "data");//不正接続防止用キーワード
         WWW result = new WWW("tysonew.xsrv.jp/GetResult.php", wwwForm);
@@ -59,6 +60,7 @@ public class PhpContact : MonoBehaviour {
                 mResult.Add(int.Parse(jsonUid.str));
             }
             mFunction();
+            if (mFunction2 != null) mFunction2();
         }
 
         if (result.error != null)

@@ -17,9 +17,9 @@ TagManager:
   - 
   - Collider
   - Block
-  - 
-  - 
-  - 
+  - Wall
+  - InitBlock
+  - Line
   - 
   - 
   - 
