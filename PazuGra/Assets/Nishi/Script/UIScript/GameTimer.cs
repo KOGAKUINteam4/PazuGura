@@ -6,8 +6,10 @@ using UnityEngine.EventSystems;
 public class GameTimer : MonoBehaviour, IRecieveMessage
 {
 
+    private float m_Timer;
+
     [SerializeField, Tooltip("タイムの初期値")]
-    private float m_timer = 10.0f;
+    private float m_RestTimer = 180.0f;
 
     [SerializeField]
     private Sprite[] m_nums;
@@ -20,9 +22,10 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
 
     public void Awake()
     {
-        m_1Digit.sprite = m_nums[((int)m_timer / 1) % 10];
-        m_10Digit.sprite = m_nums[((int)m_timer / 10) % 10];
-        m_100Digit.sprite = m_nums[((int)m_timer / 100) % 10];
+        m_Timer = m_RestTimer;
+        m_1Digit.sprite = m_nums[((int)m_Timer / 1) % 10];
+        m_10Digit.sprite = m_nums[((int)m_Timer / 10) % 10];
+        m_100Digit.sprite = m_nums[((int)m_Timer / 100) % 10];
     }
 
 
@@ -30,8 +33,8 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
     // Update is called once per frame
     void Update()
     {
-        m_timer -= Time.deltaTime;
-        float display = m_timer;
+        m_Timer -= Time.deltaTime;
+        float display = m_Timer;
         display = Mathf.Clamp(display, 0, 999);
         if (!isTimerOver())
         {
@@ -41,18 +44,24 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         }
         else
         {
+            PrefabManager.Instance.Next(PrefabName.Ranking);
             Debug.Log("End");
         }
     }
 
     public bool isTimerOver()
     {
-        return m_timer <= 0;
+        return m_Timer <= 0;
     }
 
     public void AddSecond(float add)
     {
-        m_timer += add;
+        m_Timer += add;
+    }
+
+    public void TimeReset()
+    {
+        m_Timer = m_RestTimer;
     }
 
     public void ComboSend()

@@ -8,6 +8,8 @@ public class ComboManager : MonoBehaviour , IRecieveMessage
     GameObject m_CgaugePrefab;
     GameObject m_Cgauge;
 
+    private int m_MaxCombo;
+
     public void ComboSend()
     {
         if (m_Cgauge == null)
@@ -27,8 +29,10 @@ public class ComboManager : MonoBehaviour , IRecieveMessage
              null,  // イベントデータ（モジュール等の情報）
             (recieveTarget, y) => { recieveTarget.ComboSend(); }); // 操作
         }
+
+        if (m_MaxCombo < m_Cgauge.GetComponentInChildren<ComboCounter>().GetCombo())
+        {
+            m_MaxCombo = m_Cgauge.GetComponentInChildren<ComboCounter>().GetCombo();
+        }
     }
-
-
-
 }

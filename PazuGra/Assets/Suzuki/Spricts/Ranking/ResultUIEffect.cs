@@ -6,7 +6,8 @@ using uTools;
 //UIの項目がどんどん表示されていくように作っていく。
 //項目に対してどんどんレーダーカーソルを合わせて表示していく感じでいこう。
 
-public class ResultUIEffect : MonoBehaviour {
+public class ResultUIEffect : MonoBehaviour
+{
 
     private GameObject mLeader;
     private List<GameObject> mTargtList = new List<GameObject>();
@@ -15,7 +16,8 @@ public class ResultUIEffect : MonoBehaviour {
     private GameObject mTarget;
     private GameObject mValue;
 
-    [SerializeField][Range(0.1f,3.0f)]
+    [SerializeField]
+    [Range(0.1f, 3.0f)]
     private float mDelay = 0.5f;
 
     private void InitSearchTarget()
@@ -32,7 +34,7 @@ public class ResultUIEffect : MonoBehaviour {
     {
         mStartPoint = mLeader.GetComponent<RectTransform>().position;
     }
-    
+
     //指定された時間で表示する。
     private void TargetValue(float time)
     {
@@ -43,11 +45,11 @@ public class ResultUIEffect : MonoBehaviour {
     private void TargetColorValue(float time)
     {
         Text image = mValue.GetComponent<Text>();
-        image.color = new Color(1,1,1,time);
+        image.color = new Color(1, 1, 1, time);
     }
 
     //とりあえず、レーダーの位置をScoreの上に持っていってみる。
-    private void MoveTarget(GameObject target,Vector2 to,float time,float dilay = 0.0f)
+    private void MoveTarget(GameObject target, Vector2 to, float time, float dilay = 0.0f)
     {
         //uTweenPosition point = uTweenPosition.Begin(target, from, to, time, dilay) as uTweenPosition;
         //point.Play();
@@ -58,7 +60,8 @@ public class ResultUIEffect : MonoBehaviour {
     private IEnumerator DrowUI()
     {
         float delay = mDelay;
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < 4; i++)
+        {
             //項目へ移動
             MoveTarget(mLeader, mTargtList[i].transform.position, delay);
             yield return new WaitForSeconds(delay);
@@ -83,7 +86,7 @@ public class ResultUIEffect : MonoBehaviour {
     }
 
     //Effectが終了した項目からスコアを反映させていく。
-    private void TargetTextUpdate(GameObject target,string text)
+    private void TargetTextUpdate(GameObject target, string text)
     {
         target.GetComponent<Text>().text = text;
     }
@@ -96,7 +99,7 @@ public class ResultUIEffect : MonoBehaviour {
     {
         //値の反映
         TargetTextUpdate(mValues[0], GameManager.GetInstanc.GetScoreUI().GetScore().ToString());
-        TargetTextUpdate(mValues[1], "5");
+        TargetTextUpdate(mValues[1], GameObject.Find("GamaManager").GetComponent<ChainManager>().GetMaxChain().ToString());
         TargetTextUpdate(mValues[2], "3");
         TargetTextUpdate(mValues[3], GameManager.GetInstanc.GetRanking().mDrowCount.ToString());
     }
@@ -112,13 +115,14 @@ public class ResultUIEffect : MonoBehaviour {
         StartCoroutine(DrowUI());
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         //InitSearchTarget();
         //InitLeader();
 
         //StartCoroutine(DrowUI());
-	}
+    }
 
     private void Update()
     {

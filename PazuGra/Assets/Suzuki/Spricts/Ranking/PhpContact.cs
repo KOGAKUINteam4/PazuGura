@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using MiniJSON;
 using DelegateFunction;
+using UnityEngine.UI;
 public class PhpContact : MonoBehaviour {
 
     [SerializeField]
@@ -25,7 +26,8 @@ public class PhpContact : MonoBehaviour {
 
     private IEnumerator Add(int score)
     {
-        var url1 = "tysonew.xsrv.jp/Result.php";
+        //http://
+        var url1 = "http://tysonew.xsrv.jp/Result.php";
 
         WWWForm wwwForm = new WWWForm();
 
@@ -45,7 +47,9 @@ public class PhpContact : MonoBehaviour {
         yield return new WaitForSeconds(0.5f);
         WWWForm wwwForm = new WWWForm();
         wwwForm.AddField("keyword", "data");//不正接続防止用キーワード
-        WWW result = new WWW("tysonew.xsrv.jp/GetResult.php", wwwForm);
+        //http://
+        WWW result = new WWW("http://tysonew.xsrv.jp/GetResult.php", wwwForm);
+        GameObject.Find("Php").GetComponent<Text>().text = "false";
         yield return result;
 
         if (result.error == null)
@@ -61,11 +65,58 @@ public class PhpContact : MonoBehaviour {
             }
             mFunction();
             if (mFunction2 != null) mFunction2();
+            //GameObject.Find("Php").GetComponent<Text>().text = "OK";
         }
 
         if (result.error != null)
         {
             Debug.Log(result.error);
+            //GameObject.Find("Php").GetComponent<Text>().text = result.text;
+            GameObject.Find("Php").GetComponent<Text>().text = result.error.Length.ToString();
+            log(result.error);
         }
+    }
+
+
+
+    void Update()
+    {
+        //log(" Time sinse fromStartup : " + Time.realtimeSinceStartup + "[12345678901234567890]");
+        //return;
+    }
+
+    // ログの記録
+    private static List<string> logMsg = new List<string>();
+    public static void log(string msg)
+    {
+        logMsg.Add(msg);
+        // 直近の5件のみ保存する
+        if (logMsg.Count > 5)
+        {
+            logMsg.RemoveAt(0);
+        }
+    }
+
+    // 記録されたログを画面出力する
+    void OnGUI()
+    {
+        Rect rect = new Rect(0, 0, Screen.width, Screen.height);
+
+        // フォントサイズを10px,白文字にする。
+        // styleのnewは遅いため、本来はStart()で実施すべき...
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 50;
+        style.fontStyle = FontStyle.Normal;
+        style.normal.textColor = Color.white;
+
+        // 出力された文字列を改行でつなぐ
+        string outMessage = "";
+        foreach (string msg in logMsg)
+        {
+            outMessage += msg + System.Environment.NewLine;
+        }
+
+        // 改行でつないだログメッセージを画面に出す
+        GUI.Label(rect, outMessage, style);
     }
 }

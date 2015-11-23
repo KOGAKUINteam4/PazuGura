@@ -180,7 +180,7 @@ public class PolygonMaker : MonoBehaviour {
         //end---------------------------------------------------
         info.m_ColorState = (ColorState)colorstate;
 
-        ui.GetComponent<Rigidbody2D>().gravityScale = info.m_BlockPoint;
+        ui.GetComponent<Rigidbody2D>().gravityScale = info.m_BlockPoint*(1+mRoot.Count);
 
         //Debug.Log("Before : "+col.points.Length);
         mRedPolyogn.RemoveShapes(ui);

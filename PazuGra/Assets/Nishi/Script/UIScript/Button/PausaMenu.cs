@@ -34,13 +34,13 @@ public class PausaMenu : MonoBehaviour {
     public void OnGameEND()
     {
         m_MenuObject = Instantiate(m_GameEndMenu);
-        m_MenuObject.transform.SetParent(gameObject.transform.parent, false);
+        m_MenuObject.transform.SetParent(gameObject.transform, false);
     }
 
     public void OnReStart()
     {
         m_MenuObject = Instantiate(m_RestartMenu);
-        m_MenuObject.transform.SetParent(gameObject.transform.parent, false);
+        m_MenuObject.transform.SetParent(gameObject.transform, false);
     }
 
     public void OnCancel()

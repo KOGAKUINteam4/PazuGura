@@ -31,6 +31,7 @@ GameObject:
   - 224: {fileID: 22470970}
   - 222: {fileID: 22274830}
   - 114: {fileID: 11484056}
+  - 114: {fileID: 11434436}
   m_Layer: 9
   m_Name: Color
   m_TagString: Untagged
@@ -113,6 +114,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02364ae6895860d4e8cd24b00dacf820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11434436
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbc560b97446c4e4cafe5b0efde66727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 0
 --- !u!114 &11441242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 11fbdc221ccc93244a8b049afd8ea81d, type: 2}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_Sprite: {fileID: 21300000, guid: 46133c940b3f95642a0a20b6189f5dcc, type: 3}
   m_Type: 0
@@ -299,7 +312,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: 11fbdc221ccc93244a8b049afd8ea81d, type: 2}
     - target: {fileID: 0}
       propertyPath: m_SizeDelta.y
       value: 450

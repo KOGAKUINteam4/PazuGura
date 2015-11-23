@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class ChainManager : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class ChainManager : MonoBehaviour
     private GameObject m_ComboGauge;
     [SerializeField]
     private GameObject m_BlockFactory;
+    private int m_Maxchain = 0;
+    private bool m_isClick = false;  //クリックが完了したか
 
     // Update is called once per frame
     void Update()
@@ -19,11 +22,12 @@ public class ChainManager : MonoBehaviour
         {
             CrickStart();
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && m_isClick)
         {
             //ColliderSwitch(true);
             PushList();
             Remove();
+            m_isClick = false;
         }
 
     }
@@ -41,7 +45,12 @@ public class ChainManager : MonoBehaviour
                 GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
 
                 m_removeList = new List<GameObject>();
-                hitObj.GetComponent<Chain>().SetCheck(true);
+                if (!hitObj.GetComponent<Chain>().IsCheck())
+                {
+                    hitObj.GetComponent<Chain>().SetCheck(true);
+                    m_isClick = true;
+                }
+                
             }
         }
     }
@@ -69,7 +78,12 @@ public class ChainManager : MonoBehaviour
             {
                 score += obj.GetComponent<BlockInfo>().m_BlockPoint;
                 gameManager.GetScoreUI().AddScore(obj.GetComponent<BlockInfo>().m_BlockPoint);
-                Destroy(obj);
+                //Destroy(obj);
+                if (m_Maxchain < m_removeList.Count)
+                {
+                    m_Maxchain = m_removeList.Count;
+                }
+                StartCoroutine(coRoutine(obj));
             }
             gameManager.GetScoreUI().UpdateScore(score);
             gameManager.GetScoreUI().CreateEffect();
@@ -114,4 +128,22 @@ public class ChainManager : MonoBehaviour
              null,  // イベントデータ（モジュール等の情報）
             (recieveTarget, y) => { recieveTarget.ComboSend(); }); // 操作
     }
+
+    public int GetMaxChain()
+    {
+        return m_Maxchain;
+    }
+
+    IEnumerator coRoutine(GameObject obj)
+    {
+        while (obj.transform.GetChild(0).GetComponent<UIPixRange>().range <= 1)
+        {
+            obj.transform.GetChild(0).GetComponent<UIPixRange>().range += 0.1f;
+            yield return new WaitForSeconds(0.1f);
+        }
+        Destroy(obj);
+
+        yield break;
+    }
+
 }

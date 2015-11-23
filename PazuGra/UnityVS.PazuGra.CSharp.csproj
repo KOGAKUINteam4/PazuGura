@@ -74,15 +74,38 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AssetStore\CarbonConcept\Sci-Fi Loaders\Scripts\UVscroll.cs" />
+    <Compile Include="Assets\JSON\JSONObject.cs" />
+    <Compile Include="Assets\JSON\JSONTemplates.cs" />
+    <Compile Include="Assets\JSON\VectorTemplates.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasicCS.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralBasics2dCS.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralCameraShake.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEventsListenersCS.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralSimpleUiCS.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralUISpaceCS.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\LogoCinematic.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\OldGUIExamplesCS.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplines.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinesBezier.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\TestingAllCS.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\TestingEverything.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\TestingPunch.cs" />
+    <Compile Include="Assets\LeanTween\Examples\Scripts\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\Nishi\Script\ChaiSystem\Chain.cs" />
     <Compile Include="Assets\Nishi\Script\ChaiSystem\ChainManager.cs" />
     <Compile Include="Assets\Nishi\Script\ComboCounter\ComboCounter.cs" />
     <Compile Include="Assets\Nishi\Script\ComboCounter\ComboGauge.cs" />
     <Compile Include="Assets\Nishi\Script\ComboCounter\ComboManager.cs" />
     <Compile Include="Assets\Nishi\Script\CreateCollider.cs" />
+    <Compile Include="Assets\Nishi\Script\Effects\EffectManager.cs" />
+    <Compile Include="Assets\Nishi\Script\Effects\MainCallEffect.cs" />
     <Compile Include="Assets\Nishi\Script\GyroGravity.cs" />
     <Compile Include="Assets\Nishi\Script\IPauseSend.cs" />
     <Compile Include="Assets\Nishi\Script\IRecieveMessage.cs" />
+    <Compile Include="Assets\Nishi\Script\NishiUIPixRange.cs" />
     <Compile Include="Assets\Nishi\Script\Pausable.cs" />
     <Compile Include="Assets\Nishi\Script\PauseManager.cs" />
     <Compile Include="Assets\Nishi\Script\Pointer\LimitTime.cs" />
@@ -99,6 +122,7 @@
     <Compile Include="Assets\Nishi\Script\UIScript\Button\PausaMenu.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\GameTimer.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\RollGauge.cs" />
+    <Compile Include="Assets\ReduceVertexPolygonCollider2D.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ApplicationManager.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ChangeColor.cs" />
@@ -111,6 +135,12 @@
     <Compile Include="Assets\SampleAsset\Scripts\ShowSliderValue.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\TiltWindow.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Block\ChainBlock.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\DL\DefTyson.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\DL\DelegateTyson.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\DL\MiniJSON.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\DL\TysonMat.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\DL\UIPixRange.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\DL\URLDL.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Debug\ClickPointCreatePolygon.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Debug\CreateMesh.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Debug\DebugBlock.cs" />
@@ -118,6 +148,7 @@
     <Compile Include="Assets\Suzuki\Spricts\Debug\DebugMath.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Debug\DebugObject.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Debug\DebugPrintSprict.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Debug\MathFps.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Debug\ScreenCapture.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Define\ColorState.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Define\Def.cs" />
@@ -126,18 +157,47 @@
     <Compile Include="Assets\Suzuki\Spricts\Game\BlockFactory.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Game\BlockInfo.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Game\BlockManager.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Game\CaptureTexture.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Game\DebugTriangul.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Game\GameManager.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Game\MyMath.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Game\PolygonMaker.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Game\Triangulator.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Game\UIContller.cs" />
     <Compile Include="Assets\Suzuki\Spricts\LogFunctions.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Ranking\PhpContact.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Ranking\PlayerDate.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Ranking\RankingSeq.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\Ranking\ResultUIEffect.cs" />
     <Compile Include="Assets\Suzuki\Spricts\ScoreUI\ScoreUI.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Internal\uDragObject.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Internal\uEnum.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Internal\uPlayTween.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\EaseManager.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uButtonScale.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uIPointHandler.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uSliderColors.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweenAlpha.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweenColor.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweenPath.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweenPosition.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweenRotation.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweenScale.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweenSlider.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweenText.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweenValue.cs" />
+    <Compile Include="Assets\uGUI\Scripts\Tween\uTweener.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\AssetStore\CarbonConcept\Sci-Fi Loaders\Sprites\LightSpeed\Font\XoloniumFont48px.txt" />
+    <None Include="Assets\JSON\readme.txt" />
+    <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
+    <None Include="Assets\LeanTween\ReadMe.txt" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
     <None Include="Assets\SampleAsset\Materials\UI-Default-No-Alpha.shader" />
+    <None Include="Assets\Suzuki\Spricts\Shaders\UI-Mask.shader" />
+    <None Include="Assets\Suzuki\Spricts\Shaders\UI-Nega.shader" />
     <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

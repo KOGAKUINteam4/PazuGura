@@ -20,12 +20,17 @@ public class MainCallEffect : MonoBehaviour {
     {
         //gameメインを登場させる
         PrefabManager.Instance.Next(PrefabName.GameMain);
-        LeanTween.moveY(gameObject, -9, 3).setOnComplete(() => { Scale(); });
+        LeanTween.moveY(gameObject, -9, 3).setOnComplete(() => { Scale(); ScaleShadow(); });
     }
 
     void Scale()
     {
         LeanTween.scale(m_Hole.rectTransform, new Vector3(7.0f, 7.0f, 0.0f), 5).setOnComplete(()=> { End(); });
+    }
+
+    void ScaleShadow()
+    {
+        LeanTween.scale(m_Shadow.rectTransform, new Vector3(0.5f, 0.5f, 0.0f), 0.5f).setOnComplete(() => {  });
     }
 
     void End()

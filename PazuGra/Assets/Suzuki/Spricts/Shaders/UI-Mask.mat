@@ -26,7 +26,7 @@ Material:
         first:
           name: _MaskTex
         second:
-          m_Texture: {fileID: 2800000, guid: 04e60a34a94814048906631e8740418c, type: 3}
+          m_Texture: {fileID: 2800000, guid: 7787b559d7d426542802c210c93e02a7, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:

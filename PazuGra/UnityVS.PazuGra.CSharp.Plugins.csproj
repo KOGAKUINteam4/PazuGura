@@ -74,15 +74,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Plugins\LeanAudio.cs" />
+    <Compile Include="Assets\Plugins\LeanTest.cs" />
+    <Compile Include="Assets\Plugins\LeanTween.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\SampleInfo.cs" />
     <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\AssetStore\CarbonConcept\Sci-Fi Loaders\Sprites\LightSpeed\Font\XoloniumFont48px.txt" />
+    <None Include="Assets\JSON\readme.txt" />
+    <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
+    <None Include="Assets\LeanTween\ReadMe.txt" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
     <None Include="Assets\SampleAsset\Materials\UI-Default-No-Alpha.shader" />
+    <None Include="Assets\Suzuki\Spricts\Shaders\UI-Mask.shader" />
+    <None Include="Assets\Suzuki\Spricts\Shaders\UI-Nega.shader" />
     <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

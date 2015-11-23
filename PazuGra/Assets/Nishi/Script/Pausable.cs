@@ -10,8 +10,8 @@ using UnityEngine.UI;
 public class RigidbodyVelocity
 {
     public Vector3 velocity;
-    public Vector3 angularVeloccity;
-    public RigidbodyVelocity(Rigidbody rigidbody)
+    public float angularVeloccity;
+    public RigidbodyVelocity(Rigidbody2D rigidbody)
     {
         velocity = rigidbody.velocity;
         angularVeloccity = rigidbody.angularVelocity;
@@ -46,7 +46,7 @@ public class Pausable : MonoBehaviour , IPauseSend
     /// <summary>
     /// ポーズ中のRigidbodyの配列
     /// </summary>
-    Rigidbody[] pausingRigidbodies;
+    Rigidbody2D[] pausingRigidbodies;
 
     /// <summary>
     /// ポーズ中のMonoBehaviourの配列
@@ -74,10 +74,10 @@ public class Pausable : MonoBehaviour , IPauseSend
     {
         // Rigidbodyの停止
         // 子要素から、スリープ中でなく、IgnoreGameObjectsに含まれていないRigidbodyを抽出
-        Predicate<Rigidbody> rigidbodyPredicate =
+        Predicate<Rigidbody2D> rigidbodyPredicate =
             obj => !obj.IsSleeping() &&
                    Array.FindIndex(ignoreGameObjects, gameObject => gameObject == obj.gameObject) < 0;
-        pausingRigidbodies = Array.FindAll(transform.GetComponentsInChildren<Rigidbody>(), rigidbodyPredicate);
+        pausingRigidbodies = Array.FindAll(transform.GetComponentsInChildren<Rigidbody2D>(), rigidbodyPredicate);
         rigidbodyVelocities = new RigidbodyVelocity[pausingRigidbodies.Length];
         for (int i = 0; i < pausingRigidbodies.Length; i++)
         {
@@ -89,7 +89,7 @@ public class Pausable : MonoBehaviour , IPauseSend
         // MonoBehaviourの停止
         // 子要素から、有効かつこのインスタンスでないもの、IgnoreGameObjectsに含まれていないMonoBehaviourを抽出
         Predicate<MonoBehaviour> monoBehaviourPredicate =
-            obj => obj.enabled &&
+            obj => ignoreGameObjects.Length != 0 &&  obj.enabled &&
                    obj != this &&
                    Array.FindIndex(ignoreGameObjects, gameObject => gameObject == obj.gameObject) < 0;
         pausingMonoBehaviours = Array.FindAll(transform.GetComponentsInChildren<MonoBehaviour>(), monoBehaviourPredicate);

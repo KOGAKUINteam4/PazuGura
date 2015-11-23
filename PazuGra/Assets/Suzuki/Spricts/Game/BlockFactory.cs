@@ -211,11 +211,20 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         txtReader = new StreamReader(file);
         yield return new WaitForSeconds(0f);
 #elif UNITY_ANDROID
-		path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
-		WWW www = new WWW(path);
-		yield return www;
-		txtReader = new StringReader(www.text);
+        path = "jar:file://" + Application.dataPath + "!/assets" + "/" + textFileName;
+        WWW www = new WWW(path);
+        yield return www;
+        txtReader = new StringReader(www.text);
 #endif
+
+        //path = "jar:file://" + Application.dataPath + "/StreamingAssets/" + textFileName;
+        //WWW www = new WWW(path);
+        //yield return www;
+        //txtReader = new StringReader(www.text);
+
+
+
+
         int count = 0;
         while ((txtBuffer = txtReader.ReadLine()) != null)
         {
