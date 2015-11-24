@@ -92,7 +92,6 @@ public class GyroGravity : MonoBehaviour
     {
         m_InitialValue = Input.gyro.gravity;
         m_InitialValue.Normalize();
-        Physics2D.gravity = new Vector3(0, -1, 0);
     }
 
     public float Vector2Cross(Vector2 lhs, Vector2 rhs)
