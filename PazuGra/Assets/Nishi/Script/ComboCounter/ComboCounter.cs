@@ -16,7 +16,6 @@ public class ComboCounter : MonoBehaviour, IRecieveMessage {
     private Vector3  fixPosition;
     //コンボカウンター
     private int m_counter = 1;
-    private int m_MaxCounter = 0;
 
     // Use this for initialization
     void Start () {

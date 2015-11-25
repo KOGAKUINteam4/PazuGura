@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class ComboManager : MonoBehaviour , IRecieveMessage
+public class ComboManager : MonoBehaviour, IRecieveMessage
 {
     [SerializeField]
     GameObject m_CgaugePrefab;

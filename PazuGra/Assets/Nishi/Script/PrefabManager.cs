@@ -33,67 +33,60 @@ public class PrefabManager : MonoBehaviour
     private Canvas m_DefCanvas = null;
 
 
-    private int m_PrefabIndex = 0;
+    //private int m_PrefabIndex = 0;
     private PrefabName m_CurrentPrefab;
-    private bool m_isEnd = false;
+    //private bool m_isEnd = false;
 
     public void Start()
     {
         m_CurrentPrefab = (int)PrefabName.Title;
+
+        if (m_CurrentPrefab == PrefabName.Title)
+        {
+            foreach (GameObject obj in m_TitlePrefabs)
+            {
+                obj.SetActive(true);
+            }
+            foreach (GameObject obj in m_GameMainPrefabs)
+            {
+                obj.SetActive(false);
+            }
+            foreach (GameObject obj in m_RankingPrefabs)
+            {
+                obj.SetActive(false);
+            }
+        }
     }
 
-    //public void Update()
-    //{
-    //    if(m_CurrentPrefab == PrefabName.Title)
-    //    {
-    //        foreach (GameObject obj in m_TitlePrefabs)
-    //        {
-    //            obj.SetActive(true);
-    //        }
-    //        foreach (GameObject obj in m_GameMainPrefabs)
-    //        {
-    //            obj.SetActive(false);
-    //        }
-    //        foreach (GameObject obj in m_RankingPrefabs)
-    //        {
-    //            obj.SetActive(false);
-    //        }
-    //    }
-    //    else if(m_CurrentPrefab == PrefabName.GameMain)
-    //    {
-    //        foreach (GameObject obj in m_TitlePrefabs)
-    //        {
-    //            obj.SetActive(false);
-    //        }
-    //        foreach (GameObject obj in m_GameMainPrefabs)
-    //        {
-    //            obj.SetActive(true);
-    //        }
-    //        foreach (GameObject obj in m_RankingPrefabs)
-    //        {
-    //            obj.SetActive(false);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        foreach (GameObject obj in m_TitlePrefabs)
-    //        {
-    //            obj.SetActive(false);
-    //        }
-    //        foreach (GameObject obj in m_GameMainPrefabs)
-    //        {
-    //            obj.SetActive(false);
-    //        }
-    //        foreach (GameObject obj in m_RankingPrefabs)
-    //        {
-    //            obj.SetActive(true);
-    //        }
-    //    }
-    //}
-
-    public void SetIsEnd(bool result)
+    public void Update()
     {
-        m_isEnd = result;
+        if(GameObject.Find("Pausable").GetComponent<Pausable>().IsPause())
+        {
+            MonoBehaviour[] monos = GameObject.Find("Factory").GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour mono in monos)
+            {
+                mono.enabled = false;
+            }
+            monos = GameObject.Find("GameTimer").GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour mono in monos)
+            {
+                mono.enabled = false;
+            }
+        }
+        else
+        {
+            MonoBehaviour[] monos = GameObject.Find("Factory").GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour mono in monos)
+            {
+                mono.enabled = true;
+            }
+            monos = GameObject.Find("GameTimer").GetComponents<MonoBehaviour>();
+            foreach (MonoBehaviour mono in monos)
+            {
+                mono.enabled = true;
+            }
+
+        }
     }
 
     //public void Next(PrefabName name)
@@ -108,13 +101,13 @@ public class PrefabManager : MonoBehaviour
     //        }
     //    }
 
-    //    for(int i = 0; m_DefCanvas.transform.childCount > i;i++)
+    //    for (int i = 0; m_DefCanvas.transform.childCount > i; i++)
     //    {
     //        Destroy(m_DefCanvas.transform.GetChild(i).gameObject);
     //    }
     //    m_CurrentPrefab = name;
 
-    //    if(m_CurrentPrefab == PrefabName.Ranking)m_RankingPrefabs[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
+    //    if (m_CurrentPrefab == PrefabName.Ranking) m_RankingPrefabs[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
     //}
 
     public void Next(PrefabName name)
@@ -182,6 +175,11 @@ public class PrefabManager : MonoBehaviour
         }
 
         if (m_CurrentPrefab == PrefabName.Ranking) m_RankingPrefabs[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
+    }
+
+    public PrefabName GetCurrentPrefab()
+    {
+        return m_CurrentPrefab;
     }
 
     void ActiveChange()

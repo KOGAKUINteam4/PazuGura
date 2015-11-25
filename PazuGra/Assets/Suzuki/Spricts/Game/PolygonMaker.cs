@@ -19,12 +19,13 @@ public class PolygonMaker : MonoBehaviour {
     [SerializeField]
     public Sprite m_RainbowSprit;
 
+    [SerializeField]
     private BlockFactory mBlockFactory;
     private ReduceVertexPolygonCollider2D mRedPolyogn;
 
     private void Start()
     {
-        mBlockFactory = GameObject.Find("Factory").GetComponent<BlockFactory>();
+        //mBlockFactory = GameObject.Find("Factory").GetComponent<BlockFactory>();
         mRedPolyogn = GameObject.Find("ReduceVertexPolygonCollider2D").GetComponent<ReduceVertexPolygonCollider2D>();
     }
 

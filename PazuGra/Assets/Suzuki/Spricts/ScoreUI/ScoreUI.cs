@@ -14,7 +14,7 @@ public class ScoreUI : MonoBehaviour {
 
     [SerializeField]
     private GameObject mTarget;
-
+    [SerializeField]
     private GameObject mScoreParent;
 
 	// Use this for initialization
@@ -58,7 +58,7 @@ public class ScoreUI : MonoBehaviour {
             mScoreCounter[counter] = i.gameObject;
             counter++;
         }
-        mScoreParent = GameObject.Find("Score");
+        //mScoreParent = GameObject.Find("Score");
         mScoreParent.SetActive(false);
     }
 

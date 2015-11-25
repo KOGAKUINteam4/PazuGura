@@ -60,12 +60,6 @@
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -88,8 +82,20 @@
     <None Include="Assets\LeanTween\Examples\Shader\2dUnlitWithFade.shader" />
     <None Include="Assets\LeanTween\ReadMe.txt" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+    <None Include="Assets\Resources\Stamp\starStamp.txt" />
     <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
     <None Include="Assets\SampleAsset\Materials\UI-Default-No-Alpha.shader" />
+    <None Include="Assets\StreamingAssets\Art.txt" />
+    <None Include="Assets\StreamingAssets\Art202.txt" />
+    <None Include="Assets\StreamingAssets\Attack.txt" />
+    <None Include="Assets\StreamingAssets\BigStar.txt" />
+    <None Include="Assets\StreamingAssets\Circle.txt" />
+    <None Include="Assets\StreamingAssets\Circle16.txt" />
+    <None Include="Assets\StreamingAssets\Debug.txt" />
+    <None Include="Assets\StreamingAssets\DebugStar.txt" />
+    <None Include="Assets\StreamingAssets\Six.txt" />
+    <None Include="Assets\StreamingAssets\Star.txt" />
+    <None Include="Assets\StreamingAssets\starStamp.txt" />
     <None Include="Assets\Suzuki\Spricts\Shaders\UI-Mask.shader" />
     <None Include="Assets\Suzuki\Spricts\Shaders\UI-Nega.shader" />
     <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />

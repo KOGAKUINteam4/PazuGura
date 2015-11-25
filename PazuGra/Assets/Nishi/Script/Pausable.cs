@@ -89,7 +89,7 @@ public class Pausable : MonoBehaviour , IPauseSend
         // MonoBehaviourの停止
         // 子要素から、有効かつこのインスタンスでないもの、IgnoreGameObjectsに含まれていないMonoBehaviourを抽出
         Predicate<MonoBehaviour> monoBehaviourPredicate =
-            obj => ignoreGameObjects.Length != 0 &&  obj.enabled &&
+            obj => obj.enabled &&
                    obj != this &&
                    Array.FindIndex(ignoreGameObjects, gameObject => gameObject == obj.gameObject) < 0;
         pausingMonoBehaviours = Array.FindAll(transform.GetComponentsInChildren<MonoBehaviour>(), monoBehaviourPredicate);

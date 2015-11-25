@@ -9,22 +9,25 @@ using UnityEngine.EventSystems;
 public class Ready : MonoBehaviour
 {
     private Image m_image;
+    [SerializeField]
+    private GameObject m_GoPrefab;
 
     public void Awake()
     {
         m_image = GetComponent<Image>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        if(m_image.color.a >= 1)
-        {
-            ExecuteEvents.Execute<CreateObject>(
-                gameObject,
-                null,
-                (target, y) => target.CreateObj());
-            Destroy(gameObject);
-        }
+        LeanTween.alpha(m_image.rectTransform, 1, 1.5f).setOnComplete(() => { CreateEnd(); });
     }
+
+    private void CreateEnd()
+    {
+        GameObject temp = Instantiate(m_GoPrefab);
+        temp.transform.SetParent(transform.parent, false);
+        Destroy(gameObject);
+    }
+
+
 }
