@@ -3813,6 +3813,14 @@ Prefab:
       propertyPath: m_RankingPrefabs.Array.data[1]
       value: 
       objectReference: {fileID: 631834437}
+    - target: {fileID: 11475254, guid: 00cc050fa92e265459ab887be2c278fd, type: 2}
+      propertyPath: m_Factory
+      value: 
+      objectReference: {fileID: 1763031059}
+    - target: {fileID: 11475254, guid: 00cc050fa92e265459ab887be2c278fd, type: 2}
+      propertyPath: m_GameTimer
+      value: 
+      objectReference: {fileID: 1555085519}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00cc050fa92e265459ab887be2c278fd, type: 2}
   m_IsPrefabParent: 0

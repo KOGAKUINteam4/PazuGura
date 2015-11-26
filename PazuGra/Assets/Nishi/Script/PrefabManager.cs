@@ -31,6 +31,10 @@ public class PrefabManager : MonoBehaviour
 
     [SerializeField]
     private Canvas m_DefCanvas = null;
+    [SerializeField]
+    private GameObject m_Factory = null;
+    [SerializeField]
+    private GameObject m_GameTimer = null;
 
 
     //private int m_PrefabIndex = 0;
@@ -41,33 +45,19 @@ public class PrefabManager : MonoBehaviour
     {
         m_CurrentPrefab = (int)PrefabName.Title;
 
-        if (m_CurrentPrefab == PrefabName.Title)
-        {
-            foreach (GameObject obj in m_TitlePrefabs)
-            {
-                obj.SetActive(true);
-            }
-            foreach (GameObject obj in m_GameMainPrefabs)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in m_RankingPrefabs)
-            {
-                obj.SetActive(false);
-            }
-        }
+        ActiveTitle();
     }
 
     public void Update()
     {
         if(GameObject.Find("Pausable").GetComponent<Pausable>().IsPause())
         {
-            MonoBehaviour[] monos = GameObject.Find("Factory").GetComponents<MonoBehaviour>();
+            MonoBehaviour[] monos = m_Factory.GetComponents<MonoBehaviour>(); //GameObject.Find("Factory").GetComponents<MonoBehaviour>();
             foreach (MonoBehaviour mono in monos)
             {
                 mono.enabled = false;
             }
-            monos = GameObject.Find("GameTimer").GetComponents<MonoBehaviour>();
+            monos = m_GameTimer.GetComponents<MonoBehaviour>();//GameObject.Find("GameTimer").GetComponents<MonoBehaviour>();
             foreach (MonoBehaviour mono in monos)
             {
                 mono.enabled = false;
@@ -75,12 +65,12 @@ public class PrefabManager : MonoBehaviour
         }
         else
         {
-            MonoBehaviour[] monos = GameObject.Find("Factory").GetComponents<MonoBehaviour>();
+            MonoBehaviour[] monos = m_Factory.GetComponents<MonoBehaviour>(); //GameObject.Find("Factory").GetComponents<MonoBehaviour>();
             foreach (MonoBehaviour mono in monos)
             {
                 mono.enabled = true;
             }
-            monos = GameObject.Find("GameTimer").GetComponents<MonoBehaviour>();
+            monos = m_GameTimer.GetComponents<MonoBehaviour>();//GameObject.Find("GameTimer").GetComponents<MonoBehaviour>();
             foreach (MonoBehaviour mono in monos)
             {
                 mono.enabled = true;
@@ -128,51 +118,9 @@ public class PrefabManager : MonoBehaviour
         }
         m_CurrentPrefab = name;
 
-        if (m_CurrentPrefab == PrefabName.Title)
-        {
-            foreach (GameObject obj in m_TitlePrefabs)
-            {
-                obj.SetActive(true);
-            }
-            foreach (GameObject obj in m_GameMainPrefabs)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in m_RankingPrefabs)
-            {
-                obj.SetActive(false);
-            }
-        }
-        else if (m_CurrentPrefab == PrefabName.GameMain)
-        {
-            foreach (GameObject obj in m_TitlePrefabs)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in m_GameMainPrefabs)
-            {
-                obj.SetActive(true);
-            }
-            foreach (GameObject obj in m_RankingPrefabs)
-            {
-                obj.SetActive(false);
-            }
-        }
-        else
-        {
-            foreach (GameObject obj in m_TitlePrefabs)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in m_GameMainPrefabs)
-            {
-                obj.SetActive(false);
-            }
-            foreach (GameObject obj in m_RankingPrefabs)
-            {
-                obj.SetActive(true);
-            }
-        }
+        if (m_CurrentPrefab == PrefabName.Title) ActiveTitle();
+        else if (m_CurrentPrefab == PrefabName.GameMain)  ActiveMain();
+        else ActiveRanking();
 
         if (m_CurrentPrefab == PrefabName.Ranking) m_RankingPrefabs[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
     }
@@ -182,7 +130,54 @@ public class PrefabManager : MonoBehaviour
         return m_CurrentPrefab;
     }
 
-    void ActiveChange()
+    void ActiveTitle()
     {
+        foreach (GameObject obj in m_TitlePrefabs)
+        {
+            obj.SetActive(true);
+        }
+        foreach (GameObject obj in m_GameMainPrefabs)
+        {
+            obj.SetActive(false);
+        }
+        foreach (GameObject obj in m_RankingPrefabs)
+        {
+            obj.SetActive(false);
+        }
+    }
+
+    void ActiveMain()
+    {
+        foreach (GameObject obj in m_TitlePrefabs)
+        {
+            obj.SetActive(false);
+        }
+        foreach (GameObject obj in m_GameMainPrefabs)
+        {
+            obj.SetActive(true);
+        }
+        foreach (GameObject obj in m_RankingPrefabs)
+        {
+            obj.SetActive(false);
+        }
+
+    }
+
+    void ActiveRanking()
+    {
+
+        foreach (GameObject obj in m_TitlePrefabs)
+        {
+            obj.SetActive(false);
+        }
+        foreach (GameObject obj in m_GameMainPrefabs)
+        {
+            obj.SetActive(false);
+        }
+        foreach (GameObject obj in m_RankingPrefabs)
+        {
+            obj.SetActive(true);
+        }
+
     }
 }
