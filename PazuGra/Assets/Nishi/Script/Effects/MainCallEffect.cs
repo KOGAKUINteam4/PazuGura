@@ -14,7 +14,7 @@ public class MainCallEffect : MonoBehaviour {
     // Use this for initialization
     void Start () {
         LeanTween.alpha(m_Hole.rectTransform, 1, 3);
-        LeanTween.alpha(m_Shadow.rectTransform, 1, 3).setOnComplete(()=> { Move(); });
+        LeanTween.alpha(m_Shadow.rectTransform, 1, 2).setOnComplete(()=> { Move(); });
 
     }
 
@@ -22,12 +22,12 @@ public class MainCallEffect : MonoBehaviour {
     {
         //gameメインを登場させる
         PrefabManager.Instance.Next(PrefabName.GameMain);
-        LeanTween.moveY(gameObject, -9, 3).setOnComplete(() => { Scale(); ScaleShadow(); });
+        LeanTween.moveY(gameObject, -9, 2.5f).setOnComplete(() => { Scale(); ScaleShadow(); });
     }
 
     void Scale()
     {
-        LeanTween.scale(m_Hole.rectTransform, new Vector3(7.0f, 7.0f, 0.0f), 5).setOnComplete(()=> { End(); });
+        LeanTween.scale(m_Hole.rectTransform, new Vector3(7.0f, 7.0f, 0.0f), 2).setOnComplete(()=> { End(); });
     }
 
     void ScaleShadow()
