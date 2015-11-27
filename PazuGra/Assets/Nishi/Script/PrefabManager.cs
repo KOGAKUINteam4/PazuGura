@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public enum PrefabName
 {
@@ -23,11 +24,18 @@ public class PrefabManager : MonoBehaviour
     }
 
     [SerializeField]
-    private GameObject[] m_TitlePrefabs = null;
+    private GameObject[] m_TitleUis = null;
     [SerializeField]
-    private GameObject[] m_GameMainPrefabs = null;
+    private GameObject[] m_GameMainUis = null;
     [SerializeField]
-    private GameObject[] m_RankingPrefabs = null;
+    private GameObject[] m_RankingUis = null;
+
+    [SerializeField]
+    private GameObject[] m_TitleEnables = null;
+    [SerializeField]
+    private GameObject[] m_GameMainEnables = null;
+    [SerializeField]
+    private GameObject[] m_RankingEnables = null;
 
     [SerializeField]
     private Canvas m_DefCanvas = null;
@@ -37,68 +45,36 @@ public class PrefabManager : MonoBehaviour
     private GameObject m_GameTimer = null;
 
 
+    private GameObject[] m_CurrentEnables;
+
+
     //private int m_PrefabIndex = 0;
     private PrefabName m_CurrentPrefab;
+    //private PrefabName m_prevPrefab;
     //private bool m_isEnd = false;
 
     public void Start()
     {
         m_CurrentPrefab = (int)PrefabName.Title;
-
+        //m_prevPrefab = m_CurrentPrefab;
+        m_CurrentEnables = m_TitleEnables;
         ActiveTitle();
     }
 
     public void Update()
     {
-        if(GameObject.Find("Pausable").GetComponent<Pausable>().IsPause())
         {
-            MonoBehaviour[] monos = m_Factory.GetComponents<MonoBehaviour>(); //GameObject.Find("Factory").GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour mono in monos)
+            if (GameObject.Find("Pausable").GetComponent<Pausable>().IsPause())
             {
-                mono.enabled = false;
+                ScriptisEnable(false);
             }
-            monos = m_GameTimer.GetComponents<MonoBehaviour>();//GameObject.Find("GameTimer").GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour mono in monos)
+            else
             {
-                mono.enabled = false;
-            }
-        }
-        else
-        {
-            MonoBehaviour[] monos = m_Factory.GetComponents<MonoBehaviour>(); //GameObject.Find("Factory").GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour mono in monos)
-            {
-                mono.enabled = true;
-            }
-            monos = m_GameTimer.GetComponents<MonoBehaviour>();//GameObject.Find("GameTimer").GetComponents<MonoBehaviour>();
-            foreach (MonoBehaviour mono in monos)
-            {
-                mono.enabled = true;
+                ScriptisEnable(true);
             }
 
         }
     }
-
-    //public void Next(PrefabName name)
-    //{
-    //    //ゲームタイマーのReset
-    //    if (m_CurrentPrefab == PrefabName.GameMain)
-    //    {
-    //        GameObject.Find("GameTimer").GetComponent<GameTimer>().TimeReset();
-    //        if (GameObject.Find("RollGauges(Clone)") != null)
-    //        {
-    //            Destroy(GameObject.Find("RollGauges(Clone)").gameObject);
-    //        }
-    //    }
-
-    //    for (int i = 0; m_DefCanvas.transform.childCount > i; i++)
-    //    {
-    //        Destroy(m_DefCanvas.transform.GetChild(i).gameObject);
-    //    }
-    //    m_CurrentPrefab = name;
-
-    //    if (m_CurrentPrefab == PrefabName.Ranking) m_RankingPrefabs[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
-    //}
 
     public void Next(PrefabName name)
     {
@@ -118,11 +94,24 @@ public class PrefabManager : MonoBehaviour
         }
         m_CurrentPrefab = name;
 
-        if (m_CurrentPrefab == PrefabName.Title) ActiveTitle();
-        else if (m_CurrentPrefab == PrefabName.GameMain)  ActiveMain();
-        else ActiveRanking();
+        if (m_CurrentPrefab == PrefabName.Title)
+        {
+            m_CurrentEnables = m_TitleEnables;
+            ActiveTitle();
+        }
+        else if (m_CurrentPrefab == PrefabName.GameMain)
+        {
+            m_CurrentEnables = m_GameMainEnables;
+            ActiveMain();
+        }
+        else
+        {
+            m_CurrentEnables = m_RankingEnables;
+            ActiveRanking();
+            m_RankingUis[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
+        }
 
-        if (m_CurrentPrefab == PrefabName.Ranking) m_RankingPrefabs[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
+        
     }
 
     public PrefabName GetCurrentPrefab()
@@ -132,32 +121,56 @@ public class PrefabManager : MonoBehaviour
 
     void ActiveTitle()
     {
-        foreach (GameObject obj in m_TitlePrefabs)
+        foreach (GameObject obj in m_TitleUis)
         {
+            //foreach (Image img in obj.GetComponentsInChildren<Image>())
+            //{
+            //    img.enabled = true;
+            //}
             obj.SetActive(true);
         }
-        foreach (GameObject obj in m_GameMainPrefabs)
+        foreach (GameObject obj in m_GameMainUis)
         {
+            //foreach (Image img in obj.GetComponentsInChildren<Image>())
+            //{
+            //    img.enabled = false;
+            //}
             obj.SetActive(false);
         }
-        foreach (GameObject obj in m_RankingPrefabs)
+        foreach (GameObject obj in m_RankingUis)
         {
+            //foreach (Image img in obj.GetComponentsInChildren<Image>())
+            //{
+            //    img.enabled = false;
+            //}
             obj.SetActive(false);
         }
     }
 
     void ActiveMain()
     {
-        foreach (GameObject obj in m_TitlePrefabs)
+        foreach (GameObject obj in m_TitleUis)
         {
+            //foreach (Image img in obj.GetComponentsInChildren<Image>())
+            //{
+            //    img.enabled = false;
+            //}
             obj.SetActive(false);
         }
-        foreach (GameObject obj in m_GameMainPrefabs)
+        foreach (GameObject obj in m_GameMainUis)
         {
+            //foreach (Image img in obj.GetComponentsInChildren<Image>())
+            //{
+            //    img.enabled = true;
+            //}
             obj.SetActive(true);
         }
-        foreach (GameObject obj in m_RankingPrefabs)
+        foreach (GameObject obj in m_RankingUis)
         {
+            //foreach (Image img in obj.GetComponentsInChildren<Image>())
+            //{
+            //    img.enabled = false;
+            //}
             obj.SetActive(false);
         }
 
@@ -166,18 +179,41 @@ public class PrefabManager : MonoBehaviour
     void ActiveRanking()
     {
 
-        foreach (GameObject obj in m_TitlePrefabs)
+        foreach (GameObject obj in m_TitleUis)
         {
+            //foreach (Image img in obj.GetComponentsInChildren<Image>())
+            //{
+            //    img.enabled = false;
+            //}
             obj.SetActive(false);
         }
-        foreach (GameObject obj in m_GameMainPrefabs)
+        foreach (GameObject obj in m_GameMainUis)
         {
+            //foreach (Image img in obj.GetComponentsInChildren<Image>())
+            //{
+            //    img.enabled = false;
+            //}
             obj.SetActive(false);
         }
-        foreach (GameObject obj in m_RankingPrefabs)
+        foreach (GameObject obj in m_RankingUis)
         {
+            //foreach (Image img in obj.GetComponentsInChildren<Image>())
+            //{
+            //    img.enabled = true;
+            //}
             obj.SetActive(true);
         }
-
     }
+
+    void ScriptisEnable(bool result)
+    {
+        foreach (GameObject obj in m_CurrentEnables)
+        {
+            foreach (MonoBehaviour mono in obj.GetComponents<MonoBehaviour>())
+            {
+                mono.enabled = result;
+            }
+        }
+    }
+
 }

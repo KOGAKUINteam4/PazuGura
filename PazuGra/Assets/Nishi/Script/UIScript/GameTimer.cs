@@ -13,6 +13,8 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
 
     [SerializeField]
     private Sprite[] m_nums;
+    [SerializeField]
+    private Sprite[] m_Rnums;
 
     [SerializeField]
     private Image m_1Digit = null,m_10Digit = null, m_100Digit = null;
@@ -38,9 +40,23 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         display = Mathf.Clamp(display, 0, 999);
         if (!isTimerOver())
         {
-            m_1Digit.sprite = m_nums[((int)display / 1) % 10];
-            m_10Digit.sprite = m_nums[((int)display / 10) % 10];
-            m_100Digit.sprite = m_nums[((int)display / 100) % 10];
+            if (m_Timer < 30)
+            {
+                m_1Digit.sprite = m_Rnums[((int)display / 1) % 10];
+                m_10Digit.sprite = m_Rnums[((int)display / 10) % 10];
+                m_100Digit.sprite = m_Rnums[((int)display / 100) % 10];
+
+                Color alpha = new Color(1, 1, 1, Mathf.Lerp(0.3f, 1,1 - Mathf.Sin(270 * m_Timer * Mathf.Deg2Rad)));
+                m_1Digit.color = alpha;
+                m_10Digit.color = alpha;
+                m_100Digit.color = alpha;
+            }
+            else
+            {
+                m_1Digit.sprite = m_nums[((int)display / 1) % 10];
+                m_10Digit.sprite = m_nums[((int)display / 10) % 10];
+                m_100Digit.sprite = m_nums[((int)display / 100) % 10];
+            }
         }
         else
         {
