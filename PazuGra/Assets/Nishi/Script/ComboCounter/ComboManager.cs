@@ -5,10 +5,10 @@ using UnityEngine.EventSystems;
 public class ComboManager : MonoBehaviour, IRecieveMessage
 {
     [SerializeField]
-    GameObject m_CgaugePrefab;
-    GameObject m_Cgauge;
+    GameObject m_CgaugePrefab = null;
+    GameObject m_Cgauge = null;
 
-    private int m_MaxCombo;
+    private int m_MaxCombo = 0;
 
     public void ComboSend()
     {

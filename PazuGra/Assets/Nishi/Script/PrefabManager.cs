@@ -39,13 +39,9 @@ public class PrefabManager : MonoBehaviour
 
     [SerializeField]
     private Canvas m_DefCanvas = null;
-    [SerializeField]
-    private GameObject m_Factory = null;
-    [SerializeField]
-    private GameObject m_GameTimer = null;
 
 
-    private GameObject[] m_CurrentEnables;
+    private GameObject[] m_CurrentEnables = null;
 
 
     //private int m_PrefabIndex = 0;
@@ -66,11 +62,11 @@ public class PrefabManager : MonoBehaviour
         {
             if (GameObject.Find("Pausable").GetComponent<Pausable>().IsPause())
             {
-                ScriptisEnable(false);
+                scriptEnables(false);
             }
             else
             {
-                ScriptisEnable(true);
+                scriptEnables(true);
             }
 
         }
@@ -96,16 +92,19 @@ public class PrefabManager : MonoBehaviour
 
         if (m_CurrentPrefab == PrefabName.Title)
         {
+            scriptEnables(false);
             m_CurrentEnables = m_TitleEnables;
             ActiveTitle();
         }
         else if (m_CurrentPrefab == PrefabName.GameMain)
         {
+            scriptEnables(false);
             m_CurrentEnables = m_GameMainEnables;
             ActiveMain();
         }
         else
         {
+            scriptEnables(false);
             m_CurrentEnables = m_RankingEnables;
             ActiveRanking();
             m_RankingUis[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
@@ -205,7 +204,7 @@ public class PrefabManager : MonoBehaviour
         }
     }
 
-    void ScriptisEnable(bool result)
+    void scriptEnables(bool result)
     {
         foreach (GameObject obj in m_CurrentEnables)
         {

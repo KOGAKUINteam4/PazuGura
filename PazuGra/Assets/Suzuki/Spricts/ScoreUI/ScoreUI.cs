@@ -59,7 +59,7 @@ public class ScoreUI : MonoBehaviour {
             counter++;
         }
         //mScoreParent = GameObject.Find("Score");
-        mScoreParent.SetActive(false);
+        //mScoreParent.SetActive(false);
     }
 
     public void AddScore(float score)

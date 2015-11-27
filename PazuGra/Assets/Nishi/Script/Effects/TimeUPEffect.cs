@@ -12,12 +12,20 @@ public class TimeUPEffect : MonoBehaviour {
     {
 
         LeanTween.moveLocalX(m_image1.gameObject, 0, 2);
-        LeanTween.moveLocalX(m_image2.gameObject, 0, 2).setOnComplete(() => { End(); }); ;
+        LeanTween.moveLocalX(m_image2.gameObject, 0, 2).setOnComplete(() => { EndStop(); }); ;
 
+    }
+
+    //余韻を残す
+    private void EndStop()
+    {
+        LeanTween.moveLocalX(m_image1.gameObject, 0, 1).setOnComplete(() => { End(); });
     }
 
     private void End()
     {
-       Destroy(gameObject,1);
+        GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
+        PrefabManager.Instance.Next(PrefabName.Ranking);
+        Destroy(gameObject);
     }
 }

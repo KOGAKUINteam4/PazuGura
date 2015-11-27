@@ -21,6 +21,10 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
 
     [SerializeField]
     private GameObject m_ImagePrefab;
+    [SerializeField]
+    private GameObject m_EndePrefab;
+
+    private bool m_isEffectEnd = false;
 
     public void Awake()
     {
@@ -60,8 +64,12 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         }
         else
         {
-            PrefabManager.Instance.Next(PrefabName.Ranking);
-            Debug.Log("End");
+            if (!m_isEffectEnd)
+            {
+                GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(true);
+                EffectManager.Instance.Create(m_EndePrefab, GameObject.Find("PuauseUI").transform);
+                m_isEffectEnd = true;
+            }
         }
     }
 

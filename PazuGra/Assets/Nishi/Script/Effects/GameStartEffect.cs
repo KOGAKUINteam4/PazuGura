@@ -21,6 +21,7 @@ public class GameStartEffect : MonoBehaviour
 
     private void End()
     {
+        GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
         Destroy(gameObject);
     }
 }

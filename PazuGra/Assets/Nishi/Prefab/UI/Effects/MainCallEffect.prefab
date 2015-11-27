@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Hole: {fileID: 11460432}
   m_Shadow: {fileID: 11489700}
+  m_Ready: {fileID: 164988, guid: 160077dc28b212a4a8871a93dca89d13, type: 2}
 --- !u!114 &11460432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,7 +177,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Ready
+      value: 
+      objectReference: {fileID: 164988, guid: 160077dc28b212a4a8871a93dca89d13, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 181478}

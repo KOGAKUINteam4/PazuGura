@@ -112,15 +112,21 @@ public class Pausable : MonoBehaviour , IPauseSend
         // Rigidbodyの再開
         for (int i = 0; i < pausingRigidbodies.Length; i++)
         {
-            pausingRigidbodies[i].WakeUp();
-            pausingRigidbodies[i].velocity = rigidbodyVelocities[i].velocity;
-            pausingRigidbodies[i].angularVelocity = rigidbodyVelocities[i].angularVeloccity;
+            if (pausingRigidbodies[i] != null)
+            {
+                pausingRigidbodies[i].WakeUp();
+                pausingRigidbodies[i].velocity = rigidbodyVelocities[i].velocity;
+                pausingRigidbodies[i].angularVelocity = rigidbodyVelocities[i].angularVeloccity;
+            }
         }
 
         // MonoBehaviourの再開
         foreach (var monoBehaviour in pausingMonoBehaviours)
         {
-            monoBehaviour.enabled = true;
+            if (monoBehaviour != null)
+            {
+                monoBehaviour.enabled = true;
+            }
         }
     }
 

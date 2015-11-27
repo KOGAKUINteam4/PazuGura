@@ -8,6 +8,8 @@ public class MainCallEffect : MonoBehaviour {
     Image m_Hole;
     [SerializeField]
     Image m_Shadow;
+    [SerializeField]
+    GameObject m_Ready;
 
     // Use this for initialization
     void Start () {
@@ -35,7 +37,8 @@ public class MainCallEffect : MonoBehaviour {
 
     void End()
     {
-        GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
+        EffectManager.Instance.Create(m_Ready,transform.parent);
+        //GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
         Destroy(gameObject);
     }
 }

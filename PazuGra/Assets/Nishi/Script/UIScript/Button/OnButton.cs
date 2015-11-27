@@ -2,15 +2,27 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 
-public class OnButton : MonoBehaviour {
+public class OnButton : MonoBehaviour
+{
 
     [SerializeField]
     GameObject m_UI = null;
 
+    
+
+    public void Start()
+    {
+        if (gameObject.GetComponent<Animator>() != null)
+        {
+            Animator anim = gameObject.GetComponent<Animator>();
+            anim.Rebind();
+        }
+    }
+
     public void OnStart()
     {
         GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(true);
-        EffectManager.Instance.Create(m_UI,GameObject.Find("PuauseUI").transform);
+        EffectManager.Instance.Create(m_UI, GameObject.Find("PuauseUI").transform);
         //PrefabManager.Instance.Next(PrefabName.GameMain);
     }
 
@@ -45,14 +57,14 @@ public class OnButton : MonoBehaviour {
     public void OnReStart()
     {
         //Destroy(GameObject.Find("UIs").transform.GetChild(0).gameObject);
-        GameObject temp =Instantiate(m_UI);
+        GameObject temp = Instantiate(m_UI);
         temp.transform.SetParent(GameObject.Find("UIs").transform, false);
     }
 
     public void OnPauseON()
     {
         GameObject temp = Instantiate(m_UI);
-        temp.transform.SetParent(GameObject.Find("PuauseUI").transform,false);
+        temp.transform.SetParent(GameObject.Find("PuauseUI").transform, false);
         ExecuteEvents.Execute<IPauseSend>(
                 GameObject.Find("Pausable"),
                 null,
@@ -66,5 +78,10 @@ public class OnButton : MonoBehaviour {
                 GameObject.Find("Pausable"),
                 null,
                 (events, y) => { events.PauseSend(false); });
+    }
+
+    public void OnInitialized()
+    {
+        GameManager.GetInstanc.GetComponent<GyroGravity>().Reset();
     }
 }
