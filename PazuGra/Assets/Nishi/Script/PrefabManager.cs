@@ -210,7 +210,10 @@ public class PrefabManager : MonoBehaviour
         {
             foreach (MonoBehaviour mono in obj.GetComponents<MonoBehaviour>())
             {
-                mono.enabled = result;
+                if (!(mono as Image))
+                {
+                    mono.enabled = result;
+                }
             }
         }
     }
