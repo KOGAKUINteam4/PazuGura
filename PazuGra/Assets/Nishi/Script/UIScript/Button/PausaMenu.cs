@@ -23,6 +23,7 @@ public class PausaMenu : MonoBehaviour {
 	void Update () {
         if(m_MenuObject != null)
         {
+            
             ButtonSwitch(false);
         }
         else
@@ -33,13 +34,35 @@ public class PausaMenu : MonoBehaviour {
 
     public void OnGameEND()
     {
-        m_MenuObject = Instantiate(m_GameEndMenu);
-        m_MenuObject.transform.SetParent(gameObject.transform, false);
+        Move(() => GameEnd());
+        //m_MenuObject = Instantiate(m_GameEndMenu);
+        //m_MenuObject.transform.SetParent(gameObject.transform, false);
     }
 
     public void OnReStart()
     {
+        Move(() => ReStart());
+        //m_MenuObject = Instantiate(m_RestartMenu);
+        //m_MenuObject.transform.SetParent(gameObject.transform, false);
+    }
+
+    private void Move(System.Action lambda)
+    {
+        LeanTween.moveLocalX(transform.GetChild(1).gameObject, -1500, 0.5f);
+        LeanTween.moveLocalX(transform.GetChild(2).gameObject, -1500, 0.5f).setDelay(0.1f);
+        LeanTween.moveLocalX(transform.GetChild(3).gameObject, -1500, 0.5f).setDelay(0.3f);
+        LeanTween.moveLocalX(transform.GetChild(4).gameObject, -1500, 0.5f).setDelay(0.5f).setOnComplete(() => { lambda();});
+    }
+
+    private void ReStart()
+    {
         m_MenuObject = Instantiate(m_RestartMenu);
+        m_MenuObject.transform.SetParent(gameObject.transform, false);
+    }
+
+    private void GameEnd()
+    {
+        m_MenuObject = Instantiate(m_GameEndMenu);
         m_MenuObject.transform.SetParent(gameObject.transform, false);
     }
 

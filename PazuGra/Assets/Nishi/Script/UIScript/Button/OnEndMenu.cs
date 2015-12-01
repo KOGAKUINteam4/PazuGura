@@ -26,6 +26,16 @@ public class OnEndMenu : MonoBehaviour {
 
     public void OnNo()
     {
-        Destroy(gameObject.transform.parent.gameObject);
+        Back();
+        //Destroy(gameObject.transform.parent.gameObject);
+    }
+
+    public void Back()
+    {
+        GameObject temp = GameObject.Find("PausaImage");
+        LeanTween.moveLocalX(temp.transform.GetChild(1).gameObject, 0, 0.5f).setDelay(0.5f); ;
+        LeanTween.moveLocalX(temp.transform.GetChild(2).gameObject, 0, 0.5f).setDelay(0.3f);
+        LeanTween.moveLocalX(temp.transform.GetChild(3).gameObject, 0, 0.5f).setDelay(0.1f);
+        LeanTween.moveLocalX(temp.transform.GetChild(4).gameObject, 0, 0.5f).setOnComplete(() => { Destroy(gameObject.transform.parent.gameObject); });
     }
 }
