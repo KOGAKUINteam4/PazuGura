@@ -86,6 +86,13 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
     public void TimeReset()
     {
         m_Timer = m_RestTimer;
+        m_isEffectEnd = false;
+
+        float display = m_Timer;
+        display = Mathf.Clamp(display, 0, 999);
+        m_1Digit.sprite = m_nums[((int)display / 1) % 10];
+        m_10Digit.sprite = m_nums[((int)display / 10) % 10];
+        m_100Digit.sprite = m_nums[((int)display / 100) % 10];
     }
 
     public void ComboSend()

@@ -32,7 +32,7 @@ public class OnEndMenu : MonoBehaviour {
 
     public void Back()
     {
-        GameObject temp = GameObject.Find("PausaImage");
+        GameObject temp = GameObject.Find("PausaImage(Clone)");
         LeanTween.moveLocalX(temp.transform.GetChild(1).gameObject, 0, 0.5f).setDelay(0.5f); ;
         LeanTween.moveLocalX(temp.transform.GetChild(2).gameObject, 0, 0.5f).setDelay(0.3f);
         LeanTween.moveLocalX(temp.transform.GetChild(3).gameObject, 0, 0.5f).setDelay(0.1f);

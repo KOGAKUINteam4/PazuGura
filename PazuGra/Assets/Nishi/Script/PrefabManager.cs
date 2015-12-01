@@ -77,6 +77,7 @@ public class PrefabManager : MonoBehaviour
         //ゲームタイマーのReset
         if (m_CurrentPrefab == PrefabName.GameMain)
         {
+            GameObject.Find("GameTimer").GetComponent<GameTimer>().enabled = true;
             GameObject.Find("GameTimer").GetComponent<GameTimer>().TimeReset();
             if (GameObject.Find("RollGauges(Clone)") != null)
             {
