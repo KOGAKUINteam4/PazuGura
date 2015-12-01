@@ -1,17 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
+//スタンプのコスト定義
+
 namespace TemplateStampPoint
 {
     public class TemplateStamp : MonoBehaviour
     {
-        Vector3 mStarBottomLeft = new Vector3(-77, -160, 0);
-        Vector3 mStarTop = new Vector3(0, 160, -10);
-        Vector3 mZ = new Vector3(0,0,-10);
+        [SerializeField][Range(0,100)]
+        private int mStampCost = 0;
 
-        public Vector3[] StarTemplate;
+        private Text mText;
+
+        public void Init()
+        {
+            mStampCost = 0;
+        }
+
+        public void AddCost(int cost)
+        {
+            mStampCost += cost;
+        }
+
+        public int GetCost()
+        {
+            return mStampCost;
+        }
+
         private void Start()
         {
-            StarTemplate = new Vector3[6] { new Vector3(-100, 30, 0) + mZ, new Vector3(100, 30, 0) + mZ, mStarBottomLeft + mZ,mStarBottomLeft + mZ + new Vector3(3,3,0), mStarTop, new Vector3(77, -160, 0) + mZ };
+            mText = GetComponent<Text>();
+        }
+
+        //TODO　値が更新されたら・・・・にする。
+        private void Update()
+        {
+            mText.text = mStampCost.ToString();
         }
     }
 }

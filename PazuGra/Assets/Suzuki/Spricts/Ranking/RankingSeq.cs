@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using UnityEngine.UI;
 public class RankingSeq : MonoBehaviour {
 
     private GameManager mGameManager;
@@ -47,10 +47,9 @@ public class RankingSeq : MonoBehaviour {
         for (int i = 0; i < 15; i++)
         {
             if (mResult.Count - 1 == i) break;
-            //Debug.Log(target.transform.GetChild(i).name);
-            //Debug.Log(target.transform.GetChild(i).GetChild(0));
-            target.transform.GetChild(i).GetChild(0).GetComponent<ScoreUI>().AddScore(mResult[i]);
-            target.transform.GetChild(i).GetChild(0).GetComponent<ScoreUI>().UpdateScore();
+            target.transform.GetChild(i).GetChild(0).GetComponent<Text>().text =mResult[i].ToString();
+            //target.transform.GetChild(i).GetChild(0).GetComponent<ScoreUI>().AddScore(mResult[i]);
+            //target.transform.GetChild(i).GetChild(0).GetComponent<ScoreUI>().UpdateScore();
         }
     }
 

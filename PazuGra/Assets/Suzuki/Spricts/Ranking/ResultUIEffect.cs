@@ -100,7 +100,7 @@ public class ResultUIEffect : MonoBehaviour
         //値の反映
         TargetTextUpdate(mValues[0], GameManager.GetInstanc.GetScoreUI().GetScore().ToString());
         TargetTextUpdate(mValues[1], GameObject.Find("GamaManager").GetComponent<ChainManager>().GetMaxChain().ToString());
-        TargetTextUpdate(mValues[2], "3");
+        TargetTextUpdate(mValues[2], GameManager.GetInstanc.GetRanking().mCombo.ToString());
         TargetTextUpdate(mValues[3], GameManager.GetInstanc.GetRanking().mDrowCount.ToString());
     }
 

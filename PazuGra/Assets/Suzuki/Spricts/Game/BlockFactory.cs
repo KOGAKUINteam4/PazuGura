@@ -36,12 +36,16 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
 
     private float mCameraView = 30*2;
 
+    [SerializeField]
+    private TemplateStamp mStampCounter;
+
     // Use this for initialization
     void Start () {
         mCaptureTexture = GameObject.Find("CaptureTexture").GetComponent<CaptureTexture>();
         mPolygonMaker = GameObject.Find("PolygonMaker").GetComponent<PolygonMaker>();
         mMainCamera = GameObject.Find("Sub Camera");
         mPolygonMaker.Init();
+        //mStampCounter = GameObject.Find("StampTemplate").GetComponent<TemplateStamp>();
 	}
 
     private void Update()
@@ -70,7 +74,6 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         mPolygonMaker.Init();
         Vector3 mouseWorldPos = MathPos();
         AddPoint(mouseWorldPos);
-        mTouchPosition = mouseWorldPos;
         mLineObject = Instantiate(mLine) as GameObject;
     }
 
@@ -99,6 +102,8 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         //StartCoroutine(RenderTextureOutPut());
         mIsShoot = true;
         GameManager.GetInstanc.GetRanking().mDrowCount += 1;
+        if(!mIsStamp)mStampCounter.AddCost(1);
+        mIsStamp = false;
     }
 
     //画面を押された瞬間
@@ -134,12 +139,15 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     {
         if (mInstanceUI == null) return;
 
+        if (Input.GetMouseButtonDown(0)) mTouchPosition = MathPos();
+
         if (Input.GetMouseButtonUp(0)){
             Vector2 mouse = MathPos();
             Vector2 vec = new Vector2(mouse.x - mTouchPosition.x, mouse.y-mTouchPosition.y);
             Rigidbody2D gravity = mInstanceUI.GetComponent<Rigidbody2D>();
             gravity.isKinematic = false;
             gravity.AddForce(vec.normalized * 50.0f,ForceMode2D.Impulse);
+
             if (isRainbow)mInstanceUI.transform.GetChild(0).GetComponent<Image>().sprite = mPolygonMaker.m_RainbowSprit;
             else mInstanceUI.transform.GetChild(0).GetComponent<Image>().color = mPolygonMaker.RandomColor();
             //フラグ等の初期化
@@ -188,7 +196,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         isRainbow = true;
     }
 
-
+    private bool mIsStamp = false;
     TextReader txtReader;
     string description;
     [ContextMenu("Stamp")]
@@ -198,13 +206,18 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         StartCoroutine(LoadText(name));
     }
 
+    public void StampUpdate(Vector2[] point)
+    {
+        StartCoroutine(LoadText(point));
+    }
+
     IEnumerator LoadText(string name)
     {
         string txtBuffer = "";
         string textFileName = name +".txt";
-        //string textFileName = "star" + "Stamp" + ".txt";
         string path = "";// Application.dataPath + "/" + "Resources/" + "Stamp/";
         List<Vector2> list = new List<Vector2>();
+
 #if UNITY_EDITOR
         path = Application.streamingAssetsPath + "\\" + textFileName;
         FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -217,13 +230,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         txtReader = new StringReader(www.text);
 #endif
 
-        //path = "jar:file://" + Application.dataPath + "/StreamingAssets/" + textFileName;
-        //WWW www = new WWW(path);
-        //yield return www;
-        //txtReader = new StringReader(www.text);
-
-
-
+        mIsStamp = true;
 
         int count = 0;
         while ((txtBuffer = txtReader.ReadLine()) != null)
@@ -234,5 +241,16 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         CreateBlockOnTouch(list[0]);
         for (int i = 1; i < list.Count; i++) { CreateBlockOnStay(list[i]); } 
         CreateBlockOnRelease();
+    }
+
+    IEnumerator LoadText(Vector2[] point)
+    {
+        List<Vector2> list = new List<Vector2>();
+        list.AddRange(point);
+        mIsStamp = true;
+        CreateBlockOnTouch(list[0]);
+        for (int i = 1; i < list.Count; i++) { CreateBlockOnStay(list[i]); }
+        CreateBlockOnRelease();
+        yield return null;
     }
 }

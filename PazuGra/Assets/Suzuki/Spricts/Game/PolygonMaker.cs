@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using DelegateFunction;
-public class PolygonMaker : MonoBehaviour {
+public class PolygonMaker : MonoBehaviour
+{
 
     [SerializeField]
     private float mDotDistance = 7;
@@ -25,7 +26,7 @@ public class PolygonMaker : MonoBehaviour {
 
     private void Start()
     {
-        //mBlockFactory = GameObject.Find("Factory").GetComponent<BlockFactory>();
+        mBlockFactory = GameObject.Find("Factory").GetComponent<BlockFactory>();
         mRedPolyogn = GameObject.Find("ReduceVertexPolygonCollider2D").GetComponent<ReduceVertexPolygonCollider2D>();
     }
 
@@ -68,7 +69,7 @@ public class PolygonMaker : MonoBehaviour {
     public bool IsMakeDistance(Vector3 mouseWorldPos)
     {
         //距離をはかり、頂点同士を少し離す。とりあえず10
-        if (Vector2.Distance(mRoot[mRoot.Count - 1], mouseWorldPos) > mDotDistance)return true;
+        if (Vector2.Distance(mRoot[mRoot.Count - 1], mouseWorldPos) > mDotDistance) return true;
         else return false;
     }
 
@@ -106,7 +107,8 @@ public class PolygonMaker : MonoBehaviour {
     public void OnCross()
     {
         //頂点をまたいだ場合の処理
-        if (IsCross(mRoot)){
+        if (IsCross(mRoot))
+        {
             CreatePolygonOnCross(mCrossPoint);
             CreatePolygon(mCrossPoint);
             mRoot.Clear();
@@ -137,7 +139,7 @@ public class PolygonMaker : MonoBehaviour {
     private List<Vector2> VectorScaleShape(List<Vector2> targetList)
     {
         List<Vector2> list = new List<Vector2>();
-        foreach (var i in targetList)list.Add(new Vector2(i.x * 2.0f, i.y));
+        foreach (var i in targetList) list.Add(new Vector2(i.x * 2.0f, i.y));
         return list;
     }
 
@@ -164,7 +166,6 @@ public class PolygonMaker : MonoBehaviour {
         col.points = list.ToArray();
         //面積をポイントとして設定
         BlockInfo info = ui.AddComponent<BlockInfo>();
-        //infomationのパラメーターの決定
         info.m_BlockPoint = MathTextureArea(texture2D);
         info.m_ID = ui.GetHashCode();
         //Add fix----------------------------------------------
@@ -181,18 +182,20 @@ public class PolygonMaker : MonoBehaviour {
         //end---------------------------------------------------
         info.m_ColorState = (ColorState)colorstate;
 
-        ui.GetComponent<Rigidbody2D>().gravityScale = info.m_BlockPoint*(1+mRoot.Count);
+        ui.GetComponent<Rigidbody2D>().gravityScale = info.m_BlockPoint;
+        //infomationのパラメーターの決定
+        info.m_BlockPoint = info.m_BlockPoint * (1 + mRoot.Count);
 
-        //Debug.Log("Before : "+col.points.Length);
-        mRedPolyogn.RemoveShapes(ui);
-        //Debug.Log("After : " + col.points.Length);
+        //頂点多すぎたらスケーリング
+        if (ui.GetComponent<PolygonCollider2D>().points.Length > 40)
+            mRedPolyogn.RemoveShapes(ui);
         return ui;
     }
 
     //開始点と終点が近すぎた場合
     private bool IsLastPoint(List<Vector2> targetList)
     {
-        if (Vector2.Distance(targetList[0], targetList[targetList.Count-1]) <= 0.2f) return false;
+        if (Vector2.Distance(targetList[0], targetList[targetList.Count - 1]) <= 0.2f) return false;
         return true;
     }
 

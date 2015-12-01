@@ -19,7 +19,7 @@ public class Ready : MonoBehaviour
 
     public void Start()
     {
-        LeanTween.alpha(m_image.rectTransform, 1, 1.5f).setOnComplete(() => { CreateEnd(); });
+        LeanTween.alpha(m_image.rectTransform, 1, 1.0f).setOnComplete(() => { CreateEnd(); });
     }
 
     private void CreateEnd()

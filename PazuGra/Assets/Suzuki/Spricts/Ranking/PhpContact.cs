@@ -49,7 +49,7 @@ public class PhpContact : MonoBehaviour {
         wwwForm.AddField("keyword", "data");//不正接続防止用キーワード
         //http://
         WWW result = new WWW("http://tysonew.xsrv.jp/GetResult.php", wwwForm);
-        GameObject.Find("Php").GetComponent<Text>().text = "false";
+        //GameObject.Find("Php").GetComponent<Text>().text = "false";
         yield return result;
 
         if (result.error == null)
