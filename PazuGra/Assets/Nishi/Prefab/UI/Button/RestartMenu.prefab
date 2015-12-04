@@ -85,6 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc59e0b5e28138049a252e770efc0f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Ready: {fileID: 0}
 --- !u!114 &11443402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc59e0b5e28138049a252e770efc0f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Ready: {fileID: 164988, guid: 160077dc28b212a4a8871a93dca89d13, type: 2}
 --- !u!114 &11498000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,7 +294,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Ready
+      value: 
+      objectReference: {fileID: 164988, guid: 160077dc28b212a4a8871a93dca89d13, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 136722}

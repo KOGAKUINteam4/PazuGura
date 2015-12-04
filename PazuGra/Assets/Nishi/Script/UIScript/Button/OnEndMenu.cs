@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 
 public class OnEndMenu : MonoBehaviour {
 
+    [SerializeField]
+    private GameObject m_Ready;
+
     public void OnGameEndYes()
     {
         Destroy(gameObject.transform.parent.parent.gameObject);
@@ -21,7 +24,8 @@ public class OnEndMenu : MonoBehaviour {
         ExecuteEvents.Execute<IPauseSend>(
                 GameObject.Find("Pausable"),
                 null,
-                (events, y) => { events.PauseSend(false); });
+                (events, y) => { events.PauseSend(true); });
+        EffectManager.Instance.Create(m_Ready, GameObject.Find("PuauseUI").transform);
     }
 
     public void OnNo()
