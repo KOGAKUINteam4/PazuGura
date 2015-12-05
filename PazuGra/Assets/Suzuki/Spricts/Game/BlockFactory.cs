@@ -200,14 +200,16 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     TextReader txtReader;
     string description;
     [ContextMenu("Stamp")]
-    public void DebugStart(string name)
+    public void DebugStart(string name,int color)
     {
         if (GetShoot()) return;
+        mPolygonMaker.SetStampColor(color);
         StartCoroutine(LoadText(name));
     }
 
-    public void StampUpdate(Vector2[] point)
+    public void StampUpdate(Vector2[] point,int color)
     {
+        mPolygonMaker.SetStampColor(color);
         StartCoroutine(LoadText(point));
     }
 

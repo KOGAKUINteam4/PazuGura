@@ -37,6 +37,7 @@ namespace TemplateStampPoint
         private void Update()
         {
             mText.text = mStampCost.ToString();
+            if (GetCost() <= 0) mStampCost = 0;
         }
     }
 }

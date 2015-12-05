@@ -8,13 +8,16 @@ public class UIPixRange : MonoBehaviour {
     private Material mat;
 	// Use this for initialization
 	void Start () {
-        mat = GetComponent<Image>().material;
+        
         //mat = transform.parent.GetComponent<Image>().material;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (GetComponent<Image>().material == null) return;
+        mat = GetComponent<Image>().material;
         mat.SetFloat("_Range", range);
+        //transform.GetComponent<Renderer>().material.SetFloat("_Range", range);
         transform.parent.transform.GetComponent<Image>().color = new Color(1,1,1,1-range);
         Color color = transform.GetComponent<Image>().color;
         //transform.GetComponent<Renderer>().material.SetFloat("",range);

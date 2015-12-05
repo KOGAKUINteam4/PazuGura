@@ -7,7 +7,8 @@ public class ScoreUI : MonoBehaviour {
     [SerializeField]
     private Sprite[] mSprite = new Sprite[10];
     private GameObject[] mCounter = new GameObject[6];
-    private GameObject[] mScoreCounter = new GameObject[3];
+    [SerializeField]
+    private GameObject[] mScoreCounter = new GameObject[4];
     //スコア
     [SerializeField]
     private float mSocre = 0;
@@ -45,7 +46,7 @@ public class ScoreUI : MonoBehaviour {
         }
     }
 
-    private void Init()
+    public void Init()
     {
         int counter = 0;
         foreach(Transform i in gameObject.transform){
@@ -84,8 +85,8 @@ public class ScoreUI : MonoBehaviour {
     //1から?
     public void UpdateScore(float score)
     {
-        for (int i = 1; i < 3; i++){
-            mScoreCounter[i - 1].GetComponent<Image>().sprite = GetScoreSprite(i+3,score);
+        for (int i = 0; i < 4; i++){
+            mScoreCounter[i].GetComponent<Image>().sprite = GetScoreSprite(i+2,score);
         }
         for (int i = 0; i < 6; i++){
             SetNumber(i);
@@ -118,6 +119,7 @@ public class ScoreUI : MonoBehaviour {
     {
         int scoreValue = (int)value;
         string length = scoreValue.ToString();
+        Debug.Log(length);
         for (int i = length.Length; i < 6; i++) { length = "0" + length;}
         return mSprite[int.Parse(length.Substring(score, 1))];
         //return mSprite[int.Parse(length.Substring(score-1, 1))];

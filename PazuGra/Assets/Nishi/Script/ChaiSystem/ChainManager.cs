@@ -14,7 +14,8 @@ public class ChainManager : MonoBehaviour
     private GameObject m_BlockFactory;
     private int m_Maxchain = 0;
     private bool m_isClick = false;  //クリックが完了したか
-
+    private GameObject mHit;
+    private GameObject mBack;
     // Update is called once per frame
     void Update()
     {
@@ -43,7 +44,7 @@ public class ChainManager : MonoBehaviour
 
                 ColliderSwitch(true);
                 GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
-
+                mHit = hitObj;
                 m_removeList = new List<GameObject>();
                 if (!hitObj.GetComponent<Chain>().IsCheck())
                 {
@@ -85,6 +86,7 @@ public class ChainManager : MonoBehaviour
                 }
                 StartCoroutine(coRoutine(obj));
             }
+            Debug.Log("Score : "+score);
             gameManager.GetScoreUI().UpdateScore(score);
             gameManager.GetScoreUI().CreateEffect();
             ComboGaugeStart();
@@ -136,14 +138,39 @@ public class ChainManager : MonoBehaviour
 
     IEnumerator coRoutine(GameObject obj)
     {
+        foreach (var i in m_removeList)
+        {
+            if (i.name == mHit.transform.parent.name)
+            {
+                mBack = mHit;
+                //Debug.Log("Set" + transform.name);
+            }
+        }
+
+        obj.transform.GetChild(0).GetComponent<Image>().material = Resources.Load("Mat/UI-Mask")as Material;
         while (obj.transform.GetChild(0).GetComponent<UIPixRange>().range <= 1)
         {
             obj.transform.GetChild(0).GetComponent<UIPixRange>().range += 0.1f;
             yield return new WaitForSeconds(0.1f);
         }
+        for (int i = 0; i < 5; i++)
+        {
+            if (mBack.transform.parent.GetComponent<BlockInfo>().m_ColorState == (ColorState)i)
+            {
+                Sprite sprite = mBack.transform.parent.GetComponent<Image>().sprite;
+                GameObject target = GameObject.Find("StampSet").transform.GetChild(i + 1).GetChild(0).gameObject;
+                target.GetComponent<Image>().sprite = sprite;
+                target.transform.parent.GetComponent<StampCounter>().StampUpdate(mBack.transform.parent.GetComponent<PolygonCollider2D>().points);
+            }
+        }
         Destroy(obj);
 
         yield break;
+    }
+
+    public void InitChain()
+    {
+        m_Maxchain = 0;
     }
 
 }

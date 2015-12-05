@@ -65,6 +65,7 @@
     <None Include="Assets\StreamingAssets\DebugStar.txt" />
     <None Include="Assets\Suzuki\Spricts\Shaders\UI-Mask.shader" />
     <None Include="Assets\LeanTween\ReadMe.txt" />
+    <None Include="Assets\Suzuki\Spricts\Shaders\Back.shader" />
     <None Include="Assets\StreamingAssets\Circle16.txt" />
     <None Include="Assets\SampleAsset\Fonts\Jupiter\LICENSE.txt" />
     <None Include="Assets\StreamingAssets\Star.txt" />

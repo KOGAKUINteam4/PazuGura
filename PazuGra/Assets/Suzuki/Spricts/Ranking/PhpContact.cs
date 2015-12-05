@@ -26,6 +26,7 @@ public class PhpContact : MonoBehaviour {
 
     private IEnumerator Add(int score)
     {
+        if(score == 0)yield break;
         //http://
         var url1 = "http://tysonew.xsrv.jp/Result.php";
 
@@ -70,10 +71,10 @@ public class PhpContact : MonoBehaviour {
 
         if (result.error != null)
         {
-            Debug.Log(result.error);
+            //Debug.Log(result.error);
             //GameObject.Find("Php").GetComponent<Text>().text = result.text;
-            GameObject.Find("Php").GetComponent<Text>().text = result.error.Length.ToString();
-            log(result.error);
+            //GameObject.Find("Php").GetComponent<Text>().text = result.error.Length.ToString();
+            //log(result.error);
         }
     }
 

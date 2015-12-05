@@ -24,6 +24,8 @@ public class PolygonMaker : MonoBehaviour
     private BlockFactory mBlockFactory;
     private ReduceVertexPolygonCollider2D mRedPolyogn;
 
+    private int mStampColor = -1;
+
     private void Start()
     {
         mBlockFactory = GameObject.Find("Factory").GetComponent<BlockFactory>();
@@ -169,7 +171,7 @@ public class PolygonMaker : MonoBehaviour
         info.m_BlockPoint = MathTextureArea(texture2D);
         info.m_ID = ui.GetHashCode();
         //Add fix----------------------------------------------
-        if (mBlockFactory.isRainbow)
+        if (mBlockFactory.isRainbow || mStampColor == 4)
         {
             colorstate = 4;
             ui.transform.GetChild(0).GetComponent<Image>().color = RandomColor();
@@ -179,6 +181,11 @@ public class PolygonMaker : MonoBehaviour
         {
             colorstate = Random.Range(0, 4);
         }
+
+        //Colorのスタンプの・・・
+        if(mStampColor != -1)
+        colorstate = mStampColor;
+
         //end---------------------------------------------------
         info.m_ColorState = (ColorState)colorstate;
 
@@ -187,15 +194,18 @@ public class PolygonMaker : MonoBehaviour
         info.m_BlockPoint = info.m_BlockPoint * (1 + mRoot.Count);
 
         //頂点多すぎたらスケーリング
-        if (ui.GetComponent<PolygonCollider2D>().points.Length > 40)
+        if (ui.GetComponent<PolygonCollider2D>().points.Length > 32)
             mRedPolyogn.RemoveShapes(ui);
+
+        mStampColor = -1;
+
         return ui;
     }
 
     //開始点と終点が近すぎた場合
     private bool IsLastPoint(List<Vector2> targetList)
     {
-        if (Vector2.Distance(targetList[0], targetList[targetList.Count - 1]) <= 0.2f) return false;
+        if (Vector2.Distance(targetList[0], targetList[targetList.Count - 1]) <= 0.3f) return false;
         return true;
     }
 
@@ -456,5 +466,10 @@ public class PolygonMaker : MonoBehaviour
             else { white++; }
         }
         return white / black * 100.0f;
+    }
+
+    public void SetStampColor(int color)
+    {
+        mStampColor = color;
     }
 }

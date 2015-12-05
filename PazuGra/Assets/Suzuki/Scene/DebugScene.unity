@@ -1371,6 +1371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mCounter: 2
   mName: DebugStar
+  mColor: 2
 --- !u!1 &476728650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1511,6 +1512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mCounter: 2
   mName: Six
+  mColor: 1
 --- !u!1 &502491669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,6 +1777,7 @@ MonoBehaviour:
   - {fileID: 21300018, guid: 551e70e229744874e92defef13ef715a, type: 3}
   mSocre: 0
   mTarget: {fileID: 26135828}
+  mScoreParent: {fileID: 0}
 --- !u!1 &716726046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,6 +2725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mCounter: 2
   mName: Debug
+  mColor: 3
 --- !u!1001 &1090857774
 Prefab:
   m_ObjectHideFlags: 0
@@ -3428,6 +3432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mCounter: 5
   mName: Art202
+  mColor: 4
 --- !u!1 &1347701117
 GameObject:
   m_ObjectHideFlags: 0
@@ -4655,6 +4660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mCounter: 2
   mName: Circle16
+  mColor: 0
 --- !u!1 &1758334395
 GameObject:
   m_ObjectHideFlags: 0

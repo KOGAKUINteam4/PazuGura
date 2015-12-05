@@ -19,13 +19,14 @@ public class ResultUIEffect : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 3.0f)]
     private float mDelay = 0.5f;
+    private bool mIsEffect = false;
 
     private void InitSearchTarget()
     {
         mLeader = GameObject.Find("Loader_3");
         mTargtList = new List<GameObject>();
         mValues = new List<GameObject>();
-        foreach (Transform i in GameObject.Find("Contents").transform) mTargtList.Add(i.gameObject);
+        foreach (Transform i in GameObject.Find("Contents").transform) { mTargtList.Add(i.gameObject); }
         foreach (Transform i in GameObject.Find("Values").transform) mValues.Add(i.gameObject);
     }
 
@@ -33,6 +34,12 @@ public class ResultUIEffect : MonoBehaviour
     private void InitLeader()
     {
         mStartPoint = mLeader.GetComponent<RectTransform>().position;
+    }
+
+    public void Init()
+    {
+        foreach (var i in mValues) { i.GetComponent<Text>().color = Color.clear; }
+
     }
 
     //指定された時間で表示する。
@@ -59,6 +66,7 @@ public class ResultUIEffect : MonoBehaviour
 
     private IEnumerator DrowUI()
     {
+        mIsEffect = true;
         float delay = mDelay;
         for (int i = 0; i < 4; i++)
         {
@@ -83,6 +91,7 @@ public class ResultUIEffect : MonoBehaviour
 
         GameObject.Find("Button_Title").GetComponent<Button>().interactable = true;
         GameObject.Find("Button_Retry").GetComponent<Button>().interactable = true;
+        mIsEffect = false;
     }
 
     //Effectが終了した項目からスコアを反映させていく。
@@ -126,7 +135,7 @@ public class ResultUIEffect : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) Time.timeScale = 3.0f;
-        if (Input.GetMouseButtonUp(0)) Time.timeScale = 1.0f;
+        if (Input.GetMouseButton(0) && mIsEffect == true) Time.timeScale = 3.0f;
+        if (Input.GetMouseButtonUp(0) || mIsEffect == false) Time.timeScale = 1.0f;
     }
 }
