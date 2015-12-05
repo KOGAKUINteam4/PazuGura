@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource m_AudioBGM;
 
+    public AudioClip[] AudioClips;
+
     public Dictionary<string, AudioClip> m_AudioSEClips = new Dictionary<string, AudioClip>();
     public Dictionary<string, AudioClip> m_AudioBGMClips = new Dictionary<string, AudioClip>();
 

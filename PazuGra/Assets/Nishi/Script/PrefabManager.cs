@@ -89,6 +89,13 @@ public class PrefabManager : MonoBehaviour
         {
             Destroy(m_DefCanvas.transform.GetChild(i).gameObject);
         }
+
+        if(m_CurrentPrefab != PrefabName.GameMain && name == PrefabName.Ranking)
+        {
+            ActiveRanking();
+            FindObjectOfType<ResultUIEffect>().StartEffect();
+        }
+
         m_CurrentPrefab = name;
 
         if (m_CurrentPrefab == PrefabName.Title)
@@ -108,7 +115,7 @@ public class PrefabManager : MonoBehaviour
             scriptEnables(false);
             m_CurrentEnables = m_RankingEnables;
             ActiveRanking();
-            m_RankingUis[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
+            //m_RankingUis[0].transform.GetChild(0).GetComponent<ResultUIEffect>().StartEffect();
         }
 
         

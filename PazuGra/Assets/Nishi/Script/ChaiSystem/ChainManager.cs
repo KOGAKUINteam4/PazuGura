@@ -8,6 +8,7 @@ public class ChainManager : MonoBehaviour
 {
 
     private List<GameObject> m_removeList = new List<GameObject>();
+    private List<GameObject> m_FlashList = new List<GameObject>();
     [SerializeField]
     private GameObject m_ComboGauge;
     [SerializeField]
@@ -15,20 +16,36 @@ public class ChainManager : MonoBehaviour
     private int m_Maxchain = 0;
     private bool m_isClick = false;  //クリックが完了したか
 
+    private GameObject m_ClickObj;
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             CrickStart();
+            //PushList();
+
+        }
+        if(Input.GetMouseButton(0))
+        {
+            
         }
         if (Input.GetMouseButtonUp(0) && m_isClick)
         {
-            //ColliderSwitch(true);
             PushList();
-            Remove();
-            m_isClick = false;
+            //ColliderSwitch(true);
+            //PushList();
+            var layerMask = 1 << LayerMask.NameToLayer("Block");
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1.0f, layerMask);
+            //if(hit.collider.gameObject == m_ClickObj)
+            //{
+                Remove();
+                m_isClick = false;
+            //}  
         }
+
+        //BlockFlash();
 
     }
 
@@ -43,6 +60,7 @@ public class ChainManager : MonoBehaviour
 
                 ColliderSwitch(true);
                 GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
+                m_ClickObj = hit.collider.gameObject;
 
                 m_removeList = new List<GameObject>();
                 if (!hitObj.GetComponent<Chain>().IsCheck())
@@ -144,6 +162,23 @@ public class ChainManager : MonoBehaviour
         Destroy(obj);
 
         yield break;
+    }
+
+    void BlockFlash()
+    {
+        var objs = GameObject.FindGameObjectsWithTag("Collider");
+        foreach (GameObject obj in objs)
+        {
+            if (obj.GetComponent<Chain>().IsCheck())
+            {
+                m_FlashList.Add(obj.transform.parent.gameObject);
+            }
+        }
+
+        foreach(GameObject obj in m_FlashList)
+        {
+            obj.transform.parent.GetChild(0).GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        }
     }
 
 }

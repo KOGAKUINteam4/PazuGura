@@ -6239,6 +6239,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AudioSE: {fileID: 471019889}
   m_AudioBGM: {fileID: 1345768444}
+  AudioClips:
+  - {fileID: 8300000, guid: 9336122be2f84b248898f53fa0a325d4, type: 3}
+  - {fileID: 8300000, guid: 1b5d7a3d7a68bd143b6efde2101d36d5, type: 3}
+  - {fileID: 8300000, guid: a57fd80387af4d645880bc31c24d5e83, type: 3}
+  - {fileID: 8300000, guid: 47cb2645901630841a3d21e03e231775, type: 3}
+  - {fileID: 8300000, guid: e9d9822207e01914f92c59da7e6da5bf, type: 3}
+  - {fileID: 8300000, guid: 1677a5dfebc212e45b18b390b44aa628, type: 3}
+  - {fileID: 8300000, guid: 6efa0efa5db45c941865a247e5a1b311, type: 3}
+  - {fileID: 8300000, guid: 0c0d2d00bcb3281409a32dc328feca8b, type: 3}
+  - {fileID: 8300000, guid: 5a1f757335c51b74399fa4c36f6550bc, type: 3}
 --- !u!1 &792576849
 GameObject:
   m_ObjectHideFlags: 0

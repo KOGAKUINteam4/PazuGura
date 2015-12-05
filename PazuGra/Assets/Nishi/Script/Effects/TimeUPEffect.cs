@@ -7,6 +7,8 @@ public class TimeUPEffect : MonoBehaviour {
     Image m_image1;
     [SerializeField]
     Image m_image2;
+    [SerializeField]
+    GameObject m_MainEndEffect;
 
     public void Start()
     {
@@ -24,8 +26,9 @@ public class TimeUPEffect : MonoBehaviour {
 
     private void End()
     {
-        GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
-        PrefabManager.Instance.Next(PrefabName.Ranking);
+        //GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
+        //PrefabManager.Instance.Next(PrefabName.Ranking);
+        EffectManager.Instance.Create(m_MainEndEffect, transform.parent);
         Destroy(gameObject);
     }
 }
