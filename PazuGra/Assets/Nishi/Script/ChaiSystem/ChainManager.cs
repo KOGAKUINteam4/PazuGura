@@ -8,28 +8,49 @@ public class ChainManager : MonoBehaviour
 {
 
     private List<GameObject> m_removeList = new List<GameObject>();
+    private List<GameObject> m_FlashList = new List<GameObject>();
     [SerializeField]
     private GameObject m_ComboGauge;
     [SerializeField]
     private GameObject m_BlockFactory;
     private int m_Maxchain = 0;
     private bool m_isClick = false;  //クリックが完了したか
-    private GameObject mHit;
-    private GameObject mBack;
+
+    private bool m_isListUp = false;  //削除リストが完了したか
+    private GameObject m_ClickObj;
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             CrickStart();
+            m_isListUp = true;
+
+        }
+        if (Input.GetMouseButton(0))
+        {
+            if (m_isListUp)
+            {
+                PushList();
+                m_isListUp = false;
+            }
         }
         if (Input.GetMouseButtonUp(0) && m_isClick)
         {
+
             //ColliderSwitch(true);
-            PushList();
+            //PushList();
+            var layerMask = 1 << LayerMask.NameToLayer("Block");
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1.0f, layerMask);
+            //if(hit.collider.gameObject == m_ClickObj)
+            //{
             Remove();
             m_isClick = false;
+            //}  
         }
+
+        //BlockFlash();
 
     }
 
@@ -44,21 +65,22 @@ public class ChainManager : MonoBehaviour
 
                 ColliderSwitch(true);
                 GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
-                mHit = hitObj;
+                m_ClickObj = hit.collider.gameObject;
+
                 m_removeList = new List<GameObject>();
                 if (!hitObj.GetComponent<Chain>().IsCheck())
                 {
                     hitObj.GetComponent<Chain>().SetCheck(true);
                     m_isClick = true;
                 }
-                
+
             }
         }
     }
 
     void PushList()
     {
-        
+
         var objs = GameObject.FindGameObjectsWithTag("Collider");
         foreach (GameObject obj in objs)
         {
@@ -86,11 +108,10 @@ public class ChainManager : MonoBehaviour
                 }
                 StartCoroutine(coRoutine(obj));
             }
-            Debug.Log("Score : "+score);
             gameManager.GetScoreUI().UpdateScore(score);
             gameManager.GetScoreUI().CreateEffect();
             ComboGaugeStart();
-            if(m_removeList.Count >= 5)
+            if (m_removeList.Count >= 5)
             {
                 ExecuteEvents.Execute<IRecieveMessage>(
                     m_BlockFactory, // 呼び出す対象のオブジェクト
@@ -138,39 +159,31 @@ public class ChainManager : MonoBehaviour
 
     IEnumerator coRoutine(GameObject obj)
     {
-        foreach (var i in m_removeList)
-        {
-            if (i.name == mHit.transform.parent.name)
-            {
-                mBack = mHit;
-                //Debug.Log("Set" + transform.name);
-            }
-        }
-
-        obj.transform.GetChild(0).GetComponent<Image>().material = Resources.Load("Mat/UI-Mask")as Material;
         while (obj.transform.GetChild(0).GetComponent<UIPixRange>().range <= 1)
         {
             obj.transform.GetChild(0).GetComponent<UIPixRange>().range += 0.1f;
             yield return new WaitForSeconds(0.1f);
-        }
-        for (int i = 0; i < 5; i++)
-        {
-            if (mBack.transform.parent.GetComponent<BlockInfo>().m_ColorState == (ColorState)i)
-            {
-                Sprite sprite = mBack.transform.parent.GetComponent<Image>().sprite;
-                GameObject target = GameObject.Find("StampSet").transform.GetChild(i + 1).GetChild(0).gameObject;
-                target.GetComponent<Image>().sprite = sprite;
-                target.transform.parent.GetComponent<StampCounter>().StampUpdate(mBack.transform.parent.GetComponent<PolygonCollider2D>().points);
-            }
         }
         Destroy(obj);
 
         yield break;
     }
 
-    public void InitChain()
+    void BlockFlash()
     {
-        m_Maxchain = 0;
+        var objs = GameObject.FindGameObjectsWithTag("Collider");
+        foreach (GameObject obj in objs)
+        {
+            if (obj.GetComponent<Chain>().IsCheck())
+            {
+                m_FlashList.Add(obj.transform.parent.gameObject);
+            }
+        }
+
+        foreach (GameObject obj in m_FlashList)
+        {
+            obj.transform.parent.GetChild(0).GetComponent<Image>().color = new Color(0, 0, 0, 0);
+        }
     }
 
 }

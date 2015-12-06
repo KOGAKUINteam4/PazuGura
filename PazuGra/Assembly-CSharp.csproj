@@ -66,6 +66,8 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingEverything.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingPunch.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingRigidbodyCS.cs" />
+     <Compile Include="Assets\Nishi\Script\AudioList.cs" />
+     <Compile Include="Assets\Nishi\Script\AudioManager.cs" />
      <Compile Include="Assets\Nishi\Script\ChaiSystem\Chain.cs" />
      <Compile Include="Assets\Nishi\Script\ChaiSystem\ChainManager.cs" />
      <Compile Include="Assets\Nishi\Script\ComboCounter\ComboCounter.cs" />
@@ -75,6 +77,7 @@
      <Compile Include="Assets\Nishi\Script\Effects\EffectManager.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\GameStartEffect.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\MainCallEffect.cs" />
+     <Compile Include="Assets\Nishi\Script\Effects\MainEndEffect.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\TimeUPEffect.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\TitleLogo.cs" />
      <Compile Include="Assets\Nishi\Script\GyroGravity.cs" />
