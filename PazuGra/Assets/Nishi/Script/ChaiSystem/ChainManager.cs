@@ -10,47 +10,61 @@ public class ChainManager : MonoBehaviour
     private List<GameObject> m_removeList = new List<GameObject>();
     private List<GameObject> m_FlashList = new List<GameObject>();
     [SerializeField]
-    private GameObject m_ComboGauge;
+    private GameObject m_ComboGauge = null;
     [SerializeField]
-    private GameObject m_BlockFactory;
+    private GameObject m_BlockFactory = null;
     private int m_Maxchain = 0;
-    private bool m_isClick = false;  //クリックが完了したか
 
-    private bool m_isListUp = false;  //削除リストが完了したか
+    private bool m_isListUp = false; //リストアップの終了
+    private GameObject mHit;
+    private GameObject mBack;
+
     private GameObject m_ClickObj;
 
     // Update is called once per frame
-    void Update()
+
+    void LateUpdate()
     {
+        //if (Input.GetMouseButton(0))
+        //{
+        //    //ColliderSwitch(true);
+        //    //if (!m_isListUp)
+        //    //{
+        //        PushList();
+        //        if (m_removeList.Count > 3)
+        //        {
+        //            foreach (var i in m_removeList)
+        //            {
+        //                Color temp = i.gameObject.transform.GetChild(0).GetComponent<Image>().color;
+        //                i.gameObject.transform.GetChild(0).GetComponent<Image>().color =
+        //                    Color.Lerp(temp, new Color(1, 1, 1, 1), 1.0f);
+        //            }
+        //            m_isListUp = true;
+        //        }
+        //        else
+        //        {
+        //            foreach (GameObject obj in m_removeList)
+        //            {
+        //                if (obj != null) obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
+        //            }
+        //        }
+        //    //}
+        //}
+        if (Input.GetMouseButtonUp(0))
+        {
+            //m_isListUp = false;
+            ColliderSwitch(true);
+            PushList();
+            Remove();
+            //ColliderSwitch(false);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             CrickStart();
-            m_isListUp = true;
-
-        }
-        if (Input.GetMouseButton(0))
-        {
-            if (m_isListUp)
-            {
-                PushList();
-                m_isListUp = false;
-            }
-        }
-        if (Input.GetMouseButtonUp(0) && m_isClick)
-        {
-
             //ColliderSwitch(true);
             //PushList();
-            var layerMask = 1 << LayerMask.NameToLayer("Block");
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 1.0f, layerMask);
-            //if(hit.collider.gameObject == m_ClickObj)
-            //{
-            Remove();
-            m_isClick = false;
-            //}  
-        }
 
-        //BlockFlash();
+        }
 
     }
 
@@ -65,13 +79,13 @@ public class ChainManager : MonoBehaviour
 
                 ColliderSwitch(true);
                 GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
+                mHit = hitObj;
                 m_ClickObj = hit.collider.gameObject;
 
                 m_removeList = new List<GameObject>();
                 if (!hitObj.GetComponent<Chain>().IsCheck())
                 {
                     hitObj.GetComponent<Chain>().SetCheck(true);
-                    m_isClick = true;
                 }
 
             }
@@ -86,7 +100,8 @@ public class ChainManager : MonoBehaviour
         {
             if (obj.GetComponent<Chain>().IsCheck())
             {
-                m_removeList.Add(obj.transform.parent.gameObject);
+                if (!m_removeList.Contains(obj.transform.parent.gameObject))
+                    m_removeList.Add(obj.transform.parent.gameObject);
             }
         }
     }
@@ -127,8 +142,6 @@ public class ChainManager : MonoBehaviour
                 obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
             }
         }
-
-        ColliderSwitch(false);
     }
 
     /// <summary>
@@ -159,14 +172,38 @@ public class ChainManager : MonoBehaviour
 
     IEnumerator coRoutine(GameObject obj)
     {
+        foreach (var i in m_removeList)
+        {
+            if (i.name == mHit.transform.parent.name)
+            {
+                mBack = mHit;
+            }
+        }
+        obj.transform.GetChild(0).GetComponent<Image>().material = Resources.Load("Mat/UI-Mask") as Material;
         while (obj.transform.GetChild(0).GetComponent<UIPixRange>().range <= 1)
         {
+            obj.tag = "Finish";
             obj.transform.GetChild(0).GetComponent<UIPixRange>().range += 0.1f;
             yield return new WaitForSeconds(0.1f);
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (mBack.transform.parent.GetComponent<BlockInfo>().m_ColorState == (ColorState)i)
+            {
+                Sprite sprite = mBack.transform.parent.GetComponent<Image>().sprite;
+                GameObject traget = GameObject.Find("StampSet").transform.GetChild(i + 1).GetChild(0).gameObject;
+                traget.GetComponent<Image>().sprite = sprite;
+                traget.transform.parent.GetComponent<StampCounter>().StampUpdate(mBack.transform.parent.GetComponent<PolygonCollider2D>().points);
+            }
         }
         Destroy(obj);
 
         yield break;
+    }
+
+    public void InitChain()
+    {
+        m_Maxchain = 0;
     }
 
     void BlockFlash()

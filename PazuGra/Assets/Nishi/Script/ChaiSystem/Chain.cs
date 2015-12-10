@@ -31,9 +31,6 @@ public class Chain : MonoBehaviour
         {
             gameObject.transform.parent.GetComponent<Rigidbody2D>().WakeUp();
         }
-
-        
-
     }
 
     void OnTriggerStay2D(Collider2D other)

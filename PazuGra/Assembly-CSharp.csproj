@@ -79,6 +79,7 @@
      <Compile Include="Assets\Nishi\Script\Effects\MainCallEffect.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\MainEndEffect.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\TimeUPEffect.cs" />
+     <Compile Include="Assets\Nishi\Script\Effects\TitleCallEffect.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\TitleLogo.cs" />
      <Compile Include="Assets\Nishi\Script\GyroGravity.cs" />
      <Compile Include="Assets\Nishi\Script\IPauseSend.cs" />

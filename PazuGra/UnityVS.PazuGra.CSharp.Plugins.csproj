@@ -96,6 +96,7 @@
     <None Include="Assets\StreamingAssets\Six.txt" />
     <None Include="Assets\StreamingAssets\Star.txt" />
     <None Include="Assets\StreamingAssets\starStamp.txt" />
+    <None Include="Assets\Suzuki\Spricts\Shaders\Back.shader" />
     <None Include="Assets\Suzuki\Spricts\Shaders\UI-Mask.shader" />
     <None Include="Assets\Suzuki\Spricts\Shaders\UI-Nega.shader" />
     <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />

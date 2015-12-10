@@ -72,6 +72,10 @@ public class PrefabManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name"></param>
     public void Next(PrefabName name)
     {
         //ゲームタイマーのReset
@@ -94,6 +98,13 @@ public class PrefabManager : MonoBehaviour
         {
             ActiveRanking();
             FindObjectOfType<ResultUIEffect>().StartEffect();
+            GameObject.Find("Stamp_00").GetComponent<StampCounter>().InitStamp();
+            GameObject.Find("Factory").GetComponent<BlockFactory>().isRainbow = false;
+            GameObject.Find("ScoreParent").GetComponent<ScoreUI>().Init();
+            GameObject.Find("ScoreParent").GetComponent<ScoreUI>().InitScore();
+            GameObject.Find("GamaManager").GetComponent<ChainManager>().InitChain();
+            GameObject.Find("ScoreParent").GetComponent<ScoreUI>().ScoreEvent(0);
+            GameObject.Find("StampTemplate").GetComponent<TemplateStampPoint.TemplateStamp>().Init();
         }
 
         m_CurrentPrefab = name;
@@ -104,6 +115,7 @@ public class PrefabManager : MonoBehaviour
             m_CurrentEnables = m_TitleEnables;
             ActiveTitle();
             GameObject.Find("GamaManager").GetComponent<ChainManager>().InitChain();
+            
         }
         else if (m_CurrentPrefab == PrefabName.GameMain)
         {

@@ -22,17 +22,22 @@ public class MainCallEffect : MonoBehaviour {
     {
         //gameメインを登場させる
         PrefabManager.Instance.Next(PrefabName.GameMain);
-        LeanTween.moveY(gameObject, -9, 2.5f).setOnComplete(() => { Scale(); ScaleShadow(); });
+        LeanTween.moveY(gameObject, -10, 2.5f).setOnComplete(() => { Scale(); ScaleShadow(); });
     }
+
+    public AnimationCurve holeScaleCurve;
 
     void Scale()
     {
-        LeanTween.scale(m_Hole.rectTransform, new Vector3(7.0f, 7.0f, 0.0f), 2).setOnComplete(()=> { End(); });
+        //LeanTween.scale(m_Hole.rectTransform, new Vector3(7.0f, 7.0f, 0.0f), 2).setOnComplete(()=> { End(); });
+        LeanTween.scale(m_Hole.rectTransform, new Vector3(7.0f, 7.0f, 0.0f), 1)
+            .setEase(holeScaleCurve)
+            .setOnComplete(() => { End(); });
     }
 
     void ScaleShadow()
     {
-        LeanTween.scale(m_Shadow.rectTransform, new Vector3(0.5f, 0.5f, 0.0f), 0.5f).setOnComplete(() => {  });
+       // LeanTween.scale(m_Shadow.rectTransform, new Vector3(0.5f, 0.5f, 0.0f), 0.5f).setOnComplete(() => {  });
     }
 
     void End()

@@ -10,11 +10,13 @@ public class OnEndMenu : MonoBehaviour {
     public void OnGameEndYes()
     {
         Destroy(gameObject.transform.parent.parent.gameObject);
-        PrefabManager.Instance.Next(PrefabName.Title); ;
+        //PrefabManager.Instance.Next(PrefabName.Title); ;
         ExecuteEvents.Execute<IPauseSend>(
                 GameObject.Find("Pausable"),
                 null,
                 (events, y) => { events.PauseSend(false); });
+        m_Ready.GetComponent<TitleCallEffect>().NextChange(PrefabName.Title);
+        EffectManager.Instance.Create(m_Ready, GameObject.Find("PuauseUI").transform);
     }
 
     public void OnRestartYes()

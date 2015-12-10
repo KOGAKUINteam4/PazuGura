@@ -28,12 +28,15 @@ public class OnButton : MonoBehaviour
 
     public void OnRanking()
     {
-        PrefabManager.Instance.Next(PrefabName.Ranking);
+        //PrefabManager.Instance.Next(PrefabName.Ranking);
+        m_UI.GetComponent<TitleCallEffect>().NextChange(PrefabName.Ranking);
+        EffectManager.Instance.Create(m_UI, GameObject.Find("PuauseUI").transform);
     }
 
     public void OnTitle()
     {
-        PrefabManager.Instance.Next(PrefabName.Title);
+        m_UI.GetComponent<TitleCallEffect>().NextChange(PrefabName.Title);
+        EffectManager.Instance.Create(m_UI, GameObject.Find("PuauseUI").transform);
     }
 
     public void OnGameMain()

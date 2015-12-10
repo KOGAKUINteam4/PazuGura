@@ -107,6 +107,7 @@
     <Compile Include="Assets\Nishi\Script\Effects\MainCallEffect.cs" />
     <Compile Include="Assets\Nishi\Script\Effects\MainEndEffect.cs" />
     <Compile Include="Assets\Nishi\Script\Effects\TimeUPEffect.cs" />
+    <Compile Include="Assets\Nishi\Script\Effects\TitleCallEffect.cs" />
     <Compile Include="Assets\Nishi\Script\Effects\TitleLogo.cs" />
     <Compile Include="Assets\Nishi\Script\GyroGravity.cs" />
     <Compile Include="Assets\Nishi\Script\IPauseSend.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Assets\SampleAsset\Scripts\ScrollDetailTexture.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ShowSliderValue.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\TiltWindow.cs" />
+    <Compile Include="Assets\Suzuki\Spricts\BackEffect\SpriteChanger.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Block\BlockLayerChange.cs" />
     <Compile Include="Assets\Suzuki\Spricts\Block\ChainBlock.cs" />
     <Compile Include="Assets\Suzuki\Spricts\DL\DefTyson.cs" />
@@ -219,6 +221,7 @@
     <None Include="Assets\StreamingAssets\Six.txt" />
     <None Include="Assets\StreamingAssets\Star.txt" />
     <None Include="Assets\StreamingAssets\starStamp.txt" />
+    <None Include="Assets\Suzuki\Spricts\Shaders\Back.shader" />
     <None Include="Assets\Suzuki\Spricts\Shaders\UI-Mask.shader" />
     <None Include="Assets\Suzuki\Spricts\Shaders\UI-Nega.shader" />
     <None Include="Assets\Suzuki\Texture\Textures and Sprites\SF UI\Background\LICENSE.txt" />

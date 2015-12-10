@@ -39,6 +39,13 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
     // Update is called once per frame
     void Update()
     {
+
+#if DEBUG
+        if(Input.GetKey(KeyCode.Space))
+        {
+            m_Timer--;
+        }
+#endif
         m_Timer -= Time.deltaTime;
         float display = m_Timer;
         display = Mathf.Clamp(display, 0, 999);
@@ -93,6 +100,11 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         m_1Digit.sprite = m_nums[((int)display / 1) % 10];
         m_10Digit.sprite = m_nums[((int)display / 10) % 10];
         m_100Digit.sprite = m_nums[((int)display / 100) % 10];
+
+        Color alpha = new Color(1, 1, 1, 1);
+        m_1Digit.color = alpha;
+        m_10Digit.color = alpha;
+        m_100Digit.color = alpha;
     }
 
     public void ComboSend()

@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc59e0b5e28138049a252e770efc0f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Ready: {fileID: 0}
 --- !u!114 &11440010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc59e0b5e28138049a252e770efc0f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Ready: {fileID: 120816, guid: 696ba06281abdcc40a1b0cb6f57ded10, type: 2}
 --- !u!114 &11447006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,6 +299,10 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OnGameEndYes
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Ready
+      value: 
+      objectReference: {fileID: 120816, guid: 696ba06281abdcc40a1b0cb6f57ded10, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150100}
