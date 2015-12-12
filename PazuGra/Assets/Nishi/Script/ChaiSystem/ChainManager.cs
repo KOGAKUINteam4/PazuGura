@@ -8,7 +8,6 @@ public class ChainManager : MonoBehaviour
 {
 
     private List<GameObject> m_removeList = new List<GameObject>();
-    private List<GameObject> m_FlashList = new List<GameObject>();
     [SerializeField]
     private GameObject m_ComboGauge = null;
     [SerializeField]
@@ -204,23 +203,6 @@ public class ChainManager : MonoBehaviour
     public void InitChain()
     {
         m_Maxchain = 0;
-    }
-
-    void BlockFlash()
-    {
-        var objs = GameObject.FindGameObjectsWithTag("Collider");
-        foreach (GameObject obj in objs)
-        {
-            if (obj.GetComponent<Chain>().IsCheck())
-            {
-                m_FlashList.Add(obj.transform.parent.gameObject);
-            }
-        }
-
-        foreach (GameObject obj in m_FlashList)
-        {
-            obj.transform.parent.GetChild(0).GetComponent<Image>().color = new Color(0, 0, 0, 0);
-        }
     }
 
 }
