@@ -107,6 +107,7 @@ public class ResultUIEffect : MonoBehaviour
     private void InitScore()
     {
         //値の反映
+        Init();
         TargetTextUpdate(mValues[0], GameManager.GetInstanc.GetScoreUI().GetScore().ToString());
         TargetTextUpdate(mValues[1], GameObject.Find("GamaManager").GetComponent<ChainManager>().GetMaxChain().ToString());
         TargetTextUpdate(mValues[2], GameManager.GetInstanc.GetRanking().mCombo.ToString());

@@ -25,31 +25,31 @@ public class ChainManager : MonoBehaviour
 
     void LateUpdate()
     {
-        //if (Input.GetMouseButton(0))
-        //{
-        //    //ColliderSwitch(true);
-        //    //if (!m_isListUp)
-        //    //{
-        //        PushList();
-        //        if (m_removeList.Count > 3)
-        //        {
-        //            foreach (var i in m_removeList)
-        //            {
-        //                Color temp = i.gameObject.transform.GetChild(0).GetComponent<Image>().color;
-        //                i.gameObject.transform.GetChild(0).GetComponent<Image>().color =
-        //                    Color.Lerp(temp, new Color(1, 1, 1, 1), 1.0f);
-        //            }
-        //            m_isListUp = true;
-        //        }
-        //        else
-        //        {
-        //            foreach (GameObject obj in m_removeList)
-        //            {
-        //                if (obj != null) obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
-        //            }
-        //        }
-        //    //}
-        //}
+        if (Input.GetMouseButton(0))
+        {
+            //ColliderSwitch(true);
+            //if (!m_isListUp)
+            //{
+            PushList();
+            if (m_removeList.Count > 3)
+            {
+                foreach (var i in m_removeList)
+                {
+                    Color temp = i.gameObject.transform.GetChild(0).GetComponent<Image>().color;
+                    i.gameObject.transform.GetChild(0).GetComponent<Image>().color =
+                        Color.Lerp(temp, new Color(1, 1, 1, 1), 1.0f);
+                }
+                m_isListUp = true;
+            }
+            else
+            {
+                foreach (GameObject obj in m_removeList)
+                {
+                    if (obj != null) obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
+                }
+            }
+            //}
+        }
         if (Input.GetMouseButtonUp(0))
         {
             //m_isListUp = false;
@@ -116,6 +116,8 @@ public class ChainManager : MonoBehaviour
             {
                 score += obj.GetComponent<BlockInfo>().m_BlockPoint;
                 gameManager.GetScoreUI().AddScore(obj.GetComponent<BlockInfo>().m_BlockPoint);
+                Color[] state = { Color.red,Color.black,Color.yellow,Color.green,Color.white};
+                transform.GetComponent<SpriteEffect>().Create(obj, state[(int)obj.GetComponent<BlockInfo>().m_ColorState]);
                 //Destroy(obj);
                 if (m_Maxchain < m_removeList.Count)
                 {
