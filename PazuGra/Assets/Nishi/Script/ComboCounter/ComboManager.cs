@@ -30,6 +30,7 @@ public class ComboManager : MonoBehaviour, IRecieveMessage
             (recieveTarget, y) => { recieveTarget.ComboSend(); }); // 操作
         }
 
+        return;
         if (m_MaxCombo < m_Cgauge.GetComponentInChildren<ComboCounter>().GetCombo())
         {
             GameManager.GetInstanc.GetRanking().mCombo = m_MaxCombo;

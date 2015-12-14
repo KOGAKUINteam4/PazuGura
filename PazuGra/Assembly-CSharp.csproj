@@ -135,6 +135,7 @@
      <Compile Include="Assets\Suzuki\Spricts\Define\Def.cs" />
      <Compile Include="Assets\Suzuki\Spricts\Define\Layers.cs" />
      <Compile Include="Assets\Suzuki\Spricts\Define\TemplateStamp.cs" />
+     <Compile Include="Assets\Suzuki\Spricts\Effect\SpriteEffect.cs" />
      <Compile Include="Assets\Suzuki\Spricts\Game\Actor.cs" />
      <Compile Include="Assets\Suzuki\Spricts\Game\BlockFactory.cs" />
      <Compile Include="Assets\Suzuki\Spricts\Game\BlockInfo.cs" />

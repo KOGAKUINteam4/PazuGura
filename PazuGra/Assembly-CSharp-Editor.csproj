@@ -88,15 +88,6 @@
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Program Files/Unity5.1.3/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
- <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
- <HintPath>C:/Users/nishi/Documents/PazuGuraTeam/PazuGra/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
- </Reference>
- <Reference Include="SyntaxTree.VisualStudio.Unity.Messaging">
- <HintPath>C:/Users/nishi/Documents/PazuGuraTeam/PazuGra/Assets/UnityVS/Editor/SyntaxTree.VisualStudio.Unity.Messaging.dll</HintPath>
- </Reference>
- <Reference Include="UnityVS.VersionSpecific">
- <HintPath>C:/Users/nishi/Documents/PazuGuraTeam/PazuGra/Assets/UnityVS/Editor/UnityVS.VersionSpecific.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity5.1.3/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
  </Reference>

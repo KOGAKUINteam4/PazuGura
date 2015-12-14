@@ -43,6 +43,9 @@ public class PrefabManager : MonoBehaviour
 
     private GameObject[] m_CurrentEnables = null;
 
+    [SerializeField]
+    private GameObject mStamp;
+
 
     //private int m_PrefabIndex = 0;
     private PrefabName m_CurrentPrefab;
@@ -98,13 +101,13 @@ public class PrefabManager : MonoBehaviour
         {
             ActiveRanking();
             FindObjectOfType<ResultUIEffect>().StartEffect();
-            GameObject.Find("Stamp_00").GetComponent<StampCounter>().InitStamp();
+            mStamp.GetComponent<StampCounter>().InitStamp();
             GameObject.Find("Factory").GetComponent<BlockFactory>().isRainbow = false;
-            GameObject.Find("ScoreParent").GetComponent<ScoreUI>().Init();
-            GameObject.Find("ScoreParent").GetComponent<ScoreUI>().InitScore();
+            m_GameMainUis[2].GetComponent<ScoreUI>().Init();
+            m_GameMainUis[2].GetComponent<ScoreUI>().InitScore();
             GameObject.Find("GamaManager").GetComponent<ChainManager>().InitChain();
-            GameObject.Find("ScoreParent").GetComponent<ScoreUI>().ScoreEvent(0);
-            GameObject.Find("StampTemplate").GetComponent<TemplateStampPoint.TemplateStamp>().Init();
+            m_GameMainUis[2].GetComponent<ScoreUI>().ScoreEvent(0);
+            m_GameMainEnables[2].GetComponent<TemplateStampPoint.TemplateStamp>().Init();
         }
 
         m_CurrentPrefab = name;
@@ -114,7 +117,10 @@ public class PrefabManager : MonoBehaviour
             scriptEnables(false);
             m_CurrentEnables = m_TitleEnables;
             ActiveTitle();
+            m_GameMainUis[2].GetComponent<ScoreUI>().Init();
+            m_GameMainUis[2].GetComponent<ScoreUI>().InitScore();
             GameObject.Find("GamaManager").GetComponent<ChainManager>().InitChain();
+            m_GameMainUis[2].GetComponent<ScoreUI>().ScoreEvent(0);
             
         }
         else if (m_CurrentPrefab == PrefabName.GameMain)
@@ -122,12 +128,12 @@ public class PrefabManager : MonoBehaviour
             scriptEnables(false);
             m_CurrentEnables = m_GameMainEnables;
             ActiveMain();
-            GameObject.Find("Stamp_00").GetComponent<StampCounter>().InitStamp();
+            mStamp.GetComponent<StampCounter>().InitStamp();
             GameObject.Find("Factory").GetComponent<BlockFactory>().isRainbow = false;
-            GameObject.Find("ScoreParent").GetComponent<ScoreUI>().Init();
-            GameObject.Find("ScoreParent").GetComponent<ScoreUI>().InitScore();
+            m_GameMainUis[2].GetComponent<ScoreUI>().Init();
+            m_GameMainUis[2].GetComponent<ScoreUI>().InitScore();
             GameObject.Find("GamaManager").GetComponent<ChainManager>().InitChain();
-            GameObject.Find("ScoreParent").GetComponent<ScoreUI>().ScoreEvent(0);
+            m_GameMainUis[2].GetComponent<ScoreUI>().ScoreEvent(0);
             GameObject.Find("StampTemplate").GetComponent<TemplateStampPoint.TemplateStamp>().Init();
         }
         else

@@ -11,6 +11,11 @@ public class CreateCollider : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        TypeA();
+    }
+
+    private void TypeA()
+    {
         m_ParentCollider = gameObject.transform.parent.gameObject.GetComponent<PolygonCollider2D>();
         m_MyCollider = GetComponent<PolygonCollider2D>();
 
@@ -22,18 +27,23 @@ public class CreateCollider : MonoBehaviour {
         int pointLength = temp.Length;
         int plusPoint = 0;
         int point = 0;
+        int dx = 0;
+        int dy = 0;
         for (int i = 0; i < pointLength; i++)
         {
             if (m_ParentCollider.points[i].x < 0 && m_ParentCollider.points[i].y < 0) plusPoint++;
             if (m_ParentCollider.points[i].x > 0 && m_ParentCollider.points[i].y > 0) point++; ;
+            if (m_ParentCollider.points[i].x < 0 && m_ParentCollider.points[i].y > 0) dx++;
+            if (m_ParentCollider.points[i].x > 0 && m_ParentCollider.points[i].y < 0) dy++;
         }
-        if (plusPoint == pointLength) m_MyCollider.offset = new Vector2(20, 30);
-        if (point == pointLength) m_MyCollider.offset = new Vector2(-20, -30);
 
+        if (plusPoint == pointLength) m_MyCollider.offset = new Vector2(20, 50);
+        if (point == pointLength) m_MyCollider.offset = new Vector2(-20, -50);
+        if (dy == pointLength) m_MyCollider.offset = new Vector2(-20, 50);
+        if (dx == pointLength) m_MyCollider.offset = new Vector2(20, -50);
 
         for (int i = 0; i <= (m_ParentCollider.points.Length - 1); i++)
         {
-
             temp[i] = m_ParentCollider.points[i] * scale;
             m_MyCollider.SetPath(0, temp);
         }
