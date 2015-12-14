@@ -119,13 +119,15 @@ public class Chain : MonoBehaviour
     {
         if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
         {
-            m_Chains.Clear();
-            foreach (GameObject obj in m_Chains)
+            Debug.Log("ListClear");
+            var objs = GameObject.FindGameObjectsWithTag("Collider");
+            foreach (GameObject obj in objs)
             {
-                if(obj != transform.parent.gameObject)
-                obj.transform.GetChild(1).GetComponent<Chain>().m_Chains = m_Chains;
+                obj.GetComponent<Chain>().m_Chains.Clear();
+
             }
         }
+        
     }
 
     public bool IsCheck()

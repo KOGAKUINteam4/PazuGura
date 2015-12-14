@@ -132,6 +132,10 @@ public class ChainManager : MonoBehaviour
                     null,  // イベントデータ（モジュール等の情報）
                     (recieveTarget, y) => { recieveTarget.ComboSend(); }); // 操作
             }
+            foreach (GameObject obj in m_removeList)
+            {
+                obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
+            }
             m_removeList.Clear();
         }
         else
