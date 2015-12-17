@@ -68,6 +68,7 @@ public class PausaMenu : MonoBehaviour {
 
     public void OnCancel()
     {
+        AudioManager.Instance.SEPlay(AudioList.Cancel);
         Destroy(gameObject);
         ExecuteEvents.Execute<IPauseSend>(
                 GameObject.Find("Pausable"),

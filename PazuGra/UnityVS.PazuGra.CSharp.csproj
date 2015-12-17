@@ -60,12 +60,6 @@
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -100,8 +94,8 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingEverything.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingPunch.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingRigidbodyCS.cs" />
-    <Compile Include="Assets\Nishi\Script\AudioList.cs" />
-    <Compile Include="Assets\Nishi\Script\AudioManager.cs" />
+    <Compile Include="Assets\Nishi\Script\Audio\AudioList.cs" />
+    <Compile Include="Assets\Nishi\Script\Audio\AudioManager.cs" />
     <Compile Include="Assets\Nishi\Script\ChaiSystem\Chain.cs" />
     <Compile Include="Assets\Nishi\Script\ChaiSystem\ChainManager.cs" />
     <Compile Include="Assets\Nishi\Script\ComboCounter\ComboCounter.cs" />
@@ -109,6 +103,7 @@
     <Compile Include="Assets\Nishi\Script\ComboCounter\ComboManager.cs" />
     <Compile Include="Assets\Nishi\Script\CreateCollider.cs" />
     <Compile Include="Assets\Nishi\Script\Effects\EffectManager.cs" />
+    <Compile Include="Assets\Nishi\Script\Effects\FlashLine.cs" />
     <Compile Include="Assets\Nishi\Script\Effects\GameStartEffect.cs" />
     <Compile Include="Assets\Nishi\Script\Effects\MainCallEffect.cs" />
     <Compile Include="Assets\Nishi\Script\Effects\MainEndEffect.cs" />
@@ -130,6 +125,7 @@
     <Compile Include="Assets\Nishi\Script\Ready＆Go\ScaleControl.cs" />
     <Compile Include="Assets\Nishi\Script\Ready＆Go\Slide.cs" />
     <Compile Include="Assets\Nishi\Script\ShakeGesture.cs" />
+    <Compile Include="Assets\Nishi\Script\SortingLayer.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\Button\OnButton.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\Button\OnEndMenu.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\Button\PausaMenu.cs" />

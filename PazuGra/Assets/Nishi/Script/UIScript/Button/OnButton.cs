@@ -21,6 +21,7 @@ public class OnButton : MonoBehaviour
 
     public void OnStart()
     {
+        AudioManager.Instance.SEPlay(AudioList.Yes);
         GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(true);
         EffectManager.Instance.Create(m_UI, GameObject.Find("PuauseUI").transform);
         //PrefabManager.Instance.Next(PrefabName.GameMain);
@@ -28,6 +29,7 @@ public class OnButton : MonoBehaviour
 
     public void OnRanking()
     {
+        AudioManager.Instance.SEPlay(AudioList.Yes);
         //PrefabManager.Instance.Next(PrefabName.Ranking);
         m_UI.GetComponent<TitleCallEffect>().NextChange(PrefabName.Ranking);
         EffectManager.Instance.Create(m_UI, GameObject.Find("PuauseUI").transform);
@@ -66,6 +68,7 @@ public class OnButton : MonoBehaviour
 
     public void OnPauseON()
     {
+        AudioManager.Instance.SEPlay(AudioList.Pause);
         GameObject temp = Instantiate(m_UI);
         temp.transform.SetParent(GameObject.Find("PuauseUI").transform, false);
         ExecuteEvents.Execute<IPauseSend>(
@@ -76,6 +79,7 @@ public class OnButton : MonoBehaviour
 
     public void OnCancel()
     {
+        AudioManager.Instance.SEPlay(AudioList.Cancel);
         Destroy(GameObject.Find("UIs").transform.GetChild(0).gameObject);
         ExecuteEvents.Execute<IPauseSend>(
                 GameObject.Find("Pausable"),

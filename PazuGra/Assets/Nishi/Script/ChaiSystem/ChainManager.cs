@@ -24,38 +24,36 @@ public class ChainManager : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetMouseButton(0))
-        {
-            //ColliderSwitch(true);
-            //if (!m_isListUp)
-            //{
-            PushList();
-            if (m_removeList.Count > 3)
-            {
-                foreach (var i in m_removeList)
-                {
-                    Color temp = i.gameObject.transform.GetChild(0).GetComponent<Image>().color;
-                    i.gameObject.transform.GetChild(0).GetComponent<Image>().color =
-                        Color.Lerp(temp, new Color(1, 1, 1, 1), 1.0f);
-                }
-                m_isListUp = true;
-            }
-            else
-            {
-                foreach (GameObject obj in m_removeList)
-                {
-                    if (obj != null) obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
-                }
-            }
-            //}
-        }
+        //if (Input.GetMouseButton(0))
+        //{
+        //    //ColliderSwitch(true);
+        //    //if (!m_isListUp)
+        //    //{
+        //    PushList();
+        //    if (m_removeList.Count > 3)
+        //    {
+        //        foreach (var i in m_removeList)
+        //        {
+        //            Color temp = i.gameObject.transform.GetChild(0).GetComponent<Image>().color;
+        //            i.gameObject.transform.GetChild(0).GetComponent<Image>().color =
+        //                Color.Lerp(temp, new Color(1, 1, 1, 1), 1.0f);
+        //        }
+        //        m_isListUp = true;
+        //    }
+        //    else
+        //    {
+        //        foreach (GameObject obj in m_removeList)
+        //        {
+        //            if (obj != null) obj.transform.FindChild("Collider").GetComponent<Chain>().SetCheck(false);
+        //        }
+        //    }
+        //    //}
+        //}
         if (Input.GetMouseButtonUp(0))
         {
-            //m_isListUp = false;
             ColliderSwitch(true);
             PushList();
             Remove();
-            //ColliderSwitch(false);
         }
         if (Input.GetMouseButtonDown(0))
         {
@@ -109,6 +107,7 @@ public class ChainManager : MonoBehaviour
     {
         if (m_removeList.Count >= 3)
         {
+            AudioManager.Instance.SEPlay(AudioList.Chain);
             float score = 0;
             GameManager gameManager = GameManager.GetInstanc;
             foreach (GameObject obj in m_removeList)

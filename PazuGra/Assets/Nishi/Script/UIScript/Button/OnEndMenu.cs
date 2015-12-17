@@ -38,6 +38,7 @@ public class OnEndMenu : MonoBehaviour {
 
     public void Back()
     {
+        AudioManager.Instance.SEPlay(AudioList.Cancel);
         GameObject temp = GameObject.Find("PausaImage(Clone)");
         LeanTween.moveLocalX(temp.transform.GetChild(1).gameObject, 0, 0.5f).setDelay(0.5f); ;
         LeanTween.moveLocalX(temp.transform.GetChild(2).gameObject, 0, 0.5f).setDelay(0.3f);

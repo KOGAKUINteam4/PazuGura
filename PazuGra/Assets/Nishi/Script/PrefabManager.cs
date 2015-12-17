@@ -66,12 +66,24 @@ public class PrefabManager : MonoBehaviour
             if (GameObject.Find("Pausable").GetComponent<Pausable>().IsPause())
             {
                 scriptEnables(false);
+                if (GameObject.Find("Line(Clone)") != null)
+                {
+                    Destroy(GameObject.Find("Line(Clone)"));
+                }
             }
             else
             {
                 scriptEnables(true);
             }
 
+        }
+
+        if (m_CurrentPrefab == PrefabName.Ranking)
+        {
+            foreach (MonoBehaviour mono in GameObject.Find("Factory").GetComponents<MonoBehaviour>())
+            {
+                mono.enabled = false;
+            }
         }
     }
 

@@ -49,7 +49,7 @@ public class Chain : MonoBehaviour
         {
             if (!m_Chains.Contains(transform.parent.gameObject)) m_Chains.Add(transform.parent.gameObject);
         }
-        
+
         //色の変更の処理
         if (m_Chains.Count >= 3)
         {
@@ -85,9 +85,6 @@ public class Chain : MonoBehaviour
                 var temp = other.transform.FindChild("Collider");
                 if (!temp.GetComponent<Chain>().IsCheck())
                 {
-                    //this.m_isFlash = true;
-                    //temp.GetComponent<Chain>().m_isFlash = true;
-                    //temp.GetComponent<Chain>().m_Chains = this.m_Chains;
                     temp.GetComponent<Chain>().SetCheck(true);
                 }
             }
@@ -96,20 +93,9 @@ public class Chain : MonoBehaviour
         if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
         {
             var temp = other.transform.FindChild("Collider");
-            //this.m_isFlash = true;
+            this.m_isFlash = true;
             temp.GetComponent<Chain>().m_isFlash = true;
 
-            //光る予定のない物は削除
-            List<GameObject> temps = m_Chains;
-            foreach (GameObject obj in m_Chains)
-            {
-                if (!obj.transform.GetChild(1).GetComponent<Chain>().m_isFlash)
-                {
-                    temps.Remove(obj);
-                }
-            }
-
-            m_Chains = temps;
             temp.GetComponent<Chain>().m_Chains = this.m_Chains;
         }
 
@@ -119,10 +105,10 @@ public class Chain : MonoBehaviour
     {
         if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
         {
-            Debug.Log("ListClear");
             var objs = GameObject.FindGameObjectsWithTag("Collider");
             foreach (GameObject obj in objs)
             {
+                obj.GetComponent<Chain>().m_isFlash = false;
                 obj.GetComponent<Chain>().m_Chains.Clear();
 
             }
@@ -139,6 +125,7 @@ public class Chain : MonoBehaviour
     {
         m_isCheck = check;
     }
+
     //接触したオブジェクトの色を判定
     private bool ColorChack(ColorState state)
     {
