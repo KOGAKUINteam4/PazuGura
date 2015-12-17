@@ -43,6 +43,8 @@ public class RankingSeq : MonoBehaviour {
     [ContextMenu("Debug")]
     private void UpdateViewValue()
     {
+        mResult.Sort();
+        mResult.Reverse();
         GameObject target = GameObject.Find("RankContents");
         for (int i = 0; i < 15; i++)
         {
@@ -57,7 +59,7 @@ public class RankingSeq : MonoBehaviour {
     private void ResultDate()
     {
         mResult = mPhp.GetRankingDate();
-        mResult.Reverse();
+        //mResult.Reverse();
     }
 
 }
