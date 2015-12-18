@@ -112,6 +112,7 @@
     <Compile Include="Assets\Nishi\Script\Effects\TimeUPEffect.cs" />
     <Compile Include="Assets\Nishi\Script\Effects\TitleCallEffect.cs" />
     <Compile Include="Assets\Nishi\Script\Effects\TitleLogo.cs" />
+    <Compile Include="Assets\Nishi\Script\Effects\TitlePlating.cs" />
     <Compile Include="Assets\Nishi\Script\GyroGravity.cs" />
     <Compile Include="Assets\Nishi\Script\IPauseSend.cs" />
     <Compile Include="Assets\Nishi\Script\IRecieveMessage.cs" />

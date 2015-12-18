@@ -11,5 +11,10 @@ public enum AudioList
     Pause,
     Rainbow,
     Stamp,
-    touch
+    touch,
+    TitleBGM,
+    GameMainBGM,
+    TimeSlightly,
+    ResultBGM
+    
 }

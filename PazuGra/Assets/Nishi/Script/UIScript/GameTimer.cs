@@ -61,6 +61,7 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
                 m_1Digit.color = alpha;
                 m_10Digit.color = alpha;
                 m_100Digit.color = alpha;
+                AudioManager.Instance.BGMPlay(AudioList.TimeSlightly);
             }
             else
             {
@@ -73,6 +74,7 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         {
             if (!m_isEffectEnd)
             {
+                AudioManager.Instance.BGMStop();
                 GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(true);
                 EffectManager.Instance.Create(m_EndePrefab, GameObject.Find("PuauseUI").transform);
                 m_isEffectEnd = true;

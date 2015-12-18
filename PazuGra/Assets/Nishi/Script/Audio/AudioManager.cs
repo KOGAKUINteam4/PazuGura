@@ -17,12 +17,15 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    private AudioList CurrentAudio = AudioList.Pause;
+
     [SerializeField]
     private AudioSource m_AudioSE;
     [SerializeField]
     private AudioSource m_AudioBGM;
 
-    public AudioClip[] AudioClips;
+    public AudioClip[] AudioClipsSE;
+    public AudioClip[] AudioClipsBGM;
 
     public Dictionary<AudioList, AudioClip> m_AudioSEClips = new Dictionary<AudioList, AudioClip>();
     public Dictionary<AudioList, AudioClip> m_AudioBGMClips = new Dictionary<AudioList, AudioClip>();
@@ -30,21 +33,36 @@ public class AudioManager : MonoBehaviour
     public void Awake()
     {
         int i = 0;
-        foreach(AudioClip AC in AudioClips)
+        foreach (AudioClip AC in AudioClipsSE)
         {
-            m_AudioSEClips.Add((AudioList)i,AC);
+            m_AudioSEClips.Add((AudioList)i, AC);
+
+            i++;
+        }
+
+        foreach(AudioClip AC in AudioClipsBGM)
+        {
+            m_AudioBGMClips.Add((AudioList)i, AC);
+
             i++;
         }
     }
 
     public void BGMPlay(AudioList name)
     {
+        if (CurrentAudio == name) return;
+        if (m_AudioBGM.isPlaying)
+        {
+            BGMStop();
+        }
+        CurrentAudio = name;
         m_AudioBGM.clip = m_AudioBGMClips[name];
         m_AudioBGM.Play();
     }
 
     public void BGMStop()
     {
+        CurrentAudio = AudioList.Cancel;
         m_AudioBGM.Stop();
     }
 

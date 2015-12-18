@@ -32,18 +32,17 @@ public class TitleLogo : MonoBehaviour {
 
     void Update()
     {
-        //if(Input.GetMouseButtonDown(0))
-        //{
-        //    LeanTween.cancelAll();
-        //    transform.GetChild(0).gameObject.GetComponent<Image>().fillAmount = 1;
-        //    transform.GetChild(1).localPosition = new Vector3(350, -70, 0);
-        //    transform.GetChild(2).localPosition = new Vector3(0, -100, 0);
-        //    transform.GetChild(3).localPosition = new Vector3(0, -627.653f, 0);
-        //    transform.GetChild(4).localPosition = new Vector3(0, -1048, 0);
-        //    //transform.GetChild(1).GetComponent<RectTransform>().position = new Vector3(350, -70, 0);
-        //    //transform.GetChild(2).GetComponent<RectTransform>().position = new Vector3(0, -100, 0);
-        //    //transform.GetChild(3).GetComponent<RectTransform>().position = new Vector3(0, -627.653f, 0);
-        //    //transform.GetChild(4).GetComponent<RectTransform>().position = new Vector3(0, -1048, 0);
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            LeanTween.cancelAll();
+            Image image = transform.GetChild(0).gameObject.GetComponent<Image>();
+            image.color = new Color(1, 1, 1, 1);
+            transform.GetChild(1).localPosition = new Vector3(0, -627.653f, 0);
+            transform.GetChild(2).localPosition = new Vector3(0, -1048, 0);
+            //transform.GetChild(1).GetComponent<RectTransform>().position = new Vector3(350, -70, 0);
+            //transform.GetChild(2).GetComponent<RectTransform>().position = new Vector3(0, -100, 0);
+            //transform.GetChild(3).GetComponent<RectTransform>().position = new Vector3(0, -627.653f, 0);
+            //transform.GetChild(4).GetComponent<RectTransform>().position = new Vector3(0, -1048, 0);
+        }
     }
 }

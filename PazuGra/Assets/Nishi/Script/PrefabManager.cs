@@ -58,6 +58,7 @@ public class PrefabManager : MonoBehaviour
         //m_prevPrefab = m_CurrentPrefab;
         m_CurrentEnables = m_TitleEnables;
         ActiveTitle();
+        AudioManager.Instance.BGMPlay(AudioList.TitleBGM);
     }
 
     public void Update()
@@ -126,6 +127,7 @@ public class PrefabManager : MonoBehaviour
 
         if (m_CurrentPrefab == PrefabName.Title)
         {
+            AudioManager.Instance.BGMPlay(AudioList.TitleBGM);
             scriptEnables(false);
             m_CurrentEnables = m_TitleEnables;
             ActiveTitle();
@@ -137,6 +139,7 @@ public class PrefabManager : MonoBehaviour
         }
         else if (m_CurrentPrefab == PrefabName.GameMain)
         {
+            AudioManager.Instance.BGMPlay(AudioList.GameMainBGM);
             scriptEnables(false);
             m_CurrentEnables = m_GameMainEnables;
             ActiveMain();
@@ -150,6 +153,7 @@ public class PrefabManager : MonoBehaviour
         }
         else
         {
+            AudioManager.Instance.BGMPlay(AudioList.ResultBGM);
             scriptEnables(false);
             m_CurrentEnables = m_RankingEnables;
             ActiveRanking();
