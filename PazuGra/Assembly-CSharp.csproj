@@ -77,6 +77,8 @@
      <Compile Include="Assets\Nishi\Script\Effects\EffectManager.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\FlashLine.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\GameStartEffect.cs" />
+     <Compile Include="Assets\Nishi\Script\Effects\LineEffect.cs" />
+     <Compile Include="Assets\Nishi\Script\Effects\LineEffectManager.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\MainCallEffect.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\MainEndEffect.cs" />
      <Compile Include="Assets\Nishi\Script\Effects\TimeUPEffect.cs" />
