@@ -46,6 +46,7 @@ public class StampCounter : MonoBehaviour {
         if (!IsActive()) { return; }
         if (GameObject.Find("Factory").GetComponent<BlockFactory>().GetShoot()) return;
 
+        AudioManager.Instance.SEPlay(AudioList.Stamp);
         mStampCounter.AddCost(-mCounter);
 
         if (mPoint == null || mPoint.Length == 0) mFactory.DebugStart(mName,(int)mColor);

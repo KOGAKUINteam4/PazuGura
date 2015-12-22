@@ -53,7 +53,11 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         if (!mIsShoot){
             if (Input.GetMouseButtonDown(0)) CreateBlockOnTouch();
             if (Input.GetMouseButton(0)) CreateBlockOnStay();
-            if (Input.GetMouseButtonUp(0))CreateBlockOnRelease();
+            if (Input.GetMouseButtonUp(0))
+            {
+                CreateBlockOnRelease();
+                if(isRainbow) AudioManager.Instance.SEPlay(AudioList.Rainbow);
+            }
         }
 
         UpdateInstanceUI();
@@ -148,12 +152,17 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
             gravity.isKinematic = false;
             gravity.AddForce(vec.normalized * 50.0f,ForceMode2D.Impulse);
 
-            if (isRainbow)mInstanceUI.transform.GetChild(0).GetComponent<Image>().sprite = mPolygonMaker.m_RainbowSprit;
+            if (isRainbow)
+            {
+                
+                mInstanceUI.transform.GetChild(0).GetComponent<Image>().sprite = mPolygonMaker.m_RainbowSprit;
+            }
             else mInstanceUI.transform.GetChild(0).GetComponent<Image>().color = mPolygonMaker.RandomColor();
             //フラグ等の初期化
             isRainbow = false;
             mInstanceUI = null;
             mIsShoot = false;
+            AudioManager.Instance.SEPlay(AudioList.Flick);
         }
     }
 

@@ -13,6 +13,7 @@ public class TouchPoint : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(Input.GetMouseButtonDown(0)) AudioManager.Instance.SEPlay(AudioList.touch);
         if (Input.GetMouseButton(0))
         {
             Vector3 screenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
