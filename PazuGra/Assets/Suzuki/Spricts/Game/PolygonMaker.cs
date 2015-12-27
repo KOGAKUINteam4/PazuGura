@@ -160,8 +160,6 @@ public class PolygonMaker : MonoBehaviour
         List<Vector2> list = new List<Vector2>();
         for (int i = 0; i < mPoint.Count; i++)
         {
-            //list.Add(mPoint[i] * 9.0f / 16.0f);
-            //list.Add(new Vector2(mPoint[i].x * 9.0f / 16.0f * 3f, mPoint[i].y * 9.0f / 16.0f * 1.5f));
             list.Add(new Vector2(mPoint[i].x * 9.0f / 16.0f * 1.5f, mPoint[i].y * 9.0f / 16.0f * 1.5f));
         }
         //頂点の設定

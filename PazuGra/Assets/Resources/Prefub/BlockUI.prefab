@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11446190}
   - 114: {fileID: 11442086}
   - 114: {fileID: 11429716}
+  - 114: {fileID: 11430902}
   m_Layer: 11
   m_Name: BlockUI
   m_TagString: Block
@@ -114,6 +115,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02364ae6895860d4e8cd24b00dacf820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11430902
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: .5}
+  m_EffectDistance: {x: 5, y: 5}
+  m_UseGraphicAlpha: 1
 --- !u!114 &11434436
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -170,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c4b465a23a20b4d909695ee4052a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: 1.20000005
+  scale: 1.29999995
 --- !u!114 &11446190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -299,7 +314,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scale
-      value: 1.20000005
+      value: 1.29999995
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -325,6 +340,26 @@ Prefab:
       propertyPath: m_ChainParticle
       value: 
       objectReference: {fileID: 111308, guid: a77be46e5c132cb438e692f264615c9b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_EffectColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EffectColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EffectColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EffectDistance.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_EffectDistance.y
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 138794}

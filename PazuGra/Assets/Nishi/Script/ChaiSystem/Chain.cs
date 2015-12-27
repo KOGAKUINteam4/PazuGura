@@ -36,7 +36,9 @@ public class Chain : MonoBehaviour
         else if (m_MyInfo.m_ColorState == ColorState.Color_GREEN)  return Color.green;
         else if (m_MyInfo.m_ColorState == ColorState.Color_RED)    return Color.red;
         else return Color.black;
-    } 
+    }
+
+    private bool mIsHit = false;
 
     // Update is called once per frame
     void Update()
@@ -71,13 +73,14 @@ public class Chain : MonoBehaviour
             m_Chains.Remove(null);
         }
 
-        
+        if (!mIsHit) m_Chains.Clear();
 
 
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
+        mIsHit = true;
         if (m_isCheck)
         {
             if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
@@ -103,6 +106,7 @@ public class Chain : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
+        mIsHit = false;
         if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
         {
             var objs = GameObject.FindGameObjectsWithTag("Collider");
