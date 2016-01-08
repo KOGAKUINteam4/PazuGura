@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 public class Chain : MonoBehaviour
 {
-
-
     private BlockInfo m_MyInfo;
 
     /// <summary>
@@ -19,6 +17,8 @@ public class Chain : MonoBehaviour
 
     [SerializeField]
     private GameObject m_ChainParticle;
+
+    public float debugTime;
 
 
     // Use this for initialization
@@ -43,18 +43,25 @@ public class Chain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_isCheck || m_isFlash)
-        {
-            gameObject.transform.parent.GetComponent<Rigidbody2D>().WakeUp();
-        }
         if (m_isFlash)
         {
             if (!m_Chains.Contains(transform.parent.gameObject)) m_Chains.Add(transform.parent.gameObject);
         }
 
         //色の変更の処理
-        if (m_Chains.Count >= 3)
+        if (m_Chains.Count >= 3 && mIsHit)
         {
+            debugTime += Time.deltaTime;
+            if(debugTime > 1)
+            {
+                debugTime = 0;
+                var objs = GameObject.FindGameObjectsWithTag("Collider");
+                foreach (GameObject obj in objs)
+                {
+                    obj.GetComponent<Chain>().m_Chains.Clear();
+                }
+            }
+
             if(m_ActiveParticle == null)
             {
                 m_ActiveParticle = (GameObject)Instantiate(m_ChainParticle, transform.position, Quaternion.identity);
@@ -75,7 +82,6 @@ public class Chain : MonoBehaviour
 
         if (!mIsHit) m_Chains.Clear();
 
-
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -95,19 +101,18 @@ public class Chain : MonoBehaviour
 
         if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
         {
-            var temp = other.transform.FindChild("Collider");
+            var temp = other.transform.FindChild("Collider").GetComponent<Chain>();
             this.m_isFlash = true;
-            temp.GetComponent<Chain>().m_isFlash = true;
-
-            temp.GetComponent<Chain>().m_Chains = this.m_Chains;
+            temp.m_isFlash = true;
+            temp.m_Chains = this.m_Chains;
         }
 
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         mIsHit = false;
-        if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
+        if (other.tag == "Block" /*&& ColorChack(other.GetComponent<BlockInfo>().m_ColorState)*/)
         {
             var objs = GameObject.FindGameObjectsWithTag("Collider");
             foreach (GameObject obj in objs)
@@ -117,7 +122,21 @@ public class Chain : MonoBehaviour
 
             }
         }
-        
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        mIsHit = false;
+        if (other.tag == "Block" /*&& ColorChack(other.GetComponent<BlockInfo>().m_ColorState)*/)
+        {
+            var objs = GameObject.FindGameObjectsWithTag("Collider");
+            foreach (GameObject obj in objs)
+            {
+                obj.GetComponent<Chain>().m_isFlash = false;
+                obj.GetComponent<Chain>().m_Chains.Clear();
+
+            }
+        }  
     }
 
     public bool IsCheck()
@@ -136,5 +155,10 @@ public class Chain : MonoBehaviour
         if (m_MyInfo.m_ColorState == ColorState.Color_ALL) return true;
         if (state == m_MyInfo.m_ColorState || state == ColorState.Color_ALL) return true;
         return false;
+    }
+
+    private bool CheckRemove(GameObject list)
+    {
+        return !list.transform.FindChild("Collider").GetComponent<Chain>().m_isFlash;
     }
 }
