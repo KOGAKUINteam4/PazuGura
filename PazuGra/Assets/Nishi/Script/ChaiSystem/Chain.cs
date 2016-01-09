@@ -31,10 +31,10 @@ public class Chain : MonoBehaviour
 
     private Color ColorTable()
     {
-        if (m_MyInfo.m_ColorState == ColorState.Color_BLUE)        return Color.blue;
+        if (m_MyInfo.m_ColorState == ColorState.Color_BLUE) return Color.blue;
         else if (m_MyInfo.m_ColorState == ColorState.Color_YELLOW) return Color.yellow;
-        else if (m_MyInfo.m_ColorState == ColorState.Color_GREEN)  return Color.green;
-        else if (m_MyInfo.m_ColorState == ColorState.Color_RED)    return Color.red;
+        else if (m_MyInfo.m_ColorState == ColorState.Color_GREEN) return Color.green;
+        else if (m_MyInfo.m_ColorState == ColorState.Color_RED) return Color.red;
         else return Color.black;
     }
 
@@ -43,26 +43,49 @@ public class Chain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (m_isFlash)
+        //if (m_isFlash)
+        //{
+        //    if (!m_Chains.Contains(transform.parent.gameObject)) m_Chains.Add(transform.parent.gameObject);
+        //}
+
+        //NULLがあれば削除
+        if (m_Chains.Contains(null))
         {
-            if (!m_Chains.Contains(transform.parent.gameObject)) m_Chains.Add(transform.parent.gameObject);
+            m_Chains.Remove(null);
         }
 
-        //色の変更の処理
-        if (m_Chains.Count >= 3 && mIsHit)
+        if (m_Chains.Count >= 2 || m_isFlash)
         {
-            debugTime += Time.deltaTime;
-            if(debugTime > 1)
+            foreach(GameObject g in m_Chains)
             {
-                debugTime = 0;
-                var objs = GameObject.FindGameObjectsWithTag("Collider");
-                foreach (GameObject obj in objs)
-                {
-                    obj.GetComponent<Chain>().m_Chains.Clear();
-                }
+                g.transform.FindChild("Collider").GetComponent<Chain>().m_isFlash = true;
             }
+            m_isFlash = true;
+        }
+        //else
+        //{
+        //    foreach (GameObject g in m_Chains)
+        //    {
+        //        g.transform.FindChild("Collider").GetComponent<Chain>().m_isFlash = false;
+        //    }
+        //    m_isFlash = false;
+        //}
 
-            if(m_ActiveParticle == null)
+        //色の変更の処理
+        if (m_isFlash)
+        {
+            //debugTime += Time.deltaTime;
+            //if (debugTime > 1)
+            //{
+            //    debugTime = 0;
+            //    var objs = GameObject.FindGameObjectsWithTag("Collider");
+            //    foreach (GameObject obj in objs)
+            //    {
+            //        obj.GetComponent<Chain>().m_Chains.Clear();
+            //    }
+            //}
+
+            if (m_ActiveParticle == null)
             {
                 m_ActiveParticle = (GameObject)Instantiate(m_ChainParticle, transform.position, Quaternion.identity);
                 m_ActiveParticle.transform.SetParent(transform.parent);
@@ -74,14 +97,15 @@ public class Chain : MonoBehaviour
             Destroy(m_ActiveParticle);
         }
 
-        //NULLがあれば削除
-        if(m_Chains.Contains(null))
-        {
-            m_Chains.Remove(null);
-        }
+        
 
+        
+
+    }
+
+    public void LateUpdate()
+    {
         if (!mIsHit) m_Chains.Clear();
-
     }
 
     void OnTriggerStay2D(Collider2D other)
@@ -102,15 +126,32 @@ public class Chain : MonoBehaviour
         if (other.tag == "Block" && ColorChack(other.GetComponent<BlockInfo>().m_ColorState))
         {
             var temp = other.transform.FindChild("Collider").GetComponent<Chain>();
-            this.m_isFlash = true;
-            temp.m_isFlash = true;
-            temp.m_Chains = this.m_Chains;
+            //this.m_isFlash = true;
+            //temp.m_isFlash = true;
+            //temp.m_Chains = this.m_Chains;
+            if (!m_Chains.Contains(temp.transform.parent.gameObject)) m_Chains.Add(temp.transform.parent.gameObject);
         }
 
     }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        m_isFlash = false;
+        mIsHit = false;
+        if (other.tag == "Block" /*&& ColorChack(other.GetComponent<BlockInfo>().m_ColorState)*/)
+        {
+            var objs = GameObject.FindGameObjectsWithTag("Collider");
+            foreach (GameObject obj in objs)
+            {
+                obj.GetComponent<Chain>().m_isFlash = false;
+                obj.GetComponent<Chain>().m_Chains.Clear();
+            }
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        m_isFlash = false;
         mIsHit = false;
         if (other.tag == "Block" /*&& ColorChack(other.GetComponent<BlockInfo>().m_ColorState)*/)
         {
@@ -122,21 +163,6 @@ public class Chain : MonoBehaviour
 
             }
         }
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        mIsHit = false;
-        if (other.tag == "Block" /*&& ColorChack(other.GetComponent<BlockInfo>().m_ColorState)*/)
-        {
-            var objs = GameObject.FindGameObjectsWithTag("Collider");
-            foreach (GameObject obj in objs)
-            {
-                obj.GetComponent<Chain>().m_isFlash = false;
-                obj.GetComponent<Chain>().m_Chains.Clear();
-
-            }
-        }  
     }
 
     public bool IsCheck()
@@ -147,6 +173,11 @@ public class Chain : MonoBehaviour
     public void SetCheck(bool check)
     {
         m_isCheck = check;
+    }
+
+    public List<GameObject> GetList()
+    {
+        return m_Chains;
     }
 
     //接触したオブジェクトの色を判定
