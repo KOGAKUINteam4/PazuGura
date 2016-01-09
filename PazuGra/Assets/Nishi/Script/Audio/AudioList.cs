@@ -13,7 +13,11 @@ public enum AudioList
     Stamp,
     touch,
     TitleBGM,
-    GameMainBGM,
+    GameMainBGM1,
+    GameMainBGM2,
+    GameMainBGM3,
+    GameMainBGM4,
+    GameMainBGM5,
     TimeSlightly,
     ResultBGM
     

@@ -7562,7 +7562,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cf66d25773e2b8e41bc83ea2d80c9003, type: 3}
   AudioClipsBGM:
   - {fileID: 8300000, guid: c333772724b66f0449f1ab247a2cb4c7, type: 3}
-  - {fileID: 8300000, guid: 90f1342d44fa73042929896d2cf79a19, type: 3}
+  - {fileID: 8300000, guid: 36664cf17fbc42141931f18ef6f2ed20, type: 3}
+  - {fileID: 8300000, guid: 49d91a8bce3fb6b40be02279dfb96890, type: 3}
+  - {fileID: 8300000, guid: 85815592aa00f744987e909ec5553533, type: 3}
+  - {fileID: 8300000, guid: db8d3207ff65d8249b026375f5413d32, type: 3}
+  - {fileID: 8300000, guid: 07bf013e510e9324eb1098606f35480a, type: 3}
   - {fileID: 8300000, guid: c0b8bb98119361e48842a2493315a840, type: 3}
   - {fileID: 8300000, guid: 91ddd863297bae64ba8daf93d3baa031, type: 3}
 --- !u!1 &792576849

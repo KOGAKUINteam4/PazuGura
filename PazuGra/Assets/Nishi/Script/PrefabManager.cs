@@ -139,7 +139,8 @@ public class PrefabManager : MonoBehaviour
         }
         else if (m_CurrentPrefab == PrefabName.GameMain)
         {
-            AudioManager.Instance.BGMPlay(AudioList.GameMainBGM);
+            int random = Random.Range(10, 15);
+            AudioManager.Instance.BGMPlay((AudioList)random);
             scriptEnables(false);
             m_CurrentEnables = m_GameMainEnables;
             ActiveMain();
