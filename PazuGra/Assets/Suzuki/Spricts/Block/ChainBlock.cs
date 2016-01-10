@@ -49,6 +49,7 @@ public class ChainBlock : MonoBehaviour {
 
     private void IsChacked(Collision2D col,bool state)
     {
+
         col.transform.GetComponent<ChainBlock>().mChainChack = state;
     }
 
@@ -57,7 +58,6 @@ public class ChainBlock : MonoBehaviour {
         if (col.transform.GetComponent<ChainBlock>().mChainChack) return true;
         return false;
     }
-
 
     private void OnCollisionEnter2D(Collision2D col)
     {
