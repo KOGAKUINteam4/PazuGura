@@ -134,20 +134,20 @@ public class Chain : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        m_isFlash = false;
-        mIsHit = false;
-        if (other.tag == "Block" /*&& ColorChack(other.GetComponent<BlockInfo>().m_ColorState)*/)
-        {
-            var objs = GameObject.FindGameObjectsWithTag("Collider");
-            foreach (GameObject obj in objs)
-            {
-                obj.GetComponent<Chain>().m_isFlash = false;
-                obj.GetComponent<Chain>().m_Chains.Clear();
-            }
-        }
-    }
+    //public void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    m_isFlash = false;
+    //    mIsHit = false;
+    //    if (other.tag == "Block" /*&& ColorChack(other.GetComponent<BlockInfo>().m_ColorState)*/)
+    //    {
+    //        var objs = GameObject.FindGameObjectsWithTag("Collider");
+    //        foreach (GameObject obj in objs)
+    //        {
+    //            obj.GetComponent<Chain>().m_isFlash = false;
+    //            obj.GetComponent<Chain>().m_Chains.Clear();
+    //        }
+    //    }
+    //}
 
     public void OnTriggerExit2D(Collider2D other)
     {
