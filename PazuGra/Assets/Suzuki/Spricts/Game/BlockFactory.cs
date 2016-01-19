@@ -25,6 +25,9 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     private Vector2 mTouchPosition;
 
     private bool mIsShoot = false;
+
+    [SerializeField]
+    private GameObject mOut;
     
     //Line引く用
     [SerializeField]
@@ -44,12 +47,19 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         mCaptureTexture = GameObject.Find("CaptureTexture").GetComponent<CaptureTexture>();
         mPolygonMaker = GameObject.Find("PolygonMaker").GetComponent<PolygonMaker>();
         mMainCamera = GameObject.Find("Sub Camera");
+        mOut = Resources.Load("Prefub/BlockUI_Out") as GameObject;
         mPolygonMaker.Init();
         //mStampCounter = GameObject.Find("StampTemplate").GetComponent<TemplateStamp>();
 	}
 
     private void Update()
     {
+        if (Input.GetMouseButtonUp(0))
+        {
+            if(mPolygonMaker.IsNullCross)
+            Invoke("InvokeFunc", 0.3f);
+        }
+
         if (!mIsShoot){
             if (Input.GetMouseButtonDown(0)) CreateBlockOnTouch();
             if (Input.GetMouseButton(0)) CreateBlockOnStay();
@@ -84,6 +94,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     //画面を押されている。
     public void CreateBlockOnStay()
     {
+        if (mPolygonMaker.IsNullCross) return;
         //インフォメーションの更新
         Vector3 mouseWorldPos = MathPos();
         if (mPolygonMaker.IsMakeDistance(mouseWorldPos)) AddPoint(mouseWorldPos);
@@ -93,11 +104,19 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         //mLineObject.transform.position = new Vector3(MathPos().x/50.0f, MathPos().y/50.0f, 0);
     }
 
+    private void InvokeFunc()
+    {
+        mPolygonMaker.IsNullCross = false;
+    }
+
     //画面を押され、リリースされたとき
     public void CreateBlockOnRelease()
     {
         Destroy(mLineObject);
+
+        Invoke("InvokeFunc",0.3f);
         if (!mPolygonMaker.IsMakeLine()) return;
+        mPolygonMaker.IsNullCross = true;
         //画面上に生成
         //サブカメラに写るポリゴンの生成
         StartCoroutine(mPolygonMaker.AnsyCreatePolygon(CreateTexture));
@@ -106,7 +125,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         //StartCoroutine(RenderTextureOutPut());
         mIsShoot = true;
         GameManager.GetInstanc.GetRanking().mDrowCount += 1;
-        if(!mIsStamp)mStampCounter.AddCost(1);
+        //if(!mIsStamp)
         mIsStamp = false;
     }
 
@@ -142,8 +161,12 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     private void UpdateInstanceUI()
     {
         if (mInstanceUI == null) return;
+        if (mPolygonMaker.IsNullCross) return;
+
 
         if (Input.GetMouseButtonDown(0)) mTouchPosition = MathPos();
+
+        if (mTouchPosition.x - Vector3.zero.x == 0) return;
 
         if (Input.GetMouseButtonUp(0)){
             Vector2 mouse = MathPos();
@@ -152,16 +175,39 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
             gravity.isKinematic = false;
             gravity.AddForce(vec.normalized * 50.0f,ForceMode2D.Impulse);
 
+            //if (isRainbow)
+            //{
+            //    mInstanceUI.transform.GetChild(0).GetComponent<Image>().sprite = mPolygonMaker.m_RainbowSprit;
+            //}
+            //else mInstanceUI.transform.GetChild(0).GetComponent<Image>().color = mPolygonMaker.RandomColor();
+            
+            GameObject outLine = Instantiate(mOut);
+            outLine.GetComponent<Image>().sprite = mInstanceUI.GetComponent<Image>().sprite;
+
+            outLine.transform.SetParent(mInstanceUI.transform,false);
+            outLine.transform.position = mInstanceUI.transform.position;
+            outLine.transform.SetSiblingIndex(2);
+
+            mStampCounter.AddCost(1);
+
             if (isRainbow)
             {
-                
-                mInstanceUI.transform.GetChild(0).GetComponent<Image>().sprite = mPolygonMaker.m_RainbowSprit;
+                mInstanceUI.transform.GetChild(0).GetComponent<Image>().color = Color.black;
+                outLine.transform.GetChild(0).GetComponent<Image>().color = Color.white;
+                outLine.transform.GetChild(0).GetComponent<Image>().sprite = mPolygonMaker.m_RainbowSprit;
             }
-            else mInstanceUI.transform.GetChild(0).GetComponent<Image>().color = mPolygonMaker.RandomColor();
+            else outLine.transform.GetChild(0).GetComponent<Image>().color = mPolygonMaker.RandomColor();
+            
+            
             //フラグ等の初期化
             isRainbow = false;
             mInstanceUI = null;
             mIsShoot = false;
+
+            mTouchPosition = Vector3.zero;
+
+            //ここで作る。
+
             AudioManager.Instance.SEPlay(AudioList.Flick);
         }
     }
@@ -213,12 +259,14 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     {
         if (GetShoot()) return;
         mPolygonMaker.SetStampColor(color);
+        if (color == (int)ColorState.Color_ALL) isRainbow = true;
         StartCoroutine(LoadText(name));
     }
 
     public void StampUpdate(Vector2[] point,int color)
     {
         mPolygonMaker.SetStampColor(color);
+        if (color == (int)ColorState.Color_ALL) isRainbow = true;
         StartCoroutine(LoadText(point));
     }
 

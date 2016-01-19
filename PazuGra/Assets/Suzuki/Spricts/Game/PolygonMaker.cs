@@ -89,6 +89,9 @@ public class PolygonMaker : MonoBehaviour
         else return true;
     }
 
+
+    public bool IsNullCross = false;
+
     //頂点がなす線が交わっているか。
     private bool IsCross(List<Vector2> mRoot)
     {
@@ -99,6 +102,7 @@ public class PolygonMaker : MonoBehaviour
             if (MyMath.CheckInterSection(mRoot[last], mRoot[last - 1], mRoot[i], mRoot[i + 1]))
             {
                 mCrossPoint = i + 1;
+                if(mCrossPoint < 6)IsNullCross = true;
                 return true;
             }
         }
@@ -111,6 +115,11 @@ public class PolygonMaker : MonoBehaviour
         //頂点をまたいだ場合の処理
         if (IsCross(mRoot))
         {
+            if (IsNullCross)
+            {
+                mBlockFactory.CreateBlockOnRelease();
+                return;
+            }
             CreatePolygonOnCross(mCrossPoint);
             CreatePolygon(mCrossPoint);
             mRoot.Clear();
@@ -405,8 +414,6 @@ public class PolygonMaker : MonoBehaviour
         //Cubeの位置を頂点としている
         mesh.vertices = vertices;
 
-        //Debug.Log("CrossPoint : "+crossPoint);
-
         //頂点の数で初期化
         Vector2[] verticesXY = new Vector2[crossPoint + 1];
         for (int i = 0; i < crossPoint; i++)
@@ -417,16 +424,53 @@ public class PolygonMaker : MonoBehaviour
             //Debug.Log(i);
         }
 
+        //5>
+
         verticesXY[crossPoint] = mRoot[0];
+
+        UnityEngine.Debug.Log("Count : "+verticesXY.Length);
+
+        //if(verticesXY.Length < 6){
+        //    List<Vector2> list = new List<Vector2>(verticesXY);
+        //    verticesXY = new Vector2[verticesXY.Length * 2];
+        //    UnityEngine.Debug.Log("L" + verticesXY.Length);
+        //    UnityEngine.Debug.Log("List : " + list.Count);
+        //    List<Vector2> newList = new List<Vector2>();
+
+        //    for (int i = 0; i < list.Count; i++ )
+        //    {
+        //        newList.Add(list[i]);
+        //        newList.Add();
+        //    }
+
+        //    for(int i = 0; i < verticesXY.Length;i += 2){
+        //        verticesXY[i] = list[i];
+        //        verticesXY[i+1] = (list[i] + list[i + 1]) / 2;
+        //    }
+        //    UnityEngine.Debug.Log("Count2 : " + verticesXY.Length);
+        //}
+
+        //if (verticesXY.Length == 4)
+        //{
+        //    List<Vector2> list = new List<Vector2>(verticesXY);
+        //    verticesXY = new Vector2[9];
+        //    verticesXY[0] = list[0];
+        //    verticesXY[1] = (list[0] + list[1]) / 2;
+        //    verticesXY[2] = list[1];
+        //    verticesXY[3] = (list[1] + list[2]) / 2;
+        //    verticesXY[4] = list[2];
+        //    verticesXY[5] = (list[2] + list[3]) / 2;
+        //    verticesXY[6] = list[3];
+        //    verticesXY[7] = (list[3] + list[4]) / 2;
+        //    verticesXY[8] = list[4];
+        //}
+
+
 
 
         //メッシュ内の全ての三角形を含む配列
         Triangulator tr = new Triangulator(verticesXY, Camera.main.transform.position);
-        //Debug.Log("Cross");
-        //Debug.Log(tr.Triangulate().Length);
-        //Debug.Log("Crossaa");
         int[] indices = tr.Triangulate();//ここで配列外
-        //Debug.Log("Cross1");
         mesh.triangles = indices;
         //頂点の数で初期化
         mesh.uv = new Vector2[crossPoint + 1];
@@ -460,8 +504,15 @@ public class PolygonMaker : MonoBehaviour
         float black = 0;
         foreach (var i in texture.GetPixels())
         {
-            if (i.a < 0.3f) black++;
-            else { white++; }
+            if (i.a < 0.3f)
+            {
+                black++;
+                //texture.SetPixel();
+            }
+            else
+            {
+                white++;
+            }
         }
         return white / black * 100.0f;
     }

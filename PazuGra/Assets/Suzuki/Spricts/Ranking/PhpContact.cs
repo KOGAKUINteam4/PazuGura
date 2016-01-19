@@ -64,6 +64,7 @@ public class PhpContact : MonoBehaviour {
                 Debug.Log("Score : " + jsonUid.str);
                 mResult.Add(int.Parse(jsonUid.str));
             }
+            yield return new WaitForSeconds(1.0f);
             mFunction();
             if (mFunction2 != null) mFunction2();
             //GameObject.Find("Php").GetComponent<Text>().text = "OK";
