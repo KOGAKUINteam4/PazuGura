@@ -10,7 +10,7 @@ public class TitlePlating : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.localPosition += new Vector3(800.0f, 0f, 0f) * Time.deltaTime;
+        transform.localPosition += (new Vector3(800.0f, 0f, 0f) * 0.7f) * Time.deltaTime;
         if(transform.localPosition.x > 500 )
         {
             transform.localPosition = new Vector3(-640, transform.localPosition.y, 0f);

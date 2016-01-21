@@ -66,10 +66,12 @@
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingEverything.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingPunch.cs" />
      <Compile Include="Assets\LeanTween\Examples\Scripts\TestingRigidbodyCS.cs" />
+     <Compile Include="Assets\Nishi\Script\Arrow.cs" />
      <Compile Include="Assets\Nishi\Script\Audio\AudioList.cs" />
      <Compile Include="Assets\Nishi\Script\Audio\AudioManager.cs" />
      <Compile Include="Assets\Nishi\Script\ChaiSystem\Chain.cs" />
      <Compile Include="Assets\Nishi\Script\ChaiSystem\ChainManager.cs" />
+     <Compile Include="Assets\Nishi\Script\ColorChange.cs" />
      <Compile Include="Assets\Nishi\Script\ComboCounter\ComboCounter.cs" />
      <Compile Include="Assets\Nishi\Script\ComboCounter\ComboGauge.cs" />
      <Compile Include="Assets\Nishi\Script\ComboCounter\ComboManager.cs" />
@@ -101,6 +103,7 @@
      <Compile Include="Assets\Nishi\Script\Ready＆Go\Slide.cs" />
      <Compile Include="Assets\Nishi\Script\ShakeGesture.cs" />
      <Compile Include="Assets\Nishi\Script\SortingLayer.cs" />
+     <Compile Include="Assets\Nishi\Script\SquareColor.cs" />
      <Compile Include="Assets\Nishi\Script\UIScript\Button\OnButton.cs" />
      <Compile Include="Assets\Nishi\Script\UIScript\Button\OnEndMenu.cs" />
      <Compile Include="Assets\Nishi\Script\UIScript\Button\PausaMenu.cs" />
