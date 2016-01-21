@@ -99,7 +99,13 @@ public class Pausable : MonoBehaviour , IPauseSend
             {
                 continue;
             }
-            monoBehaviour.enabled = false;
+            //if(!monoBehaviour.GetComponent<Outline>())
+            //monoBehaviour.enabled = false;
+            if (monoBehaviour.GetType() != typeof(Outline))
+            {
+                monoBehaviour.enabled = false;
+            }
+            //if (monoBehaviour.GetComponent<Outline>() != null) monoBehaviour.enabled = true;
         }
 
     }
