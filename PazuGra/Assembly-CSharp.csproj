@@ -96,6 +96,7 @@
      <Compile Include="Assets\Nishi\Script\Pointer\LimitTime.cs" />
      <Compile Include="Assets\Nishi\Script\Pointer\TouchPoint.cs" />
      <Compile Include="Assets\Nishi\Script\PrefabManager.cs" />
+     <Compile Include="Assets\Nishi\Script\Raibow.cs" />
      <Compile Include="Assets\Nishi\Script\Ready＆Go\AlphaController.cs" />
      <Compile Include="Assets\Nishi\Script\Ready＆Go\CreateObject.cs" />
      <Compile Include="Assets\Nishi\Script\Ready＆Go\Ready.cs" />
