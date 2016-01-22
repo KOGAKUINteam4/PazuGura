@@ -257,6 +257,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     [ContextMenu("Stamp")]
     public void DebugStart(string name,int color)
     {
+        if (isRainbow) color = (int)ColorState.Color_ALL;
         if (GetShoot()) return;
         mPolygonMaker.SetStampColor(color);
         if (color == (int)ColorState.Color_ALL) isRainbow = true;
@@ -265,6 +266,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
 
     public void StampUpdate(Vector2[] point,int color)
     {
+        if (isRainbow) color = (int)ColorState.Color_ALL;
         mPolygonMaker.SetStampColor(color);
         if (color == (int)ColorState.Color_ALL) isRainbow = true;
         StartCoroutine(LoadText(point));
