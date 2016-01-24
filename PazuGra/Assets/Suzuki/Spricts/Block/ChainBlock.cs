@@ -39,10 +39,8 @@ public class ChainBlock : MonoBehaviour {
     private void OtherChain(Collision2D col)
     {
         if (IsChainChack(col)){
-            Debug.Log("Call");
             //あたったものから先を見る
             if (!col.collider.gameObject.GetComponent<ChainBlock>().IsChainChack(col)){
-                Debug.Log("Chain");
             }
         }
     }
@@ -65,8 +63,7 @@ public class ChainBlock : MonoBehaviour {
         {
             if (GetState(col) == mMyInfo.m_ColorState){
                 mChainCounter++;
-                Debug.Log("Hit Count");
-                if (mChainCounter >= 2) { Debug.Log("Chain"); mChainCounter = 0; }
+                if (mChainCounter >= 2) {mChainCounter = 0; }
             }
         }
     }

@@ -18,9 +18,6 @@ public class Chain : MonoBehaviour
     [SerializeField]
     private GameObject m_ChainParticle;
 
-    public float debugTime;
-
-
     // Use this for initialization
     void Start()
     {
@@ -54,37 +51,21 @@ public class Chain : MonoBehaviour
             m_Chains.Remove(null);
         }
 
-        if (m_Chains.Count >= 2 || m_isFlash)
+        if (m_ActiveParticle == null)
         {
-            foreach(GameObject g in m_Chains)
+            if (m_Chains.Count >= 2 || m_isFlash)
             {
-                g.transform.FindChild("Collider").GetComponent<Chain>().m_isFlash = true;
+                foreach (GameObject g in m_Chains)
+                {
+                    g.transform.FindChild("Collider").GetComponent<Chain>().m_isFlash = true;
+                }
+                m_isFlash = true;
             }
-            m_isFlash = true;
         }
-        //else
-        //{
-        //    foreach (GameObject g in m_Chains)
-        //    {
-        //        g.transform.FindChild("Collider").GetComponent<Chain>().m_isFlash = false;
-        //    }
-        //    m_isFlash = false;
-        //}
 
         //色の変更の処理
         if (m_isFlash)
         {
-            //debugTime += Time.deltaTime;
-            //if (debugTime > 1)
-            //{
-            //    debugTime = 0;
-            //    var objs = GameObject.FindGameObjectsWithTag("Collider");
-            //    foreach (GameObject obj in objs)
-            //    {
-            //        obj.GetComponent<Chain>().m_Chains.Clear();
-            //    }
-            //}
-
             if (m_ActiveParticle == null)
             {
                 m_ActiveParticle = (GameObject)Instantiate(m_ChainParticle, transform.position, Quaternion.identity);
@@ -93,8 +74,8 @@ public class Chain : MonoBehaviour
         }
         else
         {
-            //transform.parent.transform.GetChild(0).GetComponent<Image>().color = ColorTable();
             Destroy(m_ActiveParticle);
+            
         }
 
         

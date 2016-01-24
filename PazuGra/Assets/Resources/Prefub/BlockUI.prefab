@@ -65,7 +65,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 138794}
-  m_Mass: 4
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
   m_GravityScale: 5
@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ChainParticle: {fileID: 111308, guid: a77be46e5c132cb438e692f264615c9b, type: 2}
+  debugTime: 0
 --- !u!114 &11429716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -298,7 +299,7 @@ Prefab:
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_Mass
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_GravityScale

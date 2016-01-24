@@ -173,7 +173,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
             Vector2 vec = new Vector2(mouse.x - mTouchPosition.x, mouse.y-mTouchPosition.y);
             Rigidbody2D gravity = mInstanceUI.GetComponent<Rigidbody2D>();
             gravity.isKinematic = false;
-            gravity.AddForce(vec.normalized * 50.0f,ForceMode2D.Impulse);
+            gravity.AddForce(vec.normalized * 10.0f,ForceMode2D.Impulse);
 
             //if (isRainbow)
             //{

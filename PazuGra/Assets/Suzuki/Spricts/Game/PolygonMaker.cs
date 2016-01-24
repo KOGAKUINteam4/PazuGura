@@ -124,7 +124,6 @@ public class PolygonMaker : MonoBehaviour
             CreatePolygon(mCrossPoint);
             mRoot.Clear();
             mRoot.Add(mPoint[mPoint.Count - 1]);
-            Debug.Log("Cross");
         }
     }
 
@@ -427,8 +426,6 @@ public class PolygonMaker : MonoBehaviour
         //5>
 
         verticesXY[crossPoint] = mRoot[0];
-
-        UnityEngine.Debug.Log("Count : "+verticesXY.Length);
 
         //if(verticesXY.Length < 6){
         //    List<Vector2> list = new List<Vector2>(verticesXY);

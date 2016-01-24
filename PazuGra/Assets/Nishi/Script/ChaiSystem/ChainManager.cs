@@ -51,7 +51,6 @@ public class ChainManager : MonoBehaviour
         //}
         if (Input.GetMouseButtonUp(0))
         {
-            ColliderSwitch(true);
             PushList();
             Remove();
         }
@@ -73,8 +72,6 @@ public class ChainManager : MonoBehaviour
         {
             if (hit.collider.tag == "Block")
             {
-
-                ColliderSwitch(true);
                 GameObject hitObj = hit.collider.gameObject.transform.GetChild(1).gameObject;
                 mHit = hitObj;
                 m_ClickObj = hit.collider.gameObject;

@@ -119,7 +119,6 @@ public class ScoreUI : MonoBehaviour {
     {
         int scoreValue = (int)value;
         string length = scoreValue.ToString();
-        Debug.Log(length);
         for (int i = length.Length; i < 6; i++) { length = "0" + length;}
         return mSprite[int.Parse(length.Substring(score, 1))];
         //return mSprite[int.Parse(length.Substring(score-1, 1))];

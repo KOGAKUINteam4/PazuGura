@@ -10,7 +10,6 @@ public class DebugObject : MonoBehaviour {
         mManager = GameManager.GetInstanc;
 
         BlockManager manager = mManager.GetBlockManager();
-        Debug.Log(manager);
 	}
 	
 	// Update is called once per frame
