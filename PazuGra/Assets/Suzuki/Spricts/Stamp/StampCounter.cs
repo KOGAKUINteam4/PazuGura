@@ -49,8 +49,21 @@ public class StampCounter : MonoBehaviour {
         AudioManager.Instance.SEPlay(AudioList.Stamp);
         mStampCounter.AddCost(-mCounter);
 
+        ActiveChange(false);
+        //Invoke("ActiveChange",1.5f);
+
         if (mPoint == null || mPoint.Length == 0) mFactory.DebugStart(mName,(int)mColor);
         else mFactory.StampUpdate(mPoint, (int)mColor);
+    }
+
+    private void ActiveChange(bool state)
+    {
+        GetComponent<Button>().interactable = state;
+    }
+
+    private void ActiveChange()
+    {
+        GetComponent<Button>().interactable = true;
     }
 
     public void StampUpdate(Vector2[] point)

@@ -57,7 +57,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         if (Input.GetMouseButtonUp(0))
         {
             if(mPolygonMaker.IsNullCross)
-            Invoke("InvokeFunc", 0.3f);
+            Invoke("InvokeFunc", 0.1f);
         }
 
         if (!mIsShoot){
@@ -95,6 +95,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     public void CreateBlockOnStay()
     {
         if (mPolygonMaker.IsNullCross) return;
+        if (mLineObject == null) return;
         //インフォメーションの更新
         Vector3 mouseWorldPos = MathPos();
         if (mPolygonMaker.IsMakeDistance(mouseWorldPos)) AddPoint(mouseWorldPos);
@@ -114,7 +115,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     {
         Destroy(mLineObject);
 
-        Invoke("InvokeFunc",0.3f);
+        Invoke("InvokeFunc",0.1f);
         if (!mPolygonMaker.IsMakeLine()) return;
         mPolygonMaker.IsNullCross = true;
         //画面上に生成

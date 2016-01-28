@@ -20,11 +20,13 @@ public class RankingSeq : MonoBehaviour {
 	}
 
     //Rankingが呼ばれた際に使う。
+    [ContextMenu("Update")]
     public void Init()
     {
         mGameManager = GameManager.GetInstanc;
         mPhp = mGameManager.GetPhpContact();
-        mPhp.DateBaseUpdate(GameManager.GetInstanc.GetScoreUI().GetScore());
+        mPhp.DateBaseUpdate(30000);
+        //mPhp.DateBaseUpdate(GameManager.GetInstanc.GetScoreUI().GetScore());
         mPhp.UpdateRankingDate(ResultDate, UpdateViewValue);
     }
 	

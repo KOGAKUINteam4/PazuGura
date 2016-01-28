@@ -45,11 +45,12 @@ public class PhpContact : MonoBehaviour {
 
     private IEnumerator GetResult(IsFunction mFunction, IsFunction mFunction2)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2.5f);
         WWWForm wwwForm = new WWWForm();
         wwwForm.AddField("keyword", "data");//不正接続防止用キーワード
         //http://
         WWW result = new WWW("http://tysonew.xsrv.jp/GetResult.php", wwwForm);
+        mResult.Clear();
         //GameObject.Find("Php").GetComponent<Text>().text = "false";
         yield return result;
 
