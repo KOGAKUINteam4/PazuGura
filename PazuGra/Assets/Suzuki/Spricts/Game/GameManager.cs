@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
     private ScoreUI mScore;
     private RankingParam mRanking;
 
+    private bool isTutorial;
+
     private void Awake()
     {
         mBlockManager = gameObject.AddComponent<BlockManager>();
@@ -52,5 +54,15 @@ public class GameManager : MonoBehaviour {
     public RankingParam GetRanking()
     {
         return mRanking;
+    }
+
+    public void SetTutorial(bool can)
+    {
+        isTutorial = true;
+    }
+
+    public bool GetTutorial()
+    {
+        return isTutorial;
     }
 }

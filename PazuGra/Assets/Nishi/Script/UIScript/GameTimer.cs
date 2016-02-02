@@ -49,6 +49,7 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         m_Timer -= Time.deltaTime;
         float display = m_Timer;
         display = Mathf.Clamp(display, 0, 999);
+        if (GameManager.GetInstanc.GetTutorial()) m_Timer = 181;
         if (!isTimerOver())
         {
             if (m_Timer < 30)

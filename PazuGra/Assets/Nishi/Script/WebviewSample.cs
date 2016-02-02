@@ -5,6 +5,7 @@ public class WebviewSample : MonoBehaviour
 {
 
     Vector3 defaultScale = Vector3.zero;
+    public GameObject m_UI = null;
 
     public void Start()
     {
@@ -26,7 +27,11 @@ public class WebviewSample : MonoBehaviour
     // Use this for initialization
     public void GoURL()
     {
-        Application.OpenURL("https://www.youtube.com/watch?v=7cwvUiGBMm4");
+        //Application.OpenURL("https://www.youtube.com/watch?v=7cwvUiGBMm4");
+        GameManager.GetInstanc.SetTutorial(true);
+        AudioManager.Instance.SEPlay(AudioList.Yes);
+        GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(true);
+        EffectManager.Instance.Create(m_UI, GameObject.Find("PuauseUI").transform);
     }
 
 }

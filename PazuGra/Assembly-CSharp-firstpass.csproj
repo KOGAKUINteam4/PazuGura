@@ -53,6 +53,7 @@
      <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
      <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\SampleInfo.cs" />
      <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
+     <Compile Include="Assets\Plugins\WebViewObject.cs" />
      <None Include="Assets\StreamingAssets\Art202.txt" />
      <None Include="Assets\JSON\readme.txt" />
      <None Include="Assets\StreamingAssets\Six.txt" />

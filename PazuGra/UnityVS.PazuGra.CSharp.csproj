@@ -133,11 +133,13 @@
     <Compile Include="Assets\Nishi\Script\ShakeGesture.cs" />
     <Compile Include="Assets\Nishi\Script\SortingLayer.cs" />
     <Compile Include="Assets\Nishi\Script\SquareColor.cs" />
+    <Compile Include="Assets\Nishi\Script\TutorialScript\StopUI.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\Button\OnButton.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\Button\OnEndMenu.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\Button\PausaMenu.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\GameTimer.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\RollGauge.cs" />
+    <Compile Include="Assets\Nishi\Script\WebviewSample.cs" />
     <Compile Include="Assets\ReduceVertexPolygonCollider2D.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ActiveStateToggler.cs" />
     <Compile Include="Assets\SampleAsset\Scripts\ApplicationManager.cs" />
