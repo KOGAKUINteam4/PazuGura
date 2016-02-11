@@ -22,6 +22,10 @@ public class GameStartEffect : MonoBehaviour
     private void End()
     {
         GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
+        if(GameManager.GetInstanc.GetTutorial())
+        {
+            GameObject.Find("Tutorial").GetComponent<TutorialManager>().StartTutorial();
+        }
         Destroy(gameObject);
     }
 }

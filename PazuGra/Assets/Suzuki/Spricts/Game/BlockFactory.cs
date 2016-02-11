@@ -67,10 +67,12 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
             {
                 CreateBlockOnRelease();
                 if(isRainbow) AudioManager.Instance.SEPlay(AudioList.Rainbow);
+                
             }
         }
 
         UpdateInstanceUI();
+        
     }
 
     public bool GetShoot() { return mIsShoot; }
@@ -96,6 +98,7 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
     {
         if (mPolygonMaker.IsNullCross) return;
         if (mLineObject == null) return;
+        
         //インフォメーションの更新
         Vector3 mouseWorldPos = MathPos();
         if (mPolygonMaker.IsMakeDistance(mouseWorldPos)) AddPoint(mouseWorldPos);
@@ -128,6 +131,8 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
         GameManager.GetInstanc.GetRanking().mDrowCount += 1;
         //if(!mIsStamp)
         mIsStamp = false;
+        //チュートリアルの更新 //ブロック生成
+        if (TutorialManager.Instance.GetStep() == 1) TutorialManager.Instance.StepUp();
     }
 
     //画面を押された瞬間
@@ -208,7 +213,8 @@ public class BlockFactory : MonoBehaviour , IRecieveMessage {
             mTouchPosition = Vector3.zero;
 
             //ここで作る。
-
+            //チュートリアルの更新 フリック
+            if (TutorialManager.Instance.GetStep() == 2 ||  TutorialManager.Instance.GetStep() == 4 || TutorialManager.Instance.GetStep() == 6) TutorialManager.Instance.StepUp();
             AudioManager.Instance.SEPlay(AudioList.Flick);
         }
     }

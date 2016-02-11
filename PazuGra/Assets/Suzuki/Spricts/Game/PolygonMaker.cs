@@ -64,7 +64,12 @@ public class PolygonMaker : MonoBehaviour
     public Color RandomColor()
     {
         //Add Color White
-        Color[] colors = new Color[5] { Color.red, Color.blue, Color.yellow, Color.green, Color.white };
+        //現職
+        //Color[] colors = new Color[5] { Color.red, Color.blue, Color.yellow, Color.green, Color.white };
+        //パステル
+        Color[] colors = new Color[5] {  new Color(1f,0.5f,0.5f),new Color(0.5f,0.5f,1f),new Color(1f,1f,0.5f),new Color(0.5f,1f,0.5f),Color.white };
+        //深色
+        //Color[] colors = new Color[5] { new Color(0.9f, 0.2f, 0.3f), new Color(0.4f, 0.6f, 0.8f), new Color(0.8f, 0.6f, 0.04f), new Color(0.06f, 0.6f, 0.2f), Color.white };
         return colors[colorstate];
     }
 
@@ -186,6 +191,7 @@ public class PolygonMaker : MonoBehaviour
         else
         {
             colorstate = Random.Range(0, 4);
+            if (GameManager.GetInstanc.GetTutorial()) colorstate = 0;
         }
 
         //Colorのスタンプの・・・

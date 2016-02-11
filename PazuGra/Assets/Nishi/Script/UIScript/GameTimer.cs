@@ -115,7 +115,7 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         GameObject temp = Instantiate(m_ImagePrefab);
         temp.transform.SetParent(gameObject.transform,false);
         Destroy(temp,1.2f);
-        AddSecond(3);
+        AddSecond(5);
     }
 
 }

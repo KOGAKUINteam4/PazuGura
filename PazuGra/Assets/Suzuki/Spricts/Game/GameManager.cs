@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
 
     public void SetTutorial(bool can)
     {
-        isTutorial = true;
+        isTutorial = can;
     }
 
     public bool GetTutorial()

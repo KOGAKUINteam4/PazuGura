@@ -10,6 +10,9 @@ public class ComboManager : MonoBehaviour, IRecieveMessage
 
     private int m_MaxCombo = 0;
 
+    /// <summary>
+    /// 
+    /// </summary>
     public void ComboSend()
     {
         if (m_Cgauge == null)
@@ -36,5 +39,10 @@ public class ComboManager : MonoBehaviour, IRecieveMessage
             m_MaxCombo = m_Cgauge.GetComponentInChildren<ComboCounter>().GetCombo();
             GameManager.GetInstanc.GetRanking().mCombo = m_MaxCombo;
         }
+    }
+
+    public void Reset()
+    {
+        m_MaxCombo = 0;
     }
 }

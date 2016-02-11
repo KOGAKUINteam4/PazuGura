@@ -133,7 +133,10 @@
     <Compile Include="Assets\Nishi\Script\ShakeGesture.cs" />
     <Compile Include="Assets\Nishi\Script\SortingLayer.cs" />
     <Compile Include="Assets\Nishi\Script\SquareColor.cs" />
+    <Compile Include="Assets\Nishi\Script\TutorialScript\IgnoreTouch.cs" />
     <Compile Include="Assets\Nishi\Script\TutorialScript\StopUI.cs" />
+    <Compile Include="Assets\Nishi\Script\TutorialScript\TutorialButton.cs" />
+    <Compile Include="Assets\Nishi\Script\TutorialScript\TutorialManager.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\Button\OnButton.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\Button\OnEndMenu.cs" />
     <Compile Include="Assets\Nishi\Script\UIScript\Button\PausaMenu.cs" />

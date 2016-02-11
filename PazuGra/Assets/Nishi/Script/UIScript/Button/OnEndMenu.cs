@@ -9,6 +9,8 @@ public class OnEndMenu : MonoBehaviour {
 
     public void OnGameEndYes()
     {
+        TutorialManager.Instance.StepReset();
+        GameManager.GetInstanc.SetTutorial(false);
         Destroy(gameObject.transform.parent.parent.gameObject);
         //PrefabManager.Instance.Next(PrefabName.Title); ;
         ExecuteEvents.Execute<IPauseSend>(

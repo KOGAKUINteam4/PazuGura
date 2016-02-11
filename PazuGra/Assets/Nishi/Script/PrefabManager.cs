@@ -99,6 +99,7 @@ public class PrefabManager : MonoBehaviour
         {
             GameObject.Find("GameTimer").GetComponent<GameTimer>().enabled = true;
             GameObject.Find("GameTimer").GetComponent<GameTimer>().TimeReset();
+            GameObject.Find("GamaManager").GetComponent<ComboManager>().Reset();
             if (GameObject.Find("RollGauges(Clone)") != null)
             {
                 Destroy(GameObject.Find("RollGauges(Clone)").gameObject);

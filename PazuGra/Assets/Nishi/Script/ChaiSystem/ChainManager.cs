@@ -104,6 +104,7 @@ public class ChainManager : MonoBehaviour
     {
         if (m_removeList.Count >= 3)
         {
+            if(TutorialManager.Instance.GetStep() == 7) TutorialManager.Instance.StepUp();
             AudioManager.Instance.SEPlay(AudioList.Chain);
             float score = 0;
             GameManager gameManager = GameManager.GetInstanc;
@@ -111,7 +112,8 @@ public class ChainManager : MonoBehaviour
             {
                 score += obj.GetComponent<BlockInfo>().m_BlockPoint;
                 gameManager.GetScoreUI().AddScore(obj.GetComponent<BlockInfo>().m_BlockPoint);
-                Color[] state = { Color.red,Color.black,Color.yellow,Color.green,Color.white};
+                //Color[] state = {Color.red,Color.black,Color.yellow,Color.green,Color.white};
+                Color[] state = {new Color(255,109,202),new Color(95,185,255),new Color(161,255,98),new Color(255, 195, 51),Color.white};
                 transform.GetComponent<SpriteEffect>().Create(obj, state[(int)obj.GetComponent<BlockInfo>().m_ColorState]);
                 //Destroy(obj);
                 if (m_Maxchain < m_removeList.Count)
