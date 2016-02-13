@@ -18,7 +18,8 @@ public class TouchPoint : MonoBehaviour {
         {
             Vector3 screenPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             screenPos.z = 0;
-            Instantiate(touchParticle, screenPos,Quaternion.Euler(-90,0,0));
+            GameObject temp = (GameObject)Instantiate(touchParticle, screenPos,Quaternion.Euler(-90,0,0));
+            temp.transform.SetParent(GameObject.Find("PuauseUI").transform,true);
         }
 	}
 }

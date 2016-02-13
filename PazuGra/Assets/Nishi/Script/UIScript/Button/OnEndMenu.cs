@@ -23,6 +23,7 @@ public class OnEndMenu : MonoBehaviour {
 
     public void OnRestartYes()
     {
+        TutorialManager.Instance.StepReset();
         Destroy(gameObject.transform.parent.parent.gameObject);
         PrefabManager.Instance.Next(PrefabName.GameMain);
         ExecuteEvents.Execute<IPauseSend>(

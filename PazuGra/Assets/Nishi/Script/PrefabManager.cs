@@ -104,6 +104,10 @@ public class PrefabManager : MonoBehaviour
             {
                 Destroy(GameObject.Find("RollGauges(Clone)").gameObject);
             }
+            if (GameObject.Find("Alert(Clone)") != null)
+            {
+                Destroy(GameObject.Find("Alert(Clone)").gameObject);
+            }
         }
 
         for (int i = 0; m_DefCanvas.transform.childCount > i; i++)

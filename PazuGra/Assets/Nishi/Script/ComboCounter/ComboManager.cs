@@ -18,7 +18,7 @@ public class ComboManager : MonoBehaviour, IRecieveMessage
         if (m_Cgauge == null)
         {
             m_Cgauge = Instantiate(m_CgaugePrefab);
-            m_Cgauge.transform.SetParent(GameObject.Find("FrontCanvas").transform, false);
+            m_Cgauge.transform.SetParent(GameObject.Find("FrontCanvas").transform.GetChild(0), false);
         }
         else
         {

@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c38f03d35c7a24aaf61a40e8e511cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Ready: {fileID: 0}
 --- !u!114 &11499426
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: d96c2251815c5294c9d0200a2c71ad71, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 57fe804ef23eb0a47a8d9aa755275dbe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -123,7 +124,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -2.28881836e-05, y: 146.899994}
+  m_AnchoredPosition: {x: 87, y: -603}
   m_SizeDelta: {x: 1050.19995, y: 393.799988}
   m_Pivot: {x: .5, y: .5}
 --- !u!1001 &100100000

@@ -122,6 +122,7 @@ public class ChainManager : MonoBehaviour
                 }
                 StartCoroutine(coRoutine(obj));
             }
+            //TODO/ここでエフェクト追加
             gameManager.GetScoreUI().UpdateScore(score);
             gameManager.GetScoreUI().CreateEffect();
             ComboGaugeStart();

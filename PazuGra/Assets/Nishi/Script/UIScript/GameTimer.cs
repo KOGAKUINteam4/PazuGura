@@ -23,8 +23,11 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
     private GameObject m_ImagePrefab;
     [SerializeField]
     private GameObject m_EndePrefab;
+    [SerializeField]
+    private GameObject m_AlertPrefab;
 
     private bool m_isEffectEnd = false;
+    private GameObject m_AlertCurrent;
 
     public void Awake()
     {
@@ -63,9 +66,15 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
                 m_10Digit.color = alpha;
                 m_100Digit.color = alpha;
                 AudioManager.Instance.BGMPlay(AudioList.TimeSlightly);
+                if (m_AlertCurrent == null)
+                {
+                    m_AlertCurrent = Instantiate(m_AlertPrefab);
+                    m_AlertCurrent.transform.SetParent(transform,false);
+                }
             }
             else
             {
+                Destroy(m_AlertCurrent);
                 m_1Digit.sprite = m_nums[((int)display / 1) % 10];
                 m_10Digit.sprite = m_nums[((int)display / 10) % 10];
                 m_100Digit.sprite = m_nums[((int)display / 100) % 10];
@@ -75,6 +84,7 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         {
             if (!m_isEffectEnd)
             {
+                Destroy(m_AlertCurrent);
                 AudioManager.Instance.BGMStop();
                 GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(true);
                 EffectManager.Instance.Create(m_EndePrefab, GameObject.Find("PuauseUI").transform);

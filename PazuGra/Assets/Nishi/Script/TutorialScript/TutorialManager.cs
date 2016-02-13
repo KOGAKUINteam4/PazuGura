@@ -9,6 +9,9 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     GameObject[] m_Images;
 
+    [SerializeField]
+    GameObject m_Dummys;
+
     int m_NowStep = 0;
     int m_PreviousStep = 0;
     int m_ImageNum = 0;
@@ -44,10 +47,13 @@ public class TutorialManager : MonoBehaviour
             m_CurrentObj1.transform.SetParent(transform, false);
             m_PreviousStep = m_NowStep;
         }
+        transform.SetAsLastSibling();
     }
 
     public void StartTutorial()
     {
+        GameObject temp = Instantiate(m_Dummys);
+        temp.transform.SetParent(transform, false);
         m_CurrentObj1 = Instantiate(m_UIs[0]);
         m_CurrentObj1.transform.SetParent(transform, false);
     }
@@ -62,6 +68,7 @@ public class TutorialManager : MonoBehaviour
 
         Destroy(m_CurrentObj2);
         Destroy(m_CurrentObj1);
+        m_ImageNum = 0;
         m_NowStep = 0;
         m_PreviousStep = 0;
     }

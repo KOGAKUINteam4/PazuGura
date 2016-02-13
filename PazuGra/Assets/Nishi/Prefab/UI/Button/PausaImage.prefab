@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: dfde8bed0cbe9c143aca981be2f8a667, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 067056fe91e43c040ac4e0e25f0ce6a0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -461,8 +461,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -11, y: 1}
-  m_SizeDelta: {x: 1073, y: 1921}
+  m_AnchoredPosition: {x: 1, y: -5}
+  m_SizeDelta: {x: 1152, y: 2001}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22474530
 RectTransform:
@@ -521,7 +521,12 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 067056fe91e43c040ac4e0e25f0ce6a0,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 128924}
