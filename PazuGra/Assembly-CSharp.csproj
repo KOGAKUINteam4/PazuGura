@@ -116,6 +116,7 @@
      <Compile Include="Assets\Nishi\Script\UIScript\Button\PausaMenu.cs" />
      <Compile Include="Assets\Nishi\Script\UIScript\GameTimer.cs" />
      <Compile Include="Assets\Nishi\Script\UIScript\RollGauge.cs" />
+     <Compile Include="Assets\Nishi\Script\UIScript\ScoreSystem.cs" />
      <Compile Include="Assets\Nishi\Script\WebviewSample.cs" />
      <Compile Include="Assets\ReduceVertexPolygonCollider2D.cs" />
      <Compile Include="Assets\SampleAsset\Scripts\ActiveStateToggler.cs" />

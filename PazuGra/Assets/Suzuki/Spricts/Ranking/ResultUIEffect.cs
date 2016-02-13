@@ -26,7 +26,7 @@ public class ResultUIEffect : MonoBehaviour
         mLeader = GameObject.Find("Loader_3");
         mTargtList = new List<GameObject>();
         mValues = new List<GameObject>();
-        foreach (Transform i in GameObject.Find("Contents").transform) { mTargtList.Add(i.gameObject); }
+        foreach (Transform i in GameObject.Find("Contents").transform){mTargtList.Add(i.gameObject);}
         foreach (Transform i in GameObject.Find("Values").transform) mValues.Add(i.gameObject);
     }
 
@@ -38,7 +38,11 @@ public class ResultUIEffect : MonoBehaviour
 
     public void Init()
     {
-        foreach (var i in mValues) { i.GetComponent<Text>().color = Color.clear; }
+        //foreach (var i in mValues) { i.GetComponent<Text>().color = Color.clear; }
+        foreach (var i in GameObject.Find("Contents").GetComponentsInChildren<Image>())
+        {
+            i.fillAmount = 0;
+        }
 
     }
 
@@ -51,8 +55,12 @@ public class ResultUIEffect : MonoBehaviour
 
     private void TargetColorValue(float time)
     {
-        Text image = mValue.GetComponent<Text>();
-        image.color = new Color(1, 1, 1, time);
+        //Text image = mValue.GetComponent<Text>();
+        Image[] images = mValue.GetComponentsInChildren<Image>();
+        foreach (var image in images)
+        {
+            image.color = new Color(1, 1, 1, time);
+        }
     }
 
     //とりあえず、レーダーの位置をScoreの上に持っていってみる。
@@ -108,10 +116,15 @@ public class ResultUIEffect : MonoBehaviour
     {
         //値の反映
         Init();
-        TargetTextUpdate(mValues[0], GameManager.GetInstanc.GetScoreUI().GetScore().ToString());
-        TargetTextUpdate(mValues[1], GameObject.Find("GamaManager").GetComponent<ChainManager>().GetMaxChain().ToString());
-        TargetTextUpdate(mValues[2], GameManager.GetInstanc.GetRanking().mCombo.ToString());
-        TargetTextUpdate(mValues[3], GameManager.GetInstanc.GetRanking().mDrowCount.ToString());
+        //TargetTextUpdate(mValues[0], GameManager.GetInstanc.GetScoreUI().GetScore().ToString());
+        //TargetTextUpdate(mValues[1], GameObject.Find("GamaManager").GetComponent<ChainManager>().GetMaxChain().ToString());
+        //TargetTextUpdate(mValues[2], GameManager.GetInstanc.GetRanking().mCombo.ToString());
+        //TargetTextUpdate(mValues[3], GameManager.GetInstanc.GetRanking().mDrowCount.ToString());
+        //画像でのUIの表示を可能にした
+        mValues[0].GetComponent<ScoreSystem>().Draw(GameManager.GetInstanc.GetScoreUI().GetScore());   
+        mValues[1].GetComponent<ScoreSystem>().Draw(GameObject.Find("GamaManager").GetComponent<ChainManager>().GetMaxChain());
+        mValues[2].GetComponent<ScoreSystem>().Draw(GameManager.GetInstanc.GetRanking().mCombo);
+        mValues[3].GetComponent<ScoreSystem>().Draw(GameManager.GetInstanc.GetRanking().mDrowCount);
     }
 
     //Rankingを表示した際に使う

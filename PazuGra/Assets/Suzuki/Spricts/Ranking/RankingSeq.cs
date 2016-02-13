@@ -50,7 +50,7 @@ public class RankingSeq : MonoBehaviour {
         mResult.Sort();
         mResult.Reverse();
         GameObject target = GameObject.Find("RankContents");
-        for (int i = 0; i < 15; i++)
+        for (int i = 1; i < 16; i++)
         {
             if (mResult.Count - 1 == i) break;
             target.transform.GetChild(i).GetChild(0).GetComponent<Text>().text =mResult[i].ToString();
