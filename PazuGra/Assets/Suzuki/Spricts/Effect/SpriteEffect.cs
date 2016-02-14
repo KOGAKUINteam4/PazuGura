@@ -70,7 +70,7 @@ public class SpriteEffect : MonoBehaviour {
     private void Remove(GameObject target)
     {
         Destroy(target);
-        Debug.Log("delete");
+        //Debug.Log("delete");
     }
 
 }

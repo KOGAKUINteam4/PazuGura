@@ -37,7 +37,7 @@ public class PhpContact : MonoBehaviour {
 
         WWW gettext = new WWW(url1, wwwForm);
 
-        Debug.Log("Add"+score);
+        //Debug.Log("Add"+score);
 
         // レスポンスを待つ
         yield return gettext;
@@ -62,7 +62,7 @@ public class PhpContact : MonoBehaviour {
             {
                 JSONObject jsonPos = rdbUserGet[i];
                 JSONObject jsonUid = jsonPos.GetField("score");
-                Debug.Log("Score : " + jsonUid.str);
+                //Debug.Log("Score : " + jsonUid.str);
                 mResult.Add(int.Parse(jsonUid.str));
             }
             yield return new WaitForSeconds(1.0f);

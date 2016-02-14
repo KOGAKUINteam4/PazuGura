@@ -78,7 +78,7 @@ public class ScoreUI : MonoBehaviour {
 
     public int GetScore()
     {
-        Debug.Log("Score : "+mSocre);
+        //Debug.Log("Score : "+mSocre);
         return (int)mSocre;
     }
 

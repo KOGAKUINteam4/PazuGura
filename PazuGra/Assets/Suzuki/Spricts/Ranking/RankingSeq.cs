@@ -53,7 +53,8 @@ public class RankingSeq : MonoBehaviour {
         for (int i = 1; i < 16; i++)
         {
             if (mResult.Count - 1 == i) break;
-            target.transform.GetChild(i).GetChild(0).GetComponent<Text>().text =mResult[i].ToString();
+            //target.transform.GetChild(i).GetChild(0).GetComponent<Text>().text =mResult[i].ToString();
+            target.transform.GetChild(i).GetChild(0).GetComponent<ScoreSystem>().Draw(mResult[i]);
             if (RankerColor(mResult[i])) target.transform.GetChild(i).GetChild(0).GetComponent<Text>().color = Color.yellow;
             //target.transform.GetChild(i).GetChild(0).GetComponent<ScoreUI>().AddScore(mResult[i]);
             //target.transform.GetChild(i).GetChild(0).GetComponent<ScoreUI>().UpdateScore();
