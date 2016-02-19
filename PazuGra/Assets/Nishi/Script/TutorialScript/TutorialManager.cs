@@ -61,6 +61,11 @@ public class TutorialManager : MonoBehaviour
     public void StepUp()
     {
         m_NowStep++;
+        if (m_NowStep == 12)
+        {
+            AudioManager.Instance.SEPlay(AudioList.TutorialClear);
+        }
+
     }
 
     public void StepReset()

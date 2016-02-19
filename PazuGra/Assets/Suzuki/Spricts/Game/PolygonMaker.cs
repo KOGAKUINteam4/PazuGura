@@ -191,7 +191,17 @@ public class PolygonMaker : MonoBehaviour
         else
         {
             colorstate = Random.Range(0, 4);
-            if (GameManager.GetInstanc.GetTutorial()) colorstate = 0;
+            if (GameManager.GetInstanc.GetTutorial())
+            {
+                if (TutorialManager.Instance.GetStep() >= 11)
+                {
+                    colorstate = Random.Range(0, 2);
+                }
+                else
+                {
+                    colorstate = 0;
+                }
+            }
         }
 
         //Colorのスタンプの・・・

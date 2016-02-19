@@ -26,9 +26,15 @@ public class TimeUPEffect : MonoBehaviour {
 
     private void End()
     {
-        //GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
-        //PrefabManager.Instance.Next(PrefabName.Ranking);
-        EffectManager.Instance.Create(m_MainEndEffect, transform.parent);
+        if (GameManager.GetInstanc.GetTutorial())
+        {
+            GameObject.Find("Pausable").GetComponent<Pausable>().PauseSend(false);
+            TutorialManager.Instance.StepUp();
+        }
+        else
+        {
+            EffectManager.Instance.Create(m_MainEndEffect, transform.parent);
+        }
         Destroy(gameObject);
     }
 }

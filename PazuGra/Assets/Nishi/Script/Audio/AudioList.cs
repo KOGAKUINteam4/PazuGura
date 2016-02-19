@@ -12,6 +12,7 @@ public enum AudioList
     Rainbow,
     Stamp,
     touch,
+    TutorialClear,
     TitleBGM,
     GameMainBGM1,
     GameMainBGM2,
@@ -20,5 +21,4 @@ public enum AudioList
     GameMainBGM5,
     TimeSlightly,
     ResultBGM
-    
 }

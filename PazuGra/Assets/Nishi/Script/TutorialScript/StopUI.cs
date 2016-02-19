@@ -7,13 +7,13 @@ public class StopUI : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.GetInstanc.GetTutorial())
+        if (GameManager.GetInstanc.GetTutorial() && TutorialManager.Instance.GetStep() < 11) 
         {
-            GetComponent<Image>().enabled = false;
+            GetComponent<Image>().enabled = true;
         }
         else
         {
-            GetComponent<Image>().enabled = true;
+            GetComponent<Image>().enabled = false;
         }
     }
 }

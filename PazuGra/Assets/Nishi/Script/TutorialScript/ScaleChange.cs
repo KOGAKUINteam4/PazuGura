@@ -6,14 +6,13 @@ public class ScaleChange : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        GameObject button = gameObject.transform.GetChild(0).gameObject;
+        button.SetActive(false);
         Image i = GetComponent<Image>();
         i.color = new Color(1, 1, 1, 0);
-        LeanTween.alpha(i.rectTransform,1,0f).setDelay(2f);
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        LeanTween.alpha(i.rectTransform,1,0f)
+            .setDelay(2f)
+            .setOnComplete(() => { button.SetActive(true); });
 	
 	}
 }

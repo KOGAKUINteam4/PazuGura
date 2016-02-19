@@ -12,6 +12,8 @@ public class ChainManager : MonoBehaviour
     private GameObject m_ComboGauge = null;
     [SerializeField]
     private GameObject m_BlockFactory = null;
+    [SerializeField]
+    private GameObject[] m_TextEffect = null;
     private int m_Maxchain = 0;
 
     private bool m_isListUp = false; //リストアップの終了
@@ -57,9 +59,6 @@ public class ChainManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             CrickStart();
-            //ColliderSwitch(true);
-            //PushList();
-
         }
 
     }
@@ -122,7 +121,10 @@ public class ChainManager : MonoBehaviour
                 }
                 StartCoroutine(coRoutine(obj));
             }
-            //TODO/ここでエフェクト追加
+
+
+
+            CreateTextEffect(score);
             gameManager.GetScoreUI().UpdateScore(score);
             gameManager.GetScoreUI().CreateEffect();
             ComboGaugeStart();
@@ -208,6 +210,37 @@ public class ChainManager : MonoBehaviour
     public void InitChain()
     {
         m_Maxchain = 0;
+    }
+
+    private void CreateTextEffect(float score)
+    {
+        GameObject effect = null;
+        if (score > 15000)
+        {
+            effect = m_TextEffect[4];
+        }
+        else if (score > 10000)
+        {
+            effect = m_TextEffect[3];
+        }
+        else if (score > 5000)
+        {
+            effect = m_TextEffect[2];
+        }
+        else if (score > 2500)
+        {
+            effect = m_TextEffect[1];
+        }
+        else if (score > 0)
+        {
+            effect = m_TextEffect[0];
+        }
+        Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        point.z = 0;
+        effect = (GameObject)Instantiate(effect, point, Quaternion.identity);
+        effect.transform.SetParent(GameObject.Find("PuauseUI").transform, true);
+        effect.GetComponent<Image>().rectTransform.localScale = Vector3.one;
+        Destroy(effect, 1f);
     }
 
 }
