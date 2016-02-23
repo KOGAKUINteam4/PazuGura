@@ -128,4 +128,9 @@ public class GameTimer : MonoBehaviour, IRecieveMessage
         AddSecond(5);
     }
 
+    public float GetTime()
+    {
+        return m_Timer;
+    }
+
 }

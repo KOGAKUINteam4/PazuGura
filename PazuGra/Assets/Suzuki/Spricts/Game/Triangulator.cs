@@ -62,6 +62,7 @@ public class Triangulator
 		}
 		
 		bool reversFlag = true;
+        if (indices.Count < 3) return indices.ToArray();
 		int i0 = indices [0];
 		int i1 = indices [1];
 		int i2 = indices [2];

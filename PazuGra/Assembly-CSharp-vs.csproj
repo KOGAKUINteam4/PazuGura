@@ -107,6 +107,7 @@
      <Compile Include="Assets\Nishi\Script\ShakeGesture.cs" />
      <Compile Include="Assets\Nishi\Script\SortingLayer.cs" />
      <Compile Include="Assets\Nishi\Script\SquareColor.cs" />
+     <Compile Include="Assets\Nishi\Script\TutorialScript\Advice.cs" />
      <Compile Include="Assets\Nishi\Script\TutorialScript\Dummys.cs" />
      <Compile Include="Assets\Nishi\Script\TutorialScript\IgnoreTouch.cs" />
      <Compile Include="Assets\Nishi\Script\TutorialScript\ScaleChange.cs" />

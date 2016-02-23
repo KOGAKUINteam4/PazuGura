@@ -30,7 +30,7 @@ public class TitleLogo : MonoBehaviour {
     {
         LeanTween.moveLocalX(transform.GetChild(2).gameObject, 0, 1.0f);
         LeanTween.moveLocalX(transform.GetChild(3).gameObject, 0, 1.0f);
-        LeanTween.moveLocalX(transform.GetChild(4).gameObject, 250.0f, 1.0f);
+        LeanTween.moveLocalX(transform.GetChild(4).gameObject, 0, 1.0f);
     }
 
     void Update()
@@ -42,9 +42,9 @@ public class TitleLogo : MonoBehaviour {
             image.color = new Color(1, 1, 1, 1);
             image = transform.GetChild(0).gameObject.GetComponent<Image>();
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
-            transform.GetChild(2).localPosition = new Vector3(0, -627.653f, 0);
-            transform.GetChild(3).localPosition = new Vector3(0, -1162, 0);
-            transform.GetChild(4).localPosition = new Vector3(250, -842.4279f, 0);
+            transform.GetChild(2).localPosition = new Vector3(0, -600f, 0);
+            transform.GetChild(3).localPosition = new Vector3(0, -900, 0);
+            transform.GetChild(4).localPosition = new Vector3(0, -1200, 0);
             //transform.GetChild(1).GetComponent<RectTransform>().position = new Vector3(350, -70, 0);
             //transform.GetChild(2).GetComponent<RectTransform>().position = new Vector3(0, -100, 0);
             //transform.GetChild(3).GetComponent<RectTransform>().position = new Vector3(0, -627.653f, 0);

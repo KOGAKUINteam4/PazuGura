@@ -70,7 +70,7 @@ public class TutorialManager : MonoBehaviour
 
     public void StepReset()
     {
-
+        GetComponent<Advice>().init();
         Destroy(m_CurrentObj2);
         Destroy(m_CurrentObj1);
         m_ImageNum = 0;
