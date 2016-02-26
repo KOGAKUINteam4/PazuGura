@@ -38,7 +38,7 @@ public class RankingSeq : MonoBehaviour {
         //if (target == null) target = GameObject.Find("mScoreParent");
         //if (target == null) return false;
         //Score_Value
-        if (GameObject.Find("Score_Value").GetComponent<Text>().text == score.ToString()) return true;
+        if (GameManager.GetInstanc.GetScoreUI().GetScore() == score) return true;
         //if (target.GetComponent<ScoreUI>().GetScore() == score) return true;
         return false;
     }
@@ -55,7 +55,11 @@ public class RankingSeq : MonoBehaviour {
             if (mResult.Count - 1 == i) break;
             //target.transform.GetChild(i).GetChild(0).GetComponent<Text>().text =mResult[i].ToString();
             target.transform.GetChild(i).GetChild(0).GetComponent<ScoreSystem>().Draw(mResult[i]);
-            if (RankerColor(mResult[i])) target.transform.GetChild(i).GetChild(0).GetComponent<Text>().color = Color.yellow;
+            if (RankerColor(mResult[i]))
+            {
+                
+                target.transform.GetChild(i).GetChild(0).GetComponent<RankingEffect>().isCheck = true;
+            }
             //target.transform.GetChild(i).GetChild(0).GetComponent<ScoreUI>().AddScore(mResult[i]);
             //target.transform.GetChild(i).GetChild(0).GetComponent<ScoreUI>().UpdateScore();
         }

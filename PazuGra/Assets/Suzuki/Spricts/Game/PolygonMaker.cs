@@ -107,7 +107,7 @@ public class PolygonMaker : MonoBehaviour
             if (MyMath.CheckInterSection(mRoot[last], mRoot[last - 1], mRoot[i], mRoot[i + 1]))
             {
                 mCrossPoint = i + 1;
-                if(mCrossPoint < 7)IsNullCross = true;
+                if(mCrossPoint < 10)IsNullCross = true;
                 return true;
             }
         }

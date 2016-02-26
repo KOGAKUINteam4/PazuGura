@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ChainParticle: {fileID: 111308, guid: a77be46e5c132cb438e692f264615c9b, type: 2}
-  debugTime: 0
 --- !u!114 &11429716
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -363,6 +362,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

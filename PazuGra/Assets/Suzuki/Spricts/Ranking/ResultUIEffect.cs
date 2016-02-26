@@ -43,6 +43,10 @@ public class ResultUIEffect : MonoBehaviour
         {
             i.fillAmount = 0;
         }
+        foreach (var i in GameObject.Find("RankContents").GetComponentsInChildren<RankingEffect>())
+        {
+            i.isCheck = false;
+        }
 
     }
 

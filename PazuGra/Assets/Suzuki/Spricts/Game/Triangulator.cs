@@ -58,7 +58,12 @@ public class Triangulator
 					V [s] = V [t];
 				nv--;
 				count = 2 * nv;
+                Debug.Log("true");
 			}
+            else
+            {
+                Debug.Log("False");
+            }
 		}
 		
 		bool reversFlag = true;
